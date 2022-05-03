@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ENTER YOUR MOBILE NUMBER"
+            android:textSize="20dp"
+            android:layout_margin="20dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Mobile Number"
+            android:id="@+id/etMobile"
+            android:maxLength="10"
+            android:layout_margin="20dp"
+            android:textColor="#000"
+            android:inputType="number"
+            android:background="@drawable/whitebackgroundcruve"
+            android:padding="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tap Next to verify your account.You don't need to"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="manually enter verifiction code if the number is"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="present in this phone...."
+            android:textSize="15dp"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@null"
+            android:background="@drawable/btndesign"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:text="Continue"
+            android:textAllCaps="false"
+            android:id="@+id/btnContinue"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>

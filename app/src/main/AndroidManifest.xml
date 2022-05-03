@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jp.bettingapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BettingApp">
+        <activity
+            android:name=".LoginProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Side_Menu_Bar_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Result_Chart_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Withdrawal_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Bits_History_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Account_Details_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Odd_Even_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Quick_Cross_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".My_Transaction_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Haruf_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Fast_Cross_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Jodi_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Share_Points_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Point_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" >
+
+        </activity>
+        <activity
+            android:name=".OTP_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+    </application>
+
+</manifest>

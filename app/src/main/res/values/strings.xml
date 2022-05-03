@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Betting App</string>
+
+    <string-array name="selectgame">
+        <item>Select Game</item>
+        <item></item>
+        <item></item>
+    </string-array>
+
+    <string-array name="selectday">
+        <item>Select Day</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wenesday</item>
+        <item>Thuresday</item>
+        <item>Friday</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
