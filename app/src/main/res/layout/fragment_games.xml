@@ -5,6 +5,58 @@
     android:layout_height="match_parent"
     android:background="@color/appblack"
     tools:context=".GamesFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/coin"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nametxt"
+                android:text="Gopi"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"/>
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/coins"
+                    android:layout_marginStart="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:layout_marginStart="10dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
@@ -21,6 +73,32 @@
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/lytAddpoint"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_add_points"
+                    android:background="@drawable/bluelinebackground"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ADD POINTS"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lytJodi"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="100dp"
@@ -38,13 +116,14 @@
                     android:layout_gravity="center"/>
             </LinearLayout>
             <Space
-                android:layout_width="20dp"
+                android:layout_width="15dp"
                 android:layout_height="wrap_content"/>
             <LinearLayout
                 android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/lytHaruf"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="100dp"
@@ -59,12 +138,11 @@
                     android:textStyle="bold"
                     android:textSize="14dp"
                     android:textColor="@color/white"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center" />
             </LinearLayout>
-
-
-
         </LinearLayout>
+
+
         <LinearLayout
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -76,6 +154,32 @@
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/lytTransaction"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_jodi"
+                    android:background="@drawable/bluelinebackground"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TRANSACTION"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lytQuickcross"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="100dp"
@@ -93,13 +197,14 @@
                     android:layout_gravity="center"/>
             </LinearLayout>
             <Space
-                android:layout_width="20dp"
+                android:layout_width="15dp"
                 android:layout_height="wrap_content"/>
             <LinearLayout
                 android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/lytOddeven"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="100dp"
@@ -111,6 +216,94 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ODD EVEN"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lytBits"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_jodi"
+                    android:background="@drawable/bluelinebackground"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BITS HISTORY"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lytWithdraw"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_quick_cross"
+                    android:background="@drawable/bluelinebackground"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WITHDRAW "
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="POINTS"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/lytSharepoints"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_share_points"
+                    android:background="@drawable/bluelinebackground"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SHARE POINTS"
                     android:textStyle="bold"
                     android:textSize="14dp"
                     android:textColor="@color/white"

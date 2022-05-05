@@ -20,10 +20,7 @@ public class Bits_History_Activity extends AppCompatActivity {
 
         backlyt.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Bits_History_Activity.this,HomeActivity.class);
-                startActivity(intent);
-            }
+            public void onClick(View v) {onBackPressed();}
         });
     }
 }

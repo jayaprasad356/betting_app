@@ -20,10 +20,7 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
 
         backlyt.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Add_Account_Details_Activity.this,HomeActivity.class);
-                startActivity(intent);
-            }
+            public void onClick(View v) { onBackPressed(); }
         });
     }
 }

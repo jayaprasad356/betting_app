@@ -118,6 +118,7 @@
                         app:checkedIcon="@null"
                         android:focusable="true"
                         android:text="FAST CROSS"
+                        android:textColor="#FFFFFF"
                         app:chipBackgroundColor="@color/bg_chip_state_list"
                         />
                 </com.google.android.material.chip.ChipGroup>

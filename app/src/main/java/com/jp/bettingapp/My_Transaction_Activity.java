@@ -20,10 +20,7 @@ public class My_Transaction_Activity extends AppCompatActivity {
 
         backlyt.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(My_Transaction_Activity.this,HomeActivity.class);
-                startActivity(intent);
-            }
+            public void onClick(View v) {onBackPressed();}
         });
 
     }

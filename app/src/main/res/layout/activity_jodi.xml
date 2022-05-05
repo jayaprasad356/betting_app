@@ -120,6 +120,7 @@
                     app:checkedIconEnabled="false"
                     app:checkedIcon="@null"
                     android:focusable="true"
+                    android:textColor="#FFFFFF"
                     android:text="FAST CROSS"
                     app:chipBackgroundColor="@color/bg_chip_state_list"
                     />

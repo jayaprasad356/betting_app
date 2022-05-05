@@ -32,10 +32,11 @@ public class LoginProfileActivity extends AppCompatActivity {
                     txtName.setError("empty");
                     txtName.requestFocus();
                 }
-                else {
-                    Intent intent = new Intent(activity,HomeActivity.class);
+                else
+                    {
+                    Intent intent = new Intent(activity,MainActivity.class);
                     startActivity(intent);
-                }
+                    }
 
             }
         });

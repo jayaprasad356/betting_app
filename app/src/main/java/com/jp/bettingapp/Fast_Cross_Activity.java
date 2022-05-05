@@ -21,10 +21,9 @@ public class Fast_Cross_Activity extends AppCompatActivity {
 
         backlyt.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Fast_Cross_Activity.this,Jodi_Activity.class);
-                startActivity(intent);
-            }
+            public void onClick(View v) { onBackPressed();}
         });
+
+
     }
 }
