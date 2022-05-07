@@ -9,18 +9,12 @@ import android.widget.RelativeLayout;
 
 public class Bits_History_Activity extends AppCompatActivity {
 
-    RelativeLayout backlyt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bits_history);
 
-        backlyt = findViewById(R.id.backlyt);
 
-        backlyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {onBackPressed();}
-        });
     }
 }

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appblack"
+    tools:context=".ProfileFragment">
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/coin" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nametxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="James Cameron"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/coins" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="250"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvTransaction"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bluelinebackground"
+            android:padding="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="Transaction"/>
+        <TextView
+            android:id="@+id/tvBids"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bluelinebackground"
+            android:padding="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="Bids History"/>
+        <TextView
+            android:id="@+id/tvWithdrawal"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bluelinebackground"
+            android:padding="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="Withdrawal Points"/>
+        <TextView
+            android:id="@+id/tvShare"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bluelinebackground"
+            android:padding="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="Share Points"/>
+        <TextView
+            android:id="@+id/tvAccount"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bluelinebackground"
+            android:padding="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="Account Details"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

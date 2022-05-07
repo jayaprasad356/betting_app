@@ -8,43 +8,41 @@
     android:background="@color/black"
     tools:context=".Share_Points_Activity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <RelativeLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/backlyt"
-            android:background="@drawable/bluecruve">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_arrow_back"/>
-
-        </RelativeLayout>
-
-        <TextView
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Share Points"
-            android:textSize="25dp"
-            android:layout_marginTop="25dp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"/>
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bluecruve"
+                android:src="@drawable/ic_arrow_back" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/line"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share Points"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+
+
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
 
     <EditText
         android:layout_width="match_parent"
@@ -63,16 +61,19 @@
         android:padding="10dp"/>
 
     <Button
+        android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#2E88EA"
-        android:paddingStart="40dp"
-        android:paddingEnd="40dp"
-        android:text="Share Points"
-        android:id="@+id/pointsbtn"
+        android:layout_height="35dp"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:textSize="15dp" />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/btndesign"
+        android:text="Share Points"
+        android:textAllCaps="false"
+        android:textSize="12dp"
+        app:backgroundTint="@null" />
 
 
 

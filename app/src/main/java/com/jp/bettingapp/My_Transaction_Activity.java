@@ -9,19 +9,12 @@ import android.widget.RelativeLayout;
 
 public class My_Transaction_Activity extends AppCompatActivity {
 
-    RelativeLayout backlyt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_transaction);
 
-        backlyt = findViewById(R.id.backlyt);
-
-        backlyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {onBackPressed();}
-        });
 
     }
 }

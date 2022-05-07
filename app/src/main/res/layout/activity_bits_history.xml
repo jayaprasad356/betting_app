@@ -9,46 +9,41 @@
     android:background="#000"
     tools:context=".Bits_History_Activity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/backlyt"
-            android:background="@drawable/bluecruve">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_arrow_back" />
-
-        </RelativeLayout>
-
-        <TextView
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Bids History"
-            android:textSize="22dp"
-            android:layout_marginTop="25dp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"/>
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bluecruve"
+                android:src="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Bids History"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
 
 
-    </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/line"
-        android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
 
 
     <ScrollView
@@ -80,7 +75,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/bluecruve"
+            android:background="@drawable/whitebackgroundcruve"
             android:entries="@array/selectgame"
             android:padding="10dp"
             android:paddingStart="20dp"
@@ -107,29 +102,34 @@
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_margin="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/whitebackgroundcruve"
+            android:entries="@array/selectday"
             android:paddingStart="20dp"
+            android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/bluecruve"
-            android:entries="@array/selectday" />
+            android:textAlignment="center" />
 
     </RelativeLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:textSize="15dp"
-        android:textAllCaps="false"
-        android:paddingStart="50dp"
-        android:paddingEnd="50dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#0E74F1"
-        android:layout_gravity="center"/>
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btndesign"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textSize="12dp"
+                app:backgroundTint="@null" />
 
             <ImageView
                 android:layout_width="match_parent"

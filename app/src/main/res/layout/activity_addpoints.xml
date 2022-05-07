@@ -7,39 +7,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#000"
-    tools:context=".Add_Point_Activity">
+    tools:context=".AddPointsActivity">
 
     <LinearLayout
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:id="@+id/backlyt"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bluecruve">
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bluecruve"
+            android:src="@drawable/ic_arrow_back" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_arrow_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Points"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
 
-        </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Points"
-        android:textSize="25dp"
-        android:layout_marginTop="25dp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 

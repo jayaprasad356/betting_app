@@ -9,59 +9,45 @@
     android:background="#000"
     tools:context=".Withdrawal_Activity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:id="@+id/backlyt"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bluecruve">
-
-            <ImageView
+            <ImageButton
+                android:id="@+id/back"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_arrow_back"/>
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bluecruve"
+                android:src="@drawable/ic_arrow_back" />
 
-        </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Withdrawals Points"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Withdrawal Status"
-            android:textSize="22dp"
-            android:layout_marginTop="25dp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total 0"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="25dp"
-            android:textColor="#FFFFFF"
-            android:textSize="22dp"
-            android:textStyle="bold" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/line"
-        android:layout_marginBottom="10dp"/>
+
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="20dp">
 
@@ -71,42 +57,35 @@
         android:text="Date"
         android:textSize="20dp"
         android:background="@drawable/bluestrockboder"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:padding="10dp"
+        android:layout_weight="1"
         android:textColor="@color/white"
         android:textAlignment="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"/>
-
+        />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Point"
             android:textSize="20dp"
             android:background="@drawable/bluestrockboder"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:padding="10dp"
+            android:layout_weight="1"
             android:textColor="@color/white"
             android:textAlignment="center"
-            android:layout_marginTop="30dp"/>
-
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="status"
+            android:text="Status"
             android:textSize="20dp"
             android:background="@drawable/bluestrockboder"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:padding="10dp"
+            android:layout_weight="1"
             android:textColor="@color/white"
             android:textAlignment="center"
-            android:layout_marginTop="30dp"/>
+            />
+
+
 
     </LinearLayout>
 

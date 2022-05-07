@@ -9,18 +9,12 @@ import android.widget.RelativeLayout;
 
 public class Withdrawal_Activity extends AppCompatActivity {
 
-    RelativeLayout backlyt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_withdrawal);
 
-        backlyt = findViewById(R.id.backlyt);
 
-        backlyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {onBackPressed();}
-        });
     }
 }

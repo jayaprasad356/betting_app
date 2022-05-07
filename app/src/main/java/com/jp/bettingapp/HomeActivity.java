@@ -2,13 +2,16 @@ package com.jp.bettingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+
+import com.jp.bettingapp.activities.HarufActivity;
+import com.jp.bettingapp.activities.JodiActivity;
+import com.jp.bettingapp.activities.OddEvenActivity;
+import com.jp.bettingapp.activities.QuickCrossActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -71,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
         addpointlyt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,Add_Point_Activity.class);
+                Intent intent = new Intent(HomeActivity.this, AddPointsActivity.class);
                 startActivity(intent);
             }
         });
@@ -79,7 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         jodilyt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,Jodi_Activity.class);
+                Intent intent = new Intent(HomeActivity.this, JodiActivity.class);
                 startActivity(intent);
             }
         });
@@ -87,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
         haruflyt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,Haruf_Activity.class);
+                Intent intent = new Intent(HomeActivity.this, HarufActivity.class);
                 startActivity(intent);
             }
         });
@@ -103,7 +106,7 @@ public class HomeActivity extends AppCompatActivity {
         oddlyt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,Odd_Even_Activity.class);
+                Intent intent = new Intent(HomeActivity.this, OddEvenActivity.class);
                 startActivity(intent);
             }
         });
@@ -127,7 +130,7 @@ public class HomeActivity extends AppCompatActivity {
         crosslyt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,Quick_Cross_Activity.class);
+                Intent intent = new Intent(HomeActivity.this, QuickCrossActivity.class);
                 startActivity(intent);
             }
         });

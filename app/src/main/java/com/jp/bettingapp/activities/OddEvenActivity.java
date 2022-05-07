@@ -1,20 +1,21 @@
-package com.jp.bettingapp;
+package com.jp.bettingapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-public class Share_Points_Activity extends AppCompatActivity {
+import com.jp.bettingapp.R;
+
+public class OddEvenActivity extends AppCompatActivity {
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share_points);
+        setContentView(R.layout.activity_oddeven);
 
 
     }

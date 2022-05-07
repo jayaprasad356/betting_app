@@ -2,29 +2,30 @@ package com.jp.bettingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-public class Add_Point_Activity extends AppCompatActivity {
+public class AddPointsActivity extends AppCompatActivity {
 
-    RelativeLayout backlyt;
+    ImageButton back;
     Button pointsbtn;
     EditText etPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_point);
+        setContentView(R.layout.activity_addpoints);
 
-        backlyt = findViewById(R.id.backlyt);
+        back = findViewById(R.id.back);
         pointsbtn = findViewById(R.id.pointsbtn);
         etPoint = findViewById(R.id.etPoint);
 
-        backlyt.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
