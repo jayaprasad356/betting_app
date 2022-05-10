@@ -20,6 +20,20 @@
         android:textAllCaps="false"
         android:textSize="12dp"
         app:backgroundTint="@null" />
+
+    <TextView
+        android:id="@+id/tvWarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSubmit"
+        android:visibility="gone"
+        android:background="@drawable/errorbackground"
+        android:padding="5dp"
+        android:paddingStart="20dp"
+        android:text="Enter number like 10,15,20..."
+        android:textColor="#FFFFFF"
+        android:textSize="15dp" />
+
     <LinearLayout
         android:id="@+id/l1"
         android:layout_width="match_parent"
@@ -27,7 +41,7 @@
         android:orientation="horizontal"
         android:weightSum="2"
         android:background="@color/appblack"
-        android:layout_below="@+id/btnSubmit">
+        android:layout_below="@+id/tvWarning">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,10 +62,10 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/l1"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/l1" />
 
 
 </RelativeLayout>

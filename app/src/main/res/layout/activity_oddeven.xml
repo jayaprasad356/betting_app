@@ -92,6 +92,21 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSubmit"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        android:text="Enter number like 10,15,20..."
+        android:textSize="15dp"
+        android:paddingStart="20dp"
+        android:padding="5dp"
+        android:id="@+id/tvWarning"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/errorbackground"/>
+
 
 
     <LinearLayout
@@ -113,6 +128,7 @@
 
         <EditText
             android:layout_width="100dp"
+            android:id="@+id/tvOdd"
             android:layout_height="wrap_content"
             android:background="@drawable/bluelinebackground"
             android:textColor="@color/white"
@@ -144,6 +160,7 @@
         <EditText
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:id="@+id/tvEven"
             android:background="@drawable/bluelinebackground"
             android:textColor="@color/white"
             android:textCursorDrawable="@null"

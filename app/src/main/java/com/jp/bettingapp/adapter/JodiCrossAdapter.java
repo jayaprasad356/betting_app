@@ -2,6 +2,8 @@ package com.jp.bettingapp.adapter;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,9 +30,13 @@ import java.util.Map;
 
 public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     final Activity activity;
+    TextView tvWarning;
+    TextView tvTotal;
 
-    public JodiCrossAdapter(Activity activity) {
+    public JodiCrossAdapter(Activity activity, TextView tvWarning, TextView tvTotal) {
         this.activity = activity;
+        this.tvWarning = tvWarning;
+        this.tvTotal = tvTotal;
     }
     @NonNull
     @Override
@@ -46,6 +52,46 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         NumberFormat f = new DecimalFormat("00");
         long time = position;
         holder.tvtitle.setText(f.format(time));
+
+
+
+        holder.etNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try{
+                    if (s != null || !s.equals("")){
+                        int num = Integer.parseInt(holder.etNumber.getText().toString());
+                        int ans = num/5;
+                        if (num%5 == 0){
+                            tvWarning.setVisibility(View.GONE);
+                        }
+                        else{
+                            tvWarning.setVisibility(View.VISIBLE);
+                            tvTotal.setText("10");
+                        }
+
+                    }
+
+                }catch (Exception e){
+
+                }
+
+
+
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 

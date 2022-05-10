@@ -21,11 +21,24 @@
         android:textSize="12dp"
         app:backgroundTint="@null" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/btnSubmit"
+        android:visibility="gone"
+        android:text="Enter number like 10,15,20..."
+        android:textSize="15dp"
+        android:paddingStart="20dp"
+        android:padding="5dp"
+        android:id="@+id/tvWarning"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/errorbackground"/>
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvWarning" />
 
 
 </RelativeLayout>

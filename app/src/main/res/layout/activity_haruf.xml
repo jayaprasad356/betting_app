@@ -108,6 +108,19 @@
             android:textAllCaps="false"
             android:textSize="12dp"
             app:backgroundTint="@null" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnSubmit"
+            android:visibility="gone"
+            android:text="Enter number like 10,15,20..."
+            android:textSize="15dp"
+            android:paddingStart="20dp"
+            android:padding="5dp"
+            android:id="@+id/tvWarning"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/errorbackground"/>
         <LinearLayout
             android:id="@+id/l1"
             android:layout_width="match_parent"
