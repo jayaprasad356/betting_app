@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.jp.bettingapp.adapter.JodiTabsAdapter;
@@ -15,6 +16,7 @@ public class JodiActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     ImageButton back;
+    TextView tvTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class JodiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_jodi);
 
         back = findViewById(R.id.back);
+        tvTotal = findViewById(R.id.tvTotal);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,5 +57,10 @@ public class JodiActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    public void setTotal(int total) {
+        tvTotal.setText("" + total);
     }
 }

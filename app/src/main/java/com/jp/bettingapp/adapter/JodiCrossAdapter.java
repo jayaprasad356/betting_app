@@ -1,5 +1,6 @@
 package com.jp.bettingapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.jp.bettingapp.R;
+import com.jp.bettingapp.activities.JodiActivity;
+import com.jp.bettingapp.fragments.JodiCrossFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,12 +34,14 @@ import java.util.Map;
 public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     final Activity activity;
     TextView tvWarning;
-    TextView tvTotal;
+    ArrayList<String> addvalue = new ArrayList<>();
+    ArrayList<String> ExpAmtArray = new ArrayList<>();
+    boolean isOnTextChanged = false;
+    int ExpenseFinalTotal = 0;
 
-    public JodiCrossAdapter(Activity activity, TextView tvWarning, TextView tvTotal) {
+    public JodiCrossAdapter(Activity activity, TextView tvWarning) {
         this.activity = activity;
         this.tvWarning = tvWarning;
-        this.tvTotal = tvTotal;
     }
     @NonNull
     @Override
@@ -47,7 +52,7 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holderParent, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holderParent, @SuppressLint("RecyclerView") int position) {
         final ItemHolder holder = (ItemHolder) holderParent;
         NumberFormat f = new DecimalFormat("00");
         long time = position;
@@ -63,23 +68,37 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                try{
-                    if (s != null || !s.equals("")){
-                        int num = Integer.parseInt(holder.etNumber.getText().toString());
-                        int ans = num/5;
-                        if (num%5 == 0){
-                            tvWarning.setVisibility(View.GONE);
-                        }
-                        else{
-                            tvWarning.setVisibility(View.VISIBLE);
-                            tvTotal.setText("10");
-                        }
+                isOnTextChanged = true;
 
-                    }
 
-                }catch (Exception e){
 
-                }
+//                try{
+//                    if (s != null || !s.equals("")){
+//                        int num = Integer.parseInt(holder.etNumber.getText().toString());
+//                        int ans = num/5;
+//                        if (num%5 == 0){
+//                            tvWarning.setVisibility(View.GONE);
+//
+//                            addvalue.add(position,holder.etNumber.getText().toString());
+//
+//                            int sum = 0;
+//
+//                            for (int i = 0 ; i < addvalue.size(); i++){
+//                                sum += Integer.parseInt(addvalue.get(i));
+//
+//                            }
+//                            int total = Integer.parseInt(holder.etNumber.getText().toString().trim());
+//                            ((JodiActivity)activity).setTotal(sum);
+//                        }
+//                        else{
+//                            tvWarning.setVisibility(View.VISIBLE);
+//                        }
+//
+//                    }
+//
+//                }catch (Exception e){
+//
+//                }
 
 
 
@@ -88,7 +107,48 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable editable) {
+                ExpenseFinalTotal = 0;
+                if (isOnTextChanged){
+                    isOnTextChanged = false;
+                    try {
+                        ExpenseFinalTotal = 0;
+                        for (int i = 0; i<= position; i++) {
+                            int inposition1 = position;
+                            if (i != position) {
+                                ExpAmtArray.add("0");
+                            }else {
+                                ExpAmtArray.add("0");
+                                ExpAmtArray.set(inposition1,editable.toString());
+                                break;
+                            }
+                        }
+                        for (int i = 0; i < ExpAmtArray.size() - 1; i++){
+                            int tempTotalExpense = Integer.parseInt(ExpAmtArray.get(i));
+                            ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
+                            //int total = Integer.parseInt(holder.etNumber.getText().toString().trim());
+                            ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
+                        }
+
+                    }catch (NumberFormatException e){
+                        ExpenseFinalTotal = 0;
+                        for (int i = 0; i<= position; i++) {
+                            int newposition = position;
+                            if (i== newposition){
+                                ExpAmtArray.set(newposition,"0");
+                            }
+
+                        }
+                        for (int i = 0; i <= ExpAmtArray.size() - 1; i ++){
+                            int tempTotalExpense = Integer.parseInt(ExpAmtArray.get(i));
+                            ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
+
+                        }
+                        ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
+
+                    }
+
+                }
 
             }
         });
@@ -100,6 +160,11 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public int getItemCount() {
         return 100;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     static class ItemHolder extends RecyclerView.ViewHolder {

@@ -47,6 +47,11 @@
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/jodei_cross_lyt.xml" value="0.3333333333333333" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/jodi_cross_lyt.xml" value="0.17135416666666667" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/jodi_fastcross_lyt.xml" value="0.22" />
+        <entry key="..\:/Users/Bala/betting_app/app/src/main/res/layout/activity_fast_cross.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Bala/betting_app/app/src/main/res/layout/activity_jodi.xml" value="0.18888888888888888" />
+        <entry key="..\:/Users/Bala/betting_app/app/src/main/res/layout/activity_oddeven.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/Bala/betting_app/app/src/main/res/layout/jodi_cross_lyt.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Bala/betting_app/app/src/main/res/layout/jodi_fastcross_lyt.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/visha/AndroidStudioProjects/betting_app/app/src/main/res/drawable/bluecruve.xml" value="0.26615384615384613" />
         <entry key="..\:/Users/visha/AndroidStudioProjects/betting_app/app/src/main/res/drawable/bluelinebackground.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/visha/AndroidStudioProjects/betting_app/app/src/main/res/drawable/errorbackground.xml" value="0.26615384615384613" />
@@ -82,7 +87,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

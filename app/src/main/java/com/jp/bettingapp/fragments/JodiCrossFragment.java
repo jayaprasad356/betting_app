@@ -13,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.jp.bettingapp.MainActivity;
 import com.jp.bettingapp.R;
+import com.jp.bettingapp.activities.JodiActivity;
 import com.jp.bettingapp.adapter.JodiCrossAdapter;
 
 public class JodiCrossFragment extends Fragment {
@@ -24,7 +26,6 @@ public class JodiCrossFragment extends Fragment {
     public static JodiCrossAdapter jodiCrossAdapter;
 
     TextView tvWarning;
-    TextView tvTotal;
 
 
     public JodiCrossFragment() {
@@ -39,15 +40,17 @@ public class JodiCrossFragment extends Fragment {
         root =  inflater.inflate(R.layout.fragment_jodi_cross, container, false);
 
         tvWarning = root.findViewById(R.id.tvWarning);
-        tvTotal = root.findViewById(R.id.tvTotal);
         recyclerView = root.findViewById(R.id.recyclerView);
         activity = getActivity();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(activity,5);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        jodiCrossAdapter = new JodiCrossAdapter(activity,tvWarning,tvTotal);
+        jodiCrossAdapter = new JodiCrossAdapter(activity,tvWarning);
         recyclerView.setAdapter(jodiCrossAdapter);
+
 
         return root;
     }
+
 }
