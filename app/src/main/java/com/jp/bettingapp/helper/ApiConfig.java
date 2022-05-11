@@ -30,7 +30,7 @@ public class ApiConfig extends Application {
     static ApiConfig mInstance;
     public static final String TAG = ApiConfig.class.getSimpleName();
     RequestQueue mRequestQueue;
-    static AppEnvironment appEnvironment;
+
 
     public static String VolleyErrorMessage(VolleyError error) {
         String message = "";
@@ -52,9 +52,7 @@ public class ApiConfig extends Application {
         }
         return message;
     }
-    public AppEnvironment getAppEnvironment() {
-        return appEnvironment;
-    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void RequestToVolley(final VolleyCallback callback, final Activity activity, final String url, final Map<String, String> params, final boolean isProgress) {
         if (ProgressDisplay.mProgressBar != null) {
