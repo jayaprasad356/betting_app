@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -77,16 +78,27 @@ public class LoginActivity extends AppCompatActivity {
         params.put(Constant.MOBILE,etMobile.getText().toString().trim());
 
         ApiConfig.RequestToVolley((result, response) -> {
+            Log.d("LOGINRESPONSE",response);
             if (result) {
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
 
 
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
                         session.setBoolean("is_logged_in", true);
-                        session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+
+                        if (jsonObject.getBoolean(Constant.Login)){
+                            JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+
+                            session.setBoolean("registered", true);
+                            session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+
+                        }else{
+                            session.setBoolean("registered", false);
+
+                        }
+
                         Intent intent = new Intent(activity,OTP_Activity.class);
                         intent.putExtra("mobile_number",etMobile.getText().toString());
                         startActivity(intent);
