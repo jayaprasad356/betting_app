@@ -2,39 +2,29 @@ package com.jp.bettingapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.jp.bettingapp.R;
 import com.jp.bettingapp.activities.JodiActivity;
-import com.jp.bettingapp.fragments.JodiCrossFragment;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     final Activity activity;
     TextView tvWarning;
-    ArrayList<String> addvalue = new ArrayList<>();
     ArrayList<String> ExpAmtArray = new ArrayList<>();
     boolean isOnTextChanged = false;
     int ExpenseFinalTotal = 0;
@@ -57,7 +47,6 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         NumberFormat f = new DecimalFormat("00");
         long time = position;
         holder.tvtitle.setText(f.format(time));
-
 
 
         holder.etNumber.addTextChangedListener(new TextWatcher() {
@@ -124,11 +113,14 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             }
                         }
                         for (int i = 0; i < ExpAmtArray.size() - 1; i++){
+
+
                             int tempTotalExpense = Integer.parseInt(ExpAmtArray.get(i));
                             ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
-                            //int total = Integer.parseInt(holder.etNumber.getText().toString().trim());
+
                             ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
                         }
+                        Log.d("ADAPTERJODIPOSITION", ""+ExpAmtArray.toString());
 
                     }catch (NumberFormatException e){
                         ExpenseFinalTotal = 0;
@@ -140,6 +132,7 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                         }
                         for (int i = 0; i <= ExpAmtArray.size() - 1; i ++){
+                            //Log.d("ADAPTERJODIVALUE", ""+ExpAmtArray.get(i));
                             int tempTotalExpense = Integer.parseInt(ExpAmtArray.get(i));
                             ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
 
