@@ -61,33 +61,23 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
 
-//                try{
-//                    if (s != null || !s.equals("")){
-//                        int num = Integer.parseInt(holder.etNumber.getText().toString());
-//                        int ans = num/5;
-//                        if (num%5 == 0){
-//                            tvWarning.setVisibility(View.GONE);
-//
-//                            addvalue.add(position,holder.etNumber.getText().toString());
-//
-//                            int sum = 0;
-//
-//                            for (int i = 0 ; i < addvalue.size(); i++){
-//                                sum += Integer.parseInt(addvalue.get(i));
-//
-//                            }
-//                            int total = Integer.parseInt(holder.etNumber.getText().toString().trim());
-//                            ((JodiActivity)activity).setTotal(sum);
-//                        }
-//                        else{
-//                            tvWarning.setVisibility(View.VISIBLE);
-//                        }
-//
-//                    }
-//
-//                }catch (Exception e){
-//
-//                }
+                try{
+                    if (s != null || !s.equals("")){
+                        int num = Integer.parseInt(holder.etNumber.getText().toString());
+                        int ans = num/5;
+                        if (num%5 == 0){
+                            tvWarning.setVisibility(View.GONE);
+
+                        }
+                        else{
+                            tvWarning.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+
+                }catch (Exception e){
+
+                }
 
 
 

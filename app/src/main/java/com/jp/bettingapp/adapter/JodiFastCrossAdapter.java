@@ -55,6 +55,28 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 isOnTextChanged = true;
+                try{
+                    if (s != null || !s.equals("")){
+                        int num = Integer.parseInt(holder.etPoints.getText().toString());
+                        int ans = num/5;
+                        if (num%5 == 0){
+                            tvWarning.setVisibility(View.GONE);
+
+                        }
+                        else{
+                            tvWarning.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+
+                }catch (Exception e){
+
+                }
+
+
+
+
+
 
             }
 
