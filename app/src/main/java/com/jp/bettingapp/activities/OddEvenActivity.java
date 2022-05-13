@@ -13,12 +13,15 @@ import android.widget.TextView;
 
 import com.jp.bettingapp.R;
 
+import org.w3c.dom.Text;
+
 public class OddEvenActivity extends AppCompatActivity {
 
     EditText tvOdd;
     EditText tvEven;
     TextView tvWarning;
     ImageButton back;
+    TextView tvTotal;
 
 
 
@@ -31,6 +34,7 @@ public class OddEvenActivity extends AppCompatActivity {
         tvEven = findViewById(R.id.tvEven);
         tvWarning = findViewById(R.id.tvWarning);
         back = findViewById(R.id.back);
+        tvTotal = findViewById(R.id.tvTotal);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +67,23 @@ public class OddEvenActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (!s.toString().equals("")){
+                    int num = Integer.parseInt(s.toString());
+                    String even = tvEven.getText().toString();
+                    if (even.equals("")){
+                        even = "0";
+                    }
+                    String odd = tvOdd.getText().toString();
+                    if (odd.equals("")){
+                        odd = "0";
+                    }
+                    if (num%5 == 0){
+                        int value = (Integer.parseInt(even) * 50) + (Integer.parseInt(odd) * 50);
+                        tvTotal.setText(""+value);
+
+                    }
+
+                }
             }
         });
 
@@ -76,7 +97,6 @@ public class OddEvenActivity extends AppCompatActivity {
                 try{
                     if (s != null || !s.equals("")){
                         int num = Integer.parseInt(tvEven.getText().toString());
-                        int ans = num/5;
                         if (num%5 == 0){
                             tvWarning.setVisibility(View.GONE);
                         }
@@ -92,8 +112,26 @@ public class OddEvenActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (!s.toString().equals("")){
+                    int num = Integer.parseInt(s.toString());
+                    String even = tvEven.getText().toString();
+                    if (even.equals("")){
+                        even = "0";
+                    }
+                    String odd = tvOdd.getText().toString();
+                    if (odd.equals("")){
+                        odd = "0";
+                    }
+                    if (num%5 == 0){
+                        int value = (Integer.parseInt(even) * 50) + (Integer.parseInt(odd) * 50);
+                        tvTotal.setText(""+value);
+
+                    }
+
+                }
             }
         });
+
 
     }
 }

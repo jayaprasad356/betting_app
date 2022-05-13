@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.jp.bettingapp.R;
@@ -25,6 +26,7 @@ public class JodiFastCrossFragment extends Fragment {
     public static Activity activity;
     public static RecyclerView recyclerView;
     public static JodiFastCrossAdapter jodiFastCrossAdapter;
+    Button btnSubmit;
 
     TextView tvWarning;
 
@@ -42,11 +44,12 @@ public class JodiFastCrossFragment extends Fragment {
 
         tvWarning = root.findViewById(R.id.tvWarning);
         recyclerView = root.findViewById(R.id.recyclerView);
+        btnSubmit = root.findViewById(R.id.btnSubmit);
         activity = getActivity();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        jodiFastCrossAdapter = new JodiFastCrossAdapter(activity,tvWarning);
+        jodiFastCrossAdapter = new JodiFastCrossAdapter(activity,tvWarning,btnSubmit);
         recyclerView.setAdapter(jodiFastCrossAdapter);
         return root;
     }
