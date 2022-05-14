@@ -58,8 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         resultbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,Result_Chart_Activity.class);
-                startActivity(intent);
+
             }
         });
 
@@ -114,7 +113,7 @@ public class HomeActivity extends AppCompatActivity {
         historylyt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,Bits_History_Activity.class);
+                Intent intent = new Intent(HomeActivity.this, BidsHistoryActivity.class);
                 startActivity(intent);
             }
         });

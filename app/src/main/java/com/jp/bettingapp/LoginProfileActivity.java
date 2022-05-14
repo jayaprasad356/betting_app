@@ -56,45 +56,4 @@ public class LoginProfileActivity extends AppCompatActivity {
         });
 
     }
-    private void login() {
-        Map<String, String> params = new HashMap<>();
-        //request
-        params.put(Constant.NAME,txtName.getText().toString().trim());
-        params.put(Constant.ID,txtName.getText().toString().trim());
-
-        ApiConfig.RequestToVolley((result, response) -> {
-            if (result) {
-
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-
-
-                    if (jsonObject.getBoolean(Constant.SUCCESS)) {
-
-
-                        Intent intent = new Intent(activity,MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                    else {
-                        Toast.makeText(this, "Failed"+jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
-
-                    }
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
-
-
-
-            }
-            else {
-                Toast.makeText(this, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
-
-            }
-            //pass url
-        }, LoginProfileActivity.this, Constant.LOGIN_URL, params,true);
-
-
-
-    }
 }

@@ -232,7 +232,7 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             }
             //pass url
-        }, activity, Constant.JODI_URL, params,true);
+        }, activity, Constant.GAME_URL, params,true);
 
 
     }

@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.jp.bettingapp.helper.Constant;
+import com.jp.bettingapp.helper.Session;
+
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     public static Fragment gameFragment,resultFragment,profileFragment;
     public static Fragment active;
     public static boolean gameClicked = false,resultClicked = false,profileClicked = false;
+    Session session;
 
 
 
@@ -28,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        session = new Session(MainActivity.this);
+
+        session.setData(Constant.ID,"1");
+
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         fm = getSupportFragmentManager();
         gameFragment = new GamesFragment();

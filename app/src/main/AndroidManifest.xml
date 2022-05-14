@@ -75,13 +75,10 @@
             android:name=".Side_Menu_Bar_Activity"
             android:exported="false" />
         <activity
-            android:name=".Result_Chart_Activity"
-            android:exported="false" />
-        <activity
             android:name=".Withdrawal_Activity"
             android:exported="false" />
         <activity
-            android:name=".Bits_History_Activity"
+            android:name=".BidsHistoryActivity"
             android:exported="false" />
         <activity
             android:name=".Add_Account_Details_Activity"

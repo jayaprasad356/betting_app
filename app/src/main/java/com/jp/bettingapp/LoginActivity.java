@@ -80,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         ApiConfig.RequestToVolley((result, response) -> {
             Log.d("LOGINRESPONSE",response);
             if (result) {
-
                 try {
                     JSONObject jsonObject = new JSONObject(response);
 

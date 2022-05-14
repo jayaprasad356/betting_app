@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:hint="Point to add(Amount in )"
         android:id="@+id/etPoint"
+        android:inputType="number"
         android:layout_margin="20dp"
         android:background="@drawable/whitebackgroundcruve"
         android:padding="10dp"/>

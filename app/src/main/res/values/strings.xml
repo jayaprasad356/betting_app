@@ -3,6 +3,14 @@
 
     <string-array name="selectgame">
         <item>Select Game</item>
+        <item>GL</item>
+        <item>DS</item>
+        <item>FD</item>
+        <item>GB</item>
+    </string-array>
+
+    <string-array name="selectgamex">
+        <item>Select Game</item>
         <item>Today Games</item>
         <item>GL - 10:35 PM</item>
         <item>Next Day Games</item>
@@ -27,17 +35,18 @@
         <item>"2025"</item>
     </string-array>
     <string-array name="Months">
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
-        <item>April</item>
-        <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
-        <item>October</item>
-        <item>November</item>
-        <item>December</item>
+        <item>"1"</item>
+        <item>"2"</item>
+        <item>"3"</item>
+        <item>"4"</item>
+        <item>"5"</item>
+        <item>"6"</item>
+        <item>"7"</item>
+        <item>"8"</item>
+        <item>"9"</item>
+        <item>"10"</item>
+        <item>"11"</item>
+        <item>"12"</item>
 
     </string-array>
 

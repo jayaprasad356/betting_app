@@ -290,7 +290,7 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             }
             //pass url
-        }, activity, Constant.JODI_URL, params,true);
+        }, activity, Constant.GAME_URL, params,true);
 
 
     }

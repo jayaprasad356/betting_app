@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class ProfileFragment extends Fragment {
     View root;
-    LinearLayout tvTransaction,tvBids,tvWithdrawal,tvShare,tvAccount;
+    LinearLayout tvAddPoints,tvTransaction,tvBids,tvWithdrawal,tvShare,tvAccount;
 
 
 
@@ -25,11 +25,21 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_profile, container, false);
+        tvAddPoints = root.findViewById(R.id.tvAddPoints);
         tvTransaction = root.findViewById(R.id.tvTransaction);
         tvBids = root.findViewById(R.id.tvBids);
         tvWithdrawal = root.findViewById(R.id.tvWithdrawal);
         tvShare = root.findViewById(R.id.tvShare);
         tvAccount = root.findViewById(R.id.tvAccount);
+
+        tvAddPoints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),AddPointsActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         tvTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +53,7 @@ public class ProfileFragment extends Fragment {
         tvBids.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),Bits_History_Activity.class);
+                Intent intent = new Intent(getActivity(),BidsHistoryActivity.class);
                 startActivity(intent);
 
             }
