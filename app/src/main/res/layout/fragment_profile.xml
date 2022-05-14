@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/appblack"
     tools:context=".ProfileFragment">
     <LinearLayout
@@ -68,56 +69,196 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
+
+        <LinearLayout
             android:id="@+id/tvTransaction"
-            android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
             android:background="@drawable/bluelinebackground"
-            android:padding="10dp"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="Transaction"/>
-        <TextView
+
+            >
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/grey"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="18dp"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:textColor="@color/white"
+                android:text="Transaction"/>
+
+
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/tvBids"
-            android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
             android:background="@drawable/bluelinebackground"
-            android:padding="10dp"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="Bids History"/>
-        <TextView
+
+            >
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/grey"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="18dp"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:textColor="@color/white"
+                android:text="Bids History"/>
+
+
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/tvWithdrawal"
-            android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
             android:background="@drawable/bluelinebackground"
-            android:padding="10dp"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="Withdrawal Points"/>
-        <TextView
+
+            >
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/grey"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="18dp"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:textColor="@color/white"
+                android:text="Withdrawal Points"/>
+
+
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/tvShare"
-            android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
             android:background="@drawable/bluelinebackground"
-            android:padding="10dp"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="Share Points"/>
-        <TextView
+
+            >
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/grey"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="18dp"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:textColor="@color/white"
+                android:text="Share Points"/>
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/tvAccount"
-            android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
             android:background="@drawable/bluelinebackground"
-            android:padding="10dp"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="Account Details"/>
+
+            >
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/grey"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="18dp"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:textColor="@color/white"
+                android:text="Account Details"/>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
 
     </LinearLayout>
 

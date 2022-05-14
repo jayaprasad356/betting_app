@@ -56,4 +56,9 @@
         android:textColor="@color/white"
         android:textAlignment="center"/>
 
+    <include
+        layout="@layout/transaction_lyt"/>
+
+
+
 </LinearLayout>

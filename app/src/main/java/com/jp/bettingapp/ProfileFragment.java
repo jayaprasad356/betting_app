@@ -8,12 +8,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 public class ProfileFragment extends Fragment {
     View root;
-    TextView tvTransaction,tvBids,tvWithdrawal,tvShare,tvAccount;
+    LinearLayout tvTransaction,tvBids,tvWithdrawal,tvShare,tvAccount;
 
 
 
