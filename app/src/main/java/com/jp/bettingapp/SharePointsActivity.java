@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.jp.bettingapp.helper.ApiConfig;
@@ -22,68 +23,67 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginProfileActivity extends AppCompatActivity {
-    Button btnContinue;
-    EditText txtName;
+public class SharePointsActivity extends AppCompatActivity {
+
+    ImageButton back;
+    Button btnShare;
+    EditText etPoints,etMobile;
     Activity activity;
     Session session;
-    String mobilenumber;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_profile);
-        mobilenumber = getIntent().getStringExtra(Constant.MOBILE);
+        setContentView(R.layout.activity_sharepoints);
 
-        activity = LoginProfileActivity.this;
+        activity = SharePointsActivity.this;
         session = new Session(activity);
 
-        btnContinue = findViewById(R.id.btnContinue);
-        txtName = findViewById(R.id.txtName);
+        back = findViewById(R.id.back);
+        btnShare = findViewById(R.id.btnShare);
+        etPoints = findViewById(R.id.etPoints);
+        etMobile = findViewById(R.id.etMobile);
 
-        btnContinue.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { onBackPressed(); }
+        });
 
-                if (txtName.getText().toString().equals("")){
-                    txtName.setError("empty");
-                    txtName.requestFocus();
-                }
-                else{
-                    updateUser();
-
-
-                }
-
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sharePoints();
 
             }
         });
 
+
     }
 
-
-
-    private void updateUser() {
+    private void sharePoints()
+    {
         Map<String, String> params = new HashMap<>();
-        params.put(Constant.MOBILE,mobilenumber);
-        params.put(Constant.NAME,txtName.getText().toString().trim());
-
+        params.put(Constant.USER_ID,session.getData(Constant.ID));
+        params.put(Constant.MOBILE,etMobile.getText().toString().trim());
+        params.put(Constant.POINTS,etPoints.getText().toString().trim());
         ApiConfig.RequestToVolley((result, response) -> {
+            Log.d("SHARE_RES",response);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
-                        session.setBoolean("is_logged_in", true);
                         JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
-                        session.setData(Constant.ID,jsonArray.getJSONObject(0).getString(Constant.ID));
                         session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
                         session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
                         session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
 
-                        Intent intent = new Intent(activity,MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(activity, MainActivity.class);
+                        activity.startActivity(intent);
+                        activity.finish();
                     }
                     else {
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
@@ -91,18 +91,12 @@ public class LoginProfileActivity extends AppCompatActivity {
                 } catch (JSONException e){
                     e.printStackTrace();
                 }
-
-
-
             }
             else {
-                Toast.makeText(this, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
 
             }
             //pass url
-        }, activity, Constant.UPDATE_USER_URL, params,true);
-
-
-
+        }, activity, Constant.SHAREPOINTS_URL, params,true);
     }
 }

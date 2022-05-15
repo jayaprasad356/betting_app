@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.jp.bettingapp.helper.ApiConfig;
@@ -22,68 +23,77 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginProfileActivity extends AppCompatActivity {
-    Button btnContinue;
-    EditText txtName;
+public class AddWithdrawalActivity extends AppCompatActivity {
+    ImageButton back;
+    Button btnWithdrawal;
+    EditText etPoint;
     Activity activity;
     Session session;
-    String mobilenumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_profile);
-        mobilenumber = getIntent().getStringExtra(Constant.MOBILE);
+        setContentView(R.layout.activity_add_withdrawal);
 
-        activity = LoginProfileActivity.this;
+        activity = AddWithdrawalActivity.this;
         session = new Session(activity);
 
-        btnContinue = findViewById(R.id.btnContinue);
-        txtName = findViewById(R.id.txtName);
+        Log.d("SESSION_VALUE",session.getData(Constant.ID));
 
-        btnContinue.setOnClickListener(new View.OnClickListener() {
+
+        back = findViewById(R.id.back);
+        btnWithdrawal = findViewById(R.id.btnWithdrawal);
+        etPoint = findViewById(R.id.etPoint);
+
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (txtName.getText().toString().equals("")){
-                    txtName.setError("empty");
-                    txtName.requestFocus();
-                }
-                else{
-                    updateUser();
-
-
-                }
-
-
+                onBackPressed();
             }
         });
 
+        btnWithdrawal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (etPoint.getText().toString().equals(""))
+                {
+                    etPoint.setError("empty");
+                    etPoint.requestFocus();
+                }
+                else if (etPoint.getText().toString().equals("0"))
+                {
+                    etPoint.setError("Enter Valid Points");
+                    etPoint.requestFocus();
+                }
+                else {
+                    addWithdrawals();
+                }
+            }
+        });
     }
 
-
-
-    private void updateUser() {
+    private void addWithdrawals()
+    {
         Map<String, String> params = new HashMap<>();
-        params.put(Constant.MOBILE,mobilenumber);
-        params.put(Constant.NAME,txtName.getText().toString().trim());
-
+        params.put(Constant.USER_ID,session.getData(Constant.ID));
+        params.put(Constant.AMOUNT,etPoint.getText().toString().trim());
         ApiConfig.RequestToVolley((result, response) -> {
+            Log.d("WITHDRAWAL_RES",response);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
-                        session.setBoolean("is_logged_in", true);
                         JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
-                        session.setData(Constant.ID,jsonArray.getJSONObject(0).getString(Constant.ID));
                         session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
                         session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
                         session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
 
-                        Intent intent = new Intent(activity,MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(activity, MainActivity.class);
+                        activity.startActivity(intent);
+                        activity.finish();
                     }
                     else {
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
@@ -91,18 +101,12 @@ public class LoginProfileActivity extends AppCompatActivity {
                 } catch (JSONException e){
                     e.printStackTrace();
                 }
-
-
-
             }
             else {
-                Toast.makeText(this, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
 
             }
             //pass url
-        }, activity, Constant.UPDATE_USER_URL, params,true);
-
-
-
+        }, activity, Constant.WITHDRAWAL_URL, params,true);
     }
 }

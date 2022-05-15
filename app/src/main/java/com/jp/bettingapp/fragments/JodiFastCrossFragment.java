@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.jp.bettingapp.R;
@@ -23,12 +24,13 @@ public class JodiFastCrossFragment extends Fragment {
 
     View root;
 
-    public static Activity activity;
-    public static RecyclerView recyclerView;
-    public static JodiFastCrossAdapter jodiFastCrossAdapter;
+    Activity activity;
+    RecyclerView recyclerView;
+    JodiFastCrossAdapter jodiFastCrossAdapter;
     Button btnSubmit;
 
     TextView tvWarning;
+    Spinner spinGame;
 
 
 
@@ -39,17 +41,17 @@ public class JodiFastCrossFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_jodi_fast_cross, container, false);
 
         tvWarning = root.findViewById(R.id.tvWarning);
         recyclerView = root.findViewById(R.id.recyclerView);
         btnSubmit = root.findViewById(R.id.btnSubmit);
+        spinGame = root.findViewById(R.id.spinGame);
         activity = getActivity();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        jodiFastCrossAdapter = new JodiFastCrossAdapter(activity,tvWarning,btnSubmit);
+        jodiFastCrossAdapter = new JodiFastCrossAdapter(activity,tvWarning,btnSubmit,spinGame);
         recyclerView.setAdapter(jodiFastCrossAdapter);
         return root;
     }

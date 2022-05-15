@@ -61,12 +61,17 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    login();
+                    Intent intent = new Intent(activity,OTP_Activity.class);
+                    intent.putExtra("mobile_number",etMobile.getText().toString());
+                    startActivity(intent);
+                    finish();
+                    //login();
 
 
                 }
 
             }
+
         });
 
 
@@ -74,29 +79,13 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void login() {
         Map<String, String> params = new HashMap<>();
-        //request
         params.put(Constant.MOBILE,etMobile.getText().toString().trim());
 
         ApiConfig.RequestToVolley((result, response) -> {
-            Log.d("LOGINRESPONSE",response);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-
-
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
-                        session.setBoolean("is_logged_in", true);
-
-                        if (jsonObject.getBoolean(Constant.Login)){
-                            JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
-
-                            session.setBoolean("registered", true);
-                            session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
-
-                        }else{
-                            session.setBoolean("registered", false);
-
-                        }
 
                         Intent intent = new Intent(activity,OTP_Activity.class);
                         intent.putExtra("mobile_number",etMobile.getText().toString());

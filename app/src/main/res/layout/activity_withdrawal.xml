@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000"
-    tools:context=".Withdrawal_Activity">
+    android:background="@color/appblack"
+    tools:context=".WithdrawalActivity">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,104 +45,57 @@
 
 
     </RelativeLayout>
+    <Button
+        android:id="@+id/btnWithdrawal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Withdrawal"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/appdesignblue"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp"
-        android:weightSum="3"
-        >
+        android:layout_margin="5dp"
+        android:background="@drawable/bluelinebackground"
+        android:padding="10dp"
+        android:orientation="horizontal">
 
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:text="Date"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="20dp"
             android:layout_weight="1"
-            >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Date"
-                android:textSize="10dp"
-                android:textColor="@color/blue"
-                android:textAlignment="center"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="22-05-22"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textAlignment="center"
-                />
-
-        </LinearLayout>
-        <LinearLayout
+            android:textStyle="bold"/>
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:text="Points"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="20dp"
             android:layout_weight="1"
+            android:textStyle="bold"/>
 
-            >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Point"
-                android:textSize="10dp"
-                android:textColor="@color/blue"
-                android:textAlignment="center"
-
-
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="17"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textAlignment="center"
-
-                />
-
-        </LinearLayout>
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:text="Status"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:gravity="center"
             android:layout_weight="1"
-
-            >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Status"
-                android:textSize="10dp"
-                android:textColor="@color/blue"
-                android:textAlignment="center"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pending"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textAlignment="center"
-                />
-
-        </LinearLayout>
-
-
-
-
+            android:textStyle="bold"/>
 
     </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/withdrawal_lyt"
+        />
 
 </LinearLayout>

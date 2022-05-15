@@ -23,9 +23,9 @@ import com.jp.bettingapp.adapter.JodiCrossAdapter;
 public class JodiCrossFragment extends Fragment {
     View root;
 
-    public static Activity activity;
-    public static RecyclerView recyclerView;
-    public static JodiCrossAdapter jodiCrossAdapter;
+    Activity activity;
+    RecyclerView recyclerView;
+    JodiCrossAdapter jodiCrossAdapter;
 
     TextView tvWarning;
     Button btnSubmit;

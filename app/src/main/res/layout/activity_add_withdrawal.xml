@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/appblack"
-    tools:context=".AddPointsActivity">
+    android:background="#000"
+    tools:context=".AddWithdrawalActivity">
 
     <LinearLayout
         android:layout_margin="5dp"
@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Points"
+            android:text="Add Withdrawals"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:textSize="20dp"
@@ -60,9 +60,9 @@
         android:background="@drawable/btndesign"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
-        android:text="Add Points"
+        android:text="Add Withdrawal"
         android:textAllCaps="false"
-        android:id="@+id/pointsbtn"
+        android:id="@+id/btnWithdrawal"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
         android:textSize="15dp"/>

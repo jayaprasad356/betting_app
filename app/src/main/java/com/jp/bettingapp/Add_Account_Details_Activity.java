@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -77,6 +78,7 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
         params.put(Constant.IFSC_CODE, etIFSC.getText().toString().trim());
         params.put(Constant.HOLDER_NAME, etHolderName.getText().toString().trim());
         ApiConfig.RequestToVolley((result, response) -> {
+            Log.d("ACCOUNT_RESPONSE",""+result);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -85,6 +87,7 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
                         session.setData(Constant.ACCOUNT_NO, jsonArray.getJSONObject(0).getString(Constant.ACCOUNT_NO));
                         session.setData(Constant.IFSC_CODE, jsonArray.getJSONObject(0).getString(Constant.IFSC_CODE));
                         session.setData(Constant.HOLDER_NAME, jsonArray.getJSONObject(0).getString(Constant.HOLDER_NAME));
+                        Toast.makeText(this, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(activity, MainActivity.class);
                         startActivity(intent);
                         finish();

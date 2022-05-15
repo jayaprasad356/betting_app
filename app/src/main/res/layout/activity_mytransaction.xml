@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000"
-    tools:context=".My_Transaction_Activity">
+    android:background="@color/appblack"
+    tools:context=".MyTransactionActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,6 +45,7 @@
     </RelativeLayout>
 
     <TextView
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -56,8 +57,11 @@
         android:textColor="@color/white"
         android:textAlignment="center"/>
 
-    <include
-        layout="@layout/transaction_lyt"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/transaction_lyt"/>
 
 
 

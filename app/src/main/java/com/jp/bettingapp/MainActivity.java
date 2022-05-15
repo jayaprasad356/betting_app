@@ -34,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         session = new Session(MainActivity.this);
-
-        session.setData(Constant.ID,"1");
-
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         fm = getSupportFragmentManager();
         gameFragment = new GamesFragment();

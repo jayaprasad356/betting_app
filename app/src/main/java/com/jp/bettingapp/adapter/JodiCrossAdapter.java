@@ -78,7 +78,14 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 for (int i = 0; i < PointsArray.size(); i++){
                     NumbersArray.add(String.valueOf(i));
                 }
-                submitGame();
+                if (spinGame.getSelectedItemPosition() != 0 ){
+                    submitGame();
+
+                }
+                else {
+                    Toast.makeText(activity, "Please,Select Game", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -194,15 +201,14 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     {
         Map<String, String> params = new HashMap<>();
         //request
-        params.put(Constant.USER_ID,"1");
-        params.put(Constant.GAME_NAME,"GD");
+        params.put(Constant.USER_ID,session.getData(Constant.ID));
+        params.put(Constant.GAME_NAME,spinGame.getSelectedItem().toString());
         params.put(Constant.GAME_TYPE,"jodi");
         params.put(Constant.GAME_METHOD,"cross");
         params.put(Constant.POINTS,PointsArray.toString());
         params.put(Constant.NUMBER,NumbersArray.toString());
         params.put(Constant.TOTAL_POINTS,TotalPoints);
         ApiConfig.RequestToVolley((result, response) -> {
-            Log.d("JODICROSSADAPTERRES",response);
             if (result) {
 
                 try {
@@ -210,6 +216,14 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                        session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+                        session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
+                        session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
+                        session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
+
+                        Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+
 
                         Intent intent = new Intent(activity, MainActivity.class);
                         activity.startActivity(intent);
@@ -217,8 +231,6 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     }
                     else {
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
-
-
                     }
                 } catch (JSONException e){
                     e.printStackTrace();

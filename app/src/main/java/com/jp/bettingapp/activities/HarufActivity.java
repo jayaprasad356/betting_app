@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.jp.bettingapp.R;
@@ -23,7 +25,9 @@ public class HarufActivity extends AppCompatActivity {
     EditText etAndar;
     EditText etBahar;
     ImageButton back;
-    TextView tvWarning;
+    TextView tvWarning,tvTotal;
+    Button btnSubmit;
+    Spinner spinGame;
 
 
 
@@ -33,6 +37,8 @@ public class HarufActivity extends AppCompatActivity {
         setContentView(R.layout.activity_haruf);
 
         back = findViewById(R.id.back);
+        btnSubmit = findViewById(R.id.btnSubmit);
+        spinGame = findViewById(R.id.spinGame);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,11 +49,12 @@ public class HarufActivity extends AppCompatActivity {
         etBahar = findViewById(R.id.etBahar);
         tvWarning = findViewById(R.id.tvWarning);
         recyclerView = findViewById(R.id.recyclerView);
+        tvTotal = findViewById(R.id.tvTotal);
         activity = HarufActivity.this;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        harufAdapter = new HarufAdapter(activity,tvWarning);
+        harufAdapter = new HarufAdapter(activity,tvWarning,tvTotal,btnSubmit,spinGame);
         recyclerView.setAdapter(harufAdapter);
     }
 }

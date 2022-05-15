@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,9 @@ import com.jp.bettingapp.R;
 import com.jp.bettingapp.activities.JodiActivity;
 import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
+import com.jp.bettingapp.helper.Session;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,11 +47,14 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
     ArrayList<String> newPoints = new ArrayList<>();
     ArrayList<String> newNumbers = new ArrayList<>();
     String TotalPoints = "";
+    Session session;
+    Spinner spinGame;
 
-    public JodiFastCrossAdapter(Activity activity, TextView tvWarning, Button btnSubmit) {
+    public JodiFastCrossAdapter(Activity activity, TextView tvWarning, Button btnSubmit, Spinner spinGame) {
         this.activity = activity;
         this.tvWarning = tvWarning;
         this.btnSubmit = btnSubmit;
+        this.spinGame = spinGame;
     }
     @NonNull
     @Override
@@ -61,6 +67,7 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holderParent,  @SuppressLint("RecyclerView")int position) {
         final ItemHolder holder = (ItemHolder) holderParent;
+        session = new Session(activity);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +104,13 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                     newNumbers.add(NumbersArray.get(i));
 
                 }
-                submitGame();
+                if (spinGame.getSelectedItemPosition() != 0 ){
+                    submitGame();
+
+                }
+                else {
+                    Toast.makeText(activity, "Please,Select Game", Toast.LENGTH_SHORT).show();
+                }
 
                 Log.d("JODIFASTCROSS",newPoints.toString());
                 Log.d("JODIFASTCROSSNUMBER",newNumbers.toString());
@@ -132,11 +145,6 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                 }catch (Exception e){
 
                 }
-
-
-
-
-
 
             }
 
@@ -186,8 +194,6 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                     }
                 }
-
-
         });
         holder.etNumber.addTextChangedListener(new TextWatcher() {
             @Override
@@ -253,15 +259,14 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
     {
         Map<String, String> params = new HashMap<>();
         //request
-        params.put(Constant.USER_ID,"1");
-        params.put(Constant.GAME_NAME,"GD");
+        params.put(Constant.USER_ID,session.getData(Constant.ID));
+        params.put(Constant.GAME_NAME,spinGame.getSelectedItem().toString());
         params.put(Constant.GAME_TYPE,"jodi");
         params.put(Constant.GAME_METHOD,"fastcross");
         params.put(Constant.POINTS,newPoints.toString());
         params.put(Constant.NUMBER,newNumbers.toString());
         params.put(Constant.TOTAL_POINTS,TotalPoints);
         ApiConfig.RequestToVolley((result, response) -> {
-            Log.d("JODICROSSADAPTERRES",response);
             if (result) {
 
                 try {
@@ -269,6 +274,14 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                        session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+                        session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
+                        session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
+                        session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
+
+                        Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+
 
                         Intent intent = new Intent(activity, MainActivity.class);
                         activity.startActivity(intent);

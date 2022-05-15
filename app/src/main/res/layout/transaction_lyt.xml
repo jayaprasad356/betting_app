@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/appblack"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -29,17 +30,19 @@
             android:layout_marginLeft="20dp"
             >
             <TextView
+                android:id="@+id/tvtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Deducted On Quick Cross \nFD - 5:35PM"
+                android:text=""
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="18dp"
                 />
             <TextView
+                android:id="@+id/tvTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="14 : 00 | 22-05-22"
+                android:text=""
                 android:textColor="@color/grey"
                 android:textStyle="bold"
                 android:textSize="12dp"
@@ -53,10 +56,11 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvPoints"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-1500"
-                android:textColor="#0E74F1"
+                android:text=""
+                android:textColor="@color/appdesignblue"
                 android:layout_gravity="right"
                 android:textSize="16dp"
                 android:textStyle="bold"
@@ -64,10 +68,11 @@
                 />
 
             <TextView
+                android:id="@+id/tvBalance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Balance ₹150"
-                android:textSize="14dp"
+                android:text=""
+                android:textSize="10dp"
                 android:textStyle="bold"
                 android:textColor="@color/grey"
                 android:layout_gravity="right"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Betting App</string>
+    <string name="app_name">Big Billion</string>
 
     <string-array name="selectgame">
         <item>Select Game</item>
@@ -7,6 +7,7 @@
         <item>DS</item>
         <item>FD</item>
         <item>GB</item>
+        <item>GD</item>
     </string-array>
 
     <string-array name="selectgamex">

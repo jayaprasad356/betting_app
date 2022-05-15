@@ -22,6 +22,7 @@ import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
 import com.jp.bettingapp.helper.Session;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -131,7 +132,7 @@ public class QuickCrossActivity extends AppCompatActivity {
                     etPoints.setError("Enter Points");
                     etPoints.requestFocus();
                 }
-                else if (etPoints.getText().toString().equals("0")){
+                else if (etPoints.getText().toString().equals("0") || Integer.parseInt(etPoints.getText().toString().trim()) % 5 != 0){
                     etPoints.setError("Enter Valid Points");
                     etPoints.requestFocus();
                 }
@@ -206,6 +207,11 @@ public class QuickCrossActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                        session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+                        session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
+                        session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
+                        session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(activity, MainActivity.class);
                         activity.startActivity(intent);

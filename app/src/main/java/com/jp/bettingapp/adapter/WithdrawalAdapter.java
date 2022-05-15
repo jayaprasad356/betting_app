@@ -1,51 +1,34 @@
 package com.jp.bettingapp.adapter;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jp.bettingapp.MainActivity;
 import com.jp.bettingapp.R;
-import com.jp.bettingapp.helper.ApiConfig;
-import com.jp.bettingapp.helper.Constant;
 import com.jp.bettingapp.helper.Session;
-import com.jp.bettingapp.model.BIDS;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.jp.bettingapp.model.Transaction;
+import com.jp.bettingapp.model.Withdrawal;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-public class BidAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class WithdrawalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     final Activity activity;
-    Button btnSubmit;
     Session session;
-    final ArrayList<BIDS> bids;
+    final ArrayList<Withdrawal> withdrawals;
 
-    public BidAdapter(Activity activity, ArrayList<BIDS> bids) {
+    public WithdrawalAdapter(Activity activity, ArrayList<Withdrawal> withdrawals) {
         this.activity = activity;
-        this.bids = bids;
+        this.withdrawals = withdrawals;
     }
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.bids_lyt, parent, false);
+        View view = LayoutInflater.from(activity).inflate(R.layout.withdrawal_lyt, parent, false);
         return new ItemHolder(view);
     }
 
@@ -54,9 +37,10 @@ public class BidAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holderParent, int position) {
         session = new Session(activity);
         final ItemHolder holder = (ItemHolder) holderParent;
-        final BIDS bids1 = bids.get(position);
-        holder.tvNumber.setText(bids1.getNumber());
-        holder.tvPoints.setText(bids1.getPoints());
+        final Withdrawal withdrawal = withdrawals.get(position);
+        holder.tvDate.setText(withdrawal.getDate_created());
+        holder.tvStatus.setText(withdrawal.getStatus());
+        holder.tvPoints.setText(withdrawal.getPoints());
     }
     @Override
     public int getItemViewType(int position) {
@@ -64,16 +48,17 @@ public class BidAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
     @Override
     public int getItemCount() {
-        return bids.size();
+        return withdrawals.size();
     }
 
     static class ItemHolder extends RecyclerView.ViewHolder {
 
-        TextView tvNumber,tvPoints;
+        TextView tvDate,tvPoints,tvStatus;
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
-            tvNumber = itemView.findViewById(R.id.tvNumber);
+            tvDate = itemView.findViewById(R.id.tvDate);
             tvPoints = itemView.findViewById(R.id.tvPoints);
+            tvStatus = itemView.findViewById(R.id.tvStatus);
 
 
         }

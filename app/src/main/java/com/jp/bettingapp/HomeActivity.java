@@ -97,7 +97,7 @@ public class HomeActivity extends AppCompatActivity {
         transactionlyt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,My_Transaction_Activity.class);
+                Intent intent = new Intent(HomeActivity.this,MyTransactionActivity.class);
                 startActivity(intent);
             }
         });
@@ -121,7 +121,7 @@ public class HomeActivity extends AppCompatActivity {
         withdrawlyt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,Withdrawal_Activity.class);
+                Intent intent = new Intent(HomeActivity.this, WithdrawalActivity.class);
                 startActivity(intent);
             }
         });
@@ -137,7 +137,7 @@ public class HomeActivity extends AppCompatActivity {
         sharelyt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,Share_Points_Activity.class);
+                Intent intent = new Intent(HomeActivity.this, SharePointsActivity.class);
                 startActivity(intent);
             }
         });

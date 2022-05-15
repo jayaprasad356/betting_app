@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
 import com.jp.bettingapp.helper.Session;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,6 +39,8 @@ public class AddPointsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_addpoints);
         activity = AddPointsActivity.this;
         session = new Session(activity);
+
+        Log.d("SESSION_VALUE",session.getData(Constant.ID));
 
 
         back = findViewById(R.id.back);
@@ -77,12 +81,15 @@ public class AddPointsActivity extends AppCompatActivity {
         params.put(Constant.POINTS,etPoint.getText().toString().trim());
         ApiConfig.RequestToVolley((result, response) -> {
             if (result) {
-
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-
-
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                        session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+                        session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
+                        session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
+                        session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
+
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(activity, MainActivity.class);
