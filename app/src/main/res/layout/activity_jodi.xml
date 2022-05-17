@@ -91,9 +91,9 @@
             android:layout_height="40dp"
             android:background="@drawable/bluelinebackground"
             android:elevation="6dp"
-            app:tabTextColor="@color/white"
+            app:tabTextColor="@color/black"
             app:tabSelectedTextColor="@color/darkblue"
-            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorColor="@color/black"
             app:tabIndicatorFullWidth="false"
             />
 

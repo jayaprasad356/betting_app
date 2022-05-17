@@ -6,6 +6,9 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -25,7 +28,8 @@ public class GamesFragment extends Fragment {
     LinearLayout lytQuickcross;
     LinearLayout lytOddeven;
     LinearLayout lytBits;
-    LinearLayout lytWithdraw;
+    LinearLayout lytWithdrawal;
+    LinearLayout lytDeposit;
     LinearLayout lytSharepoints;
 
 
@@ -35,9 +39,14 @@ public class GamesFragment extends Fragment {
         // Required empty public constructor
     }
 
+
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_games, container, false);
 
@@ -48,6 +57,16 @@ public class GamesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), JodiActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lytDeposit = root.findViewById(R.id.lytDeposit);
+
+        lytDeposit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(),AddPointsActivity.class);
                 startActivity(intent);
             }
         });
@@ -84,7 +103,25 @@ public class GamesFragment extends Fragment {
             }
         });
 
+        lytWithdrawal = root.findViewById(R.id.lytWithdrawal);
+
+        lytWithdrawal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), WithdrawalActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
         return root;
     }
+
+
+
+
+
+
 }

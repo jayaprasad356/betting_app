@@ -133,11 +133,11 @@
             android:id="@+id/tvOdd"
             android:layout_height="wrap_content"
             android:background="@drawable/bluelinebackground"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textCursorDrawable="@null"
             android:inputType="number"
             android:hint="0"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/black"
             android:layout_margin="5dp"
             android:padding="10dp"/>
 
@@ -164,11 +164,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvEven"
             android:background="@drawable/bluelinebackground"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textCursorDrawable="@null"
             android:inputType="number"
             android:hint="0"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/black"
             android:layout_margin="5dp"
             android:padding="10dp"/>
 

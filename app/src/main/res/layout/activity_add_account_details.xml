@@ -60,8 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Account Number"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
             android:layout_marginTop="5dp"
             android:background="@drawable/bluelinebackground"
             android:padding="10dp"/>
@@ -77,8 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="IFSC Code"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
             android:layout_marginTop="5dp"
             android:background="@drawable/bluelinebackground"
             android:padding="10dp"/>
@@ -94,8 +94,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Account Holder Name"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
             android:layout_marginTop="5dp"
             android:background="@drawable/bluelinebackground"
             android:padding="10dp"/>

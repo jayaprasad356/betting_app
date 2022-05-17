@@ -3,25 +3,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appblack"
+    android:background="#eeeeee"
     tools:context=".GamesFragment">
 
-    <TextView
-        android:textSize="30dp"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        android:layout_width="wrap_content"
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="Betting App"/>
+        android:background="@drawable/top_bg"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/centre_bg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp">
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <ImageView
+                        android:id="@+id/img_person"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_person"
+                        android:backgroundTint="@color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/img_person"
+                        android:text="Betting app"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="18dp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/coins"
+                        android:layout_marginRight="5dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9500"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:layout_gravity="center"
+                        />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@color/black"
+                    android:layout_marginTop="10dp"
+                    />
+
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
 
 
 
     <LinearLayout
-        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -31,14 +130,37 @@
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="130dp"
-                android:id="@+id/lytJodi"
-                android:background="@drawable/whitebackgroundcruve"
+                android:id="@+id/lytDeposit"
+                android:background="@color/white"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/ic_jodi"
-                    android:background="@drawable/bg1"
+                    android:src="@drawable/deposit"
+                    android:background="@color/white"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="DEPOSIT"
+                    android:textSize="12dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/appblack"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:id="@+id/lytJodi"
+                android:background="@color/white"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/dice"
+                    android:background="@color/white"
                     android:padding="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -55,13 +177,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="130dp"
                 android:id="@+id/lytHaruf"
-                android:background="@drawable/whitebackgroundcruve"
+                android:background="@color/white"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/ic_haruf"
-                    android:background="@drawable/bg2"
+                    android:src="@drawable/casino"
+                    android:background="@color/white"
                     android:padding="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -74,58 +196,80 @@
             </LinearLayout>
 
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
         <LinearLayout
-            android:layout_margin="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="130dp"
-            android:id="@+id/lytQuickcross"
-            android:background="@drawable/whitebackgroundcruve"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_quick_cross"
-                android:background="@drawable/bg3"
-                android:padding="10dp"/>
-            <TextView
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="QUICK CROSS"
-                android:textSize="12dp"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="130dp"
-            android:background="@drawable/whitebackgroundcruve"
-            android:id="@+id/lytOddeven"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_odd_even"
-                android:background="@drawable/bg4"
-                android:padding="10dp"/>
-            <TextView
+                android:layout_height="130dp"
+                android:background="@color/white"
+                android:id="@+id/lytWithdrawal"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/withdraw"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="WITHDRAW"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="ODD EVEN"
-                android:textSize="12dp"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:layout_gravity="center"/>
+                android:layout_height="130dp"
+                android:background="@color/white"
+                android:id="@+id/lytQuickcross"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/hockeysticks"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="QUICK CROSS"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:background="@color/white"
+                android:id="@+id/lytOddeven"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/balanced"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="ODD EVEN"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
 
-    </LinearLayout>
+
+</LinearLayout>
 
 
 

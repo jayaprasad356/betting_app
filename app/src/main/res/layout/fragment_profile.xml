@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/appblack"
+    android:background="#eeeeee"
     tools:context=".ProfileFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/l1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/corner_profile"
             android:orientation="horizontal"
             android:padding="10dp">
 
@@ -66,264 +67,143 @@
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:layout_below="@+id/l1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
             android:orientation="vertical">
+
             <LinearLayout
-                android:id="@+id/tvAddPoints"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="20dp"
-                android:background="@drawable/bluelinebackground"
+                android:orientation="horizontal">
 
-                >
+                <LinearLayout
+                    android:id="@+id/tvTransaction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@color/white"
+                        android:padding="10dp"
+                        android:src="@drawable/transaction" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="4dp"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/grey"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Transaction"
+                        android:textColor="@color/appblack"
+                        android:textSize="12dp" />
+                </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/tvBids"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@color/white"
+                        android:padding="10dp"
+                        android:src="@drawable/history_blnc" />
 
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:textSize="18dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:textColor="@color/white"
-                    android:text="Add Points"/>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Bids History"
+                        android:textColor="@color/appblack"
+                        android:textSize="12dp" />
+                </LinearLayout>
 
             </LinearLayout>
 
-
             <LinearLayout
-                android:id="@+id/tvTransaction"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="20dp"
-                android:background="@drawable/bluelinebackground"
+                android:orientation="horizontal">
 
-                >
+                <LinearLayout
+                    android:id="@+id/tvShare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@color/white"
+                        android:padding="10dp"
+                        android:src="@drawable/share_point" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="4dp"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/grey"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Share Points"
+                        android:textColor="@color/appblack"
+                        android:textSize="12dp" />
+                </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/tvAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@color/white"
+                        android:padding="10dp"
+                        android:src="@drawable/act_details" />
 
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:textSize="18dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:textColor="@color/white"
-                    android:text="Transaction"/>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Account Details"
+                        android:textColor="@color/appblack"
+                        android:textSize="12dp" />
+                </LinearLayout>
 
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/tvBids"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="20dp"
-                android:background="@drawable/bluelinebackground"
 
-                >
-
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="4dp"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/grey"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    />
-
-
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:textSize="18dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:textColor="@color/white"
-                    android:text="Bids History"/>
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/tvWithdrawal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="20dp"
-                android:background="@drawable/bluelinebackground"
-
-                >
-
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="4dp"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/grey"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    />
-
-
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:textSize="18dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:textColor="@color/white"
-                    android:text="Withdrawal Points"/>
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/tvShare"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="20dp"
-                android:background="@drawable/bluelinebackground"
-
-                >
-
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="4dp"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/grey"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    />
-
-
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:textSize="18dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:textColor="@color/white"
-                    android:text="Share Points"/>
-
-
-
-
-
-
-
-
-
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/tvAccount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="20dp"
-                android:background="@drawable/bluelinebackground"
-
-                >
-
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="4dp"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/grey"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    />
-
-
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:textSize="18dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:textColor="@color/white"
-                    android:text="Account Details"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/tvLogout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="20dp"
-                android:background="@drawable/bluelinebackground"
-
-                >
-
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="4dp"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/grey"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    />
-
-
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:textSize="18dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:textColor="@color/white"
-                    android:text="Log Out"/>
-
-            </LinearLayout>
 
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/img_logout"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/logout" />
 
     </RelativeLayout>
 
 
 
 
-</ScrollView>
+</RelativeLayout>

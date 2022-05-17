@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".OTP_Activity">
 
@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:text="Enter the code this was sent to"
         android:textSize="20dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="200dp"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"/>
+        android:textColor="@color/black"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -26,7 +26,8 @@
         android:textSize="20dp"
         android:layout_margin="10dp"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"/>
+        android:textStyle="bold"
+        android:textColor="@color/blue"/>
 
     <in.aabhasjindal.otptextview.OtpTextView
         android:id="@+id/otp_view"

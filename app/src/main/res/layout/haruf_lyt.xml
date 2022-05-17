@@ -27,8 +27,8 @@
             android:layout_margin="10dp"
             android:textCursorDrawable="@null"
             android:inputType="number"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:padding="10dp"/>
 
     </LinearLayout>
@@ -53,8 +53,8 @@
             android:layout_margin="10dp"
             android:textCursorDrawable="@null"
             android:inputType="number"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:padding="10dp"/>
 
     </LinearLayout>

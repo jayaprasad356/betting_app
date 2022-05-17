@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,7 +18,8 @@ import com.jp.bettingapp.helper.Session;
 
 public class ProfileFragment extends Fragment {
     View root;
-    LinearLayout tvAddPoints,tvTransaction,tvBids,tvWithdrawal,tvShare,tvAccount,tvLogout;
+    LinearLayout tvTransaction,tvBids,tvShare,tvAccount;
+    ImageButton img_logout;
     Session session;
     TextView tvName;
     TextView tvPoints;
@@ -27,26 +29,16 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_profile, container, false);
         session = new Session(getActivity());
-        tvAddPoints = root.findViewById(R.id.tvAddPoints);
         tvTransaction = root.findViewById(R.id.tvTransaction);
         tvBids = root.findViewById(R.id.tvBids);
-        tvWithdrawal = root.findViewById(R.id.tvWithdrawal);
         tvShare = root.findViewById(R.id.tvShare);
         tvAccount = root.findViewById(R.id.tvAccount);
-        tvLogout = root.findViewById(R.id.tvLogout);
         tvName = root.findViewById(R.id.tvName);
+        img_logout = root.findViewById(R.id.img_logout);
         tvPoints = root.findViewById(R.id.tvPoints);
         tvName.setText(session.getData(Constant.NAME));
         tvPoints.setText(session.getData(Constant.POINTS));
 
-        tvAddPoints.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),AddPointsActivity.class);
-                startActivity(intent);
-
-            }
-        });
 
         tvTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,14 +53,6 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),BidsHistoryActivity.class);
-                startActivity(intent);
-
-            }
-        });
-        tvWithdrawal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), WithdrawalActivity.class);
                 startActivity(intent);
 
             }
@@ -89,7 +73,7 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-        tvLogout.setOnClickListener(new View.OnClickListener() {
+        img_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
