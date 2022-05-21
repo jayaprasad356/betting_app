@@ -38,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void WritingFinished() {
                         if (session.getBoolean("is_logged_in")){
-                            Intent intent = new Intent(activity,MainActivity.class);
+                            Intent intent = new Intent(activity,HomeActivity.class);
                             startActivity(intent);
                             finish();
 

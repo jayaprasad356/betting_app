@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/appblack"
+    android:background="@color/apppink"
     tools:context=".activities.QuickCrossActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                     android:layout_marginStart="10dp"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    android:textColor="#FFFFFF"/>
+                    android:textColor="@color/black"/>
 
 
 
@@ -54,8 +54,8 @@
                     android:layout_height="wrap_content"
                     android:text="Total"
                     android:layout_marginEnd="5dp"
-        
-            android:textColor="@color/black"                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tvTotal"
@@ -63,8 +63,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-        
-            android:textColor="@color/black"                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -122,8 +122,8 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
-
-            android:textColor="@color/black"            android:textSize="20dp"
+            android:textColor="@color/appdesignblue"
+            android:textSize="20dp"
             />
         <EditText
             android:id="@+id/eta1"
@@ -212,8 +212,8 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
-
-            android:textColor="@color/black"            android:textSize="20dp"
+            android:textColor="@color/appdesignblue"
+            android:textSize="20dp"
             />
         <EditText
             android:id="@+id/etb1"
@@ -299,8 +299,8 @@
             android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-
-            android:textColor="@color/black"            android:textSize="20dp"
+            android:textColor="@color/appdesignblue"
+            android:textSize="20dp"
             />
 
         <EditText

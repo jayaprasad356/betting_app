@@ -91,7 +91,7 @@ public class AddWithdrawalActivity extends AppCompatActivity {
 
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(activity, MainActivity.class);
+                        Intent intent = new Intent(activity, HomeActivity.class);
                         activity.startActivity(intent);
                         activity.finish();
                     }

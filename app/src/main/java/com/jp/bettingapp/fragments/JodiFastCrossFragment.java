@@ -16,8 +16,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.jp.bettingapp.R;
+import com.jp.bettingapp.activities.JodiActivity;
 import com.jp.bettingapp.adapter.JodiCrossAdapter;
 import com.jp.bettingapp.adapter.JodiFastCrossAdapter;
+import com.jp.bettingapp.helper.Functions;
 
 
 public class JodiFastCrossFragment extends Fragment {
@@ -48,11 +50,14 @@ public class JodiFastCrossFragment extends Fragment {
         btnSubmit = root.findViewById(R.id.btnSubmit);
         spinGame = root.findViewById(R.id.spinGame);
         activity = getActivity();
+        ((JodiActivity)activity).setTotal(0);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         jodiFastCrossAdapter = new JodiFastCrossAdapter(activity,tvWarning,btnSubmit,spinGame);
+        Functions.setData(activity,spinGame);
         recyclerView.setAdapter(jodiFastCrossAdapter);
+
         return root;
     }
 }

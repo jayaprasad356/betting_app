@@ -1,32 +1,41 @@
 package com.jp.bettingapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.jp.bettingapp.activities.HarufActivity;
 import com.jp.bettingapp.activities.JodiActivity;
 import com.jp.bettingapp.activities.OddEvenActivity;
 import com.jp.bettingapp.activities.QuickCrossActivity;
+import com.jp.bettingapp.activities.ResultChartActivity;
+import com.jp.bettingapp.fragments.BidsHistoryFragment;
+import com.jp.bettingapp.fragments.SharePointsFragment;
+import com.jp.bettingapp.fragments.TransactionFragment;
+import com.jp.bettingapp.helper.Session;
 
-public class HomeActivity extends AppCompatActivity {
-
-    LinearLayout addpointlyt;
-    LinearLayout jodilyt;
-    LinearLayout haruflyt;
-    LinearLayout transactionlyt;
-    LinearLayout oddlyt;
-    LinearLayout crosslyt;
-    LinearLayout historylyt;
-    LinearLayout withdrawlyt;
-    LinearLayout sharelyt;
-    Button addbtn;
-    Button resultbtn;
-    Button sidebtn;
+public class HomeActivity extends AppCompatActivity  implements NavigationBarView.OnItemSelectedListener{
+    GamesFragment gamesFragment;
+    BidsHistoryFragment bidsHistoryFragment;
+    TransactionFragment transactionFragment;
+    SharePointsFragment sharePointsFragment;
+    BottomNavigationView bottomNavigationView;
+    Activity activity;
+    Session session;
 
 
     @Override
@@ -34,112 +43,75 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        addbtn = findViewById(R.id.addbtn);
-        resultbtn = findViewById(R.id.resultbtn);
-        sidebtn = findViewById(R.id.sidebtn);
-        addpointlyt = findViewById(R.id.addpointlyt);
-        jodilyt = findViewById(R.id.jodilyt);
-        haruflyt = findViewById(R.id.haruflyt);
-        transactionlyt = findViewById(R.id.transactionlyt);
-        oddlyt = findViewById(R.id.oddlyt);
-        crosslyt = findViewById(R.id.crosslyt);
-        historylyt = findViewById(R.id.historylyt);
-        withdrawlyt = findViewById(R.id.withdrawlyt);
-        sharelyt = findViewById(R.id.sharelyt);
+        gamesFragment = new GamesFragment();
+        bidsHistoryFragment = new BidsHistoryFragment();
+        transactionFragment = new TransactionFragment();
+        sharePointsFragment = new SharePointsFragment();
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnItemSelectedListener(this);
+        activity = HomeActivity.this;
+        session = new Session(activity);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, gamesFragment,"GAME").commit();
 
-        addbtn.setOnClickListener(new View.OnClickListener() {
+        ImageView moremenu = findViewById(R.id.moremenu);
+
+        moremenu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,Add_Account_Details_Activity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                showPopup(view);
             }
         });
 
-        resultbtn.setOnClickListener(new View.OnClickListener() {
+    }
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.home_menu, popup.getMenu());
+        popup.show();
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.resultchart:
+                        Intent intent3 = new Intent(activity, ResultChartActivity.class);
+                        startActivity(intent3);
+                        return true;
+                    case R.id.acoount:
+                        Intent intent = new Intent(activity,Add_Account_Details_Activity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.help:
+                        return true;
+                    case R.id.logout:
+                        Intent intent2 = new Intent(activity,LoginActivity.class);
+                        startActivity(intent2);
+                        finish();
+                        session.setBoolean("is_logged_in",false);
+                        return true;
+                }
+                return false;
             }
         });
+    }
 
-        sidebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,Side_Menu_Bar_Activity.class);
-                startActivity(intent);
-            }
-        });
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item0:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, gamesFragment,"GAME").commit();
+                return true;
 
-        addpointlyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, AddPointsActivity.class);
-                startActivity(intent);
-            }
-        });
+            case R.id.item1:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container,bidsHistoryFragment,"BIDS" ).commit();
+                return true;
+            case R.id.item2:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container,transactionFragment,"TRANS" ).commit();
+                return true;
+            case R.id.item3:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container,sharePointsFragment,"SHARE" ).commit();
+                return true;
+        }
 
-        jodilyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, JodiActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        haruflyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, HarufActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        transactionlyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,MyTransactionActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        oddlyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, OddEvenActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        historylyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, BidsHistoryActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        withdrawlyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, WithdrawalActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        crosslyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, QuickCrossActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        sharelyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, SharePointsActivity.class);
-                startActivity(intent);
-            }
-        });
+        return false;
     }
 }

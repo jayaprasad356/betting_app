@@ -18,6 +18,8 @@ import com.jp.bettingapp.activities.HarufActivity;
 import com.jp.bettingapp.activities.JodiActivity;
 import com.jp.bettingapp.activities.OddEvenActivity;
 import com.jp.bettingapp.activities.QuickCrossActivity;
+import com.jp.bettingapp.helper.Constant;
+import com.jp.bettingapp.helper.Session;
 
 public class GamesFragment extends Fragment {
     View root;
@@ -31,6 +33,9 @@ public class GamesFragment extends Fragment {
     LinearLayout lytWithdrawal;
     LinearLayout lytDeposit;
     LinearLayout lytSharepoints;
+    TextView tvName;
+    TextView tvPoints;
+    Session session;
 
 
 
@@ -49,9 +54,19 @@ public class GamesFragment extends Fragment {
 
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_games, container, false);
+        session = new Session(getActivity());
 
 
         lytJodi = root.findViewById(R.id.lytJodi);
+        tvName = root.findViewById(R.id.tvName);
+        tvPoints = root.findViewById(R.id.tvPoints);
+        lytDeposit = root.findViewById(R.id.lytDeposit);
+        lytHaruf = root.findViewById(R.id.lytHaruf);
+        lytQuickcross = root.findViewById(R.id.lytQuickcross);
+        lytOddeven = root.findViewById(R.id.lytOddeven);
+        lytWithdrawal = root.findViewById(R.id.lytWithdrawal);
+        tvName.setText(session.getData(Constant.NAME));
+        tvPoints.setText(session.getData(Constant.POINTS));
 
         lytJodi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +76,7 @@ public class GamesFragment extends Fragment {
             }
         });
 
-        lytDeposit = root.findViewById(R.id.lytDeposit);
+
 
         lytDeposit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +86,7 @@ public class GamesFragment extends Fragment {
             }
         });
 
-        lytHaruf = root.findViewById(R.id.lytHaruf);
+
 
         lytHaruf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +98,7 @@ public class GamesFragment extends Fragment {
 
 
 
-        lytQuickcross = root.findViewById(R.id.lytQuickcross);
+
 
         lytQuickcross.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +108,7 @@ public class GamesFragment extends Fragment {
             }
         });
 
-        lytOddeven = root.findViewById(R.id.lytOddeven);
+
 
         lytOddeven.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +118,7 @@ public class GamesFragment extends Fragment {
             }
         });
 
-        lytWithdrawal = root.findViewById(R.id.lytWithdrawal);
+
 
         lytWithdrawal.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,14 +11,22 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jp.bettingapp.MainActivity;
 import com.jp.bettingapp.R;
 import com.jp.bettingapp.activities.JodiActivity;
 import com.jp.bettingapp.adapter.JodiCrossAdapter;
+import com.jp.bettingapp.helper.Constant;
+import com.jp.bettingapp.helper.Functions;
+import com.jp.bettingapp.model.Game;
+
+import java.util.ArrayList;
 
 public class JodiCrossFragment extends Fragment {
     View root;
@@ -30,6 +38,7 @@ public class JodiCrossFragment extends Fragment {
     TextView tvWarning;
     Button btnSubmit;
     Spinner spinGame;
+    String spinGameName;
 
 
     public JodiCrossFragment() {
@@ -46,7 +55,6 @@ public class JodiCrossFragment extends Fragment {
         tvWarning = root.findViewById(R.id.tvWarning);
         spinGame = root.findViewById(R.id.spinGame);
         recyclerView = root.findViewById(R.id.recyclerView);
-
         btnSubmit = root.findViewById(R.id.btnSubmit);
         activity = getActivity();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(activity,5);
@@ -54,10 +62,19 @@ public class JodiCrossFragment extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager);
 
         jodiCrossAdapter = new JodiCrossAdapter(activity,tvWarning,btnSubmit,spinGame);
+
+        Functions.setData(activity,spinGame);
+
+
         recyclerView.setAdapter(jodiCrossAdapter);
+
+        ((JodiActivity)activity).setTotal(0);
+
+
 
 
         return root;
     }
+
 
 }

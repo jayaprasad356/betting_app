@@ -81,7 +81,7 @@ public class LoginProfileActivity extends AppCompatActivity {
                         session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
 
-                        Intent intent = new Intent(activity,MainActivity.class);
+                        Intent intent = new Intent(activity,HomeActivity.class);
                         startActivity(intent);
                         finish();
                     }

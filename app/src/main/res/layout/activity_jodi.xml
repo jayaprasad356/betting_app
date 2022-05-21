@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appblack"
+    android:background="@color/apppink"
     tools:context=".activities.JodiActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                         android:layout_marginStart="10dp"
                         android:textSize="20dp"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFF"/>
+                        android:textColor="@color/black"/>
 
 
 
@@ -57,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:text="Total"
                         android:layout_marginEnd="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="18dp"
                         android:textStyle="bold" />
                     <TextView
@@ -66,7 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="18dp"
                         android:textStyle="bold" />
 
@@ -92,7 +92,7 @@
             android:background="@drawable/bluelinebackground"
             android:elevation="6dp"
             app:tabTextColor="@color/black"
-            app:tabSelectedTextColor="@color/darkblue"
+            app:tabSelectedTextColor="@color/appdesignblue"
             app:tabIndicatorColor="@color/black"
             app:tabIndicatorFullWidth="false"
             />

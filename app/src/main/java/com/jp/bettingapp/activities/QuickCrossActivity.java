@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jp.bettingapp.HomeActivity;
 import com.jp.bettingapp.MainActivity;
 import com.jp.bettingapp.R;
 import com.jp.bettingapp.helper.ApiConfig;
@@ -213,7 +214,7 @@ public class QuickCrossActivity extends AppCompatActivity {
                         session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(activity, MainActivity.class);
+                        Intent intent = new Intent(activity, HomeActivity.class);
                         activity.startActivity(intent);
                         activity.finish();
                     }

@@ -34,10 +34,6 @@ public class JodiActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         tvTotal = findViewById(R.id.tvTotal);
         tvwarning=findViewById(R.id.tvWarning);
-
-
-
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { onBackPressed(); }

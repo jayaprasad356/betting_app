@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/appblack"
+    android:background="@color/apppink"
     tools:context=".WithdrawalActivity">
 
 
@@ -36,7 +36,7 @@
                 android:layout_marginStart="10dp"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"/>
+                android:textColor="@color/black"/>
 
 
 
@@ -57,40 +57,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/bluelinebackground"
-        android:padding="10dp"
-        android:orientation="horizontal">
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="Date"
             android:textColor="@color/black"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:layout_weight="1"
-            android:textStyle="bold"/>
+            android:textSize="20dp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="Points"
             android:textColor="@color/black"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:layout_weight="1"
-            android:textStyle="bold"/>
+            android:textSize="20dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="Status"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:textStyle="bold"/>
+            android:textSize="20dp" />
 
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

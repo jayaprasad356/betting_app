@@ -24,32 +24,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-
     Button btnContinue;
     EditText etMobile;
     Activity activity;
     Session session;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         btnContinue= findViewById(R.id.btnContinue);
         etMobile= findViewById(R.id.etMobile);
-
-
         activity = LoginActivity.this;
         session = new Session(activity);
-
-
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (etMobile.getText().toString().equals(""))
                 {
                     etMobile.setError("empty");
@@ -65,17 +54,11 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("mobile_number",etMobile.getText().toString());
                     startActivity(intent);
                     finish();
-                    //login();
-
-
                 }
 
             }
 
         });
-
-
-
     }
     private void login() {
         Map<String, String> params = new HashMap<>();

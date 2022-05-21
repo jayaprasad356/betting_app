@@ -1,407 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/black"
     tools:context=".HomeActivity">
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        >-->
 
-    <LinearLayout
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="@color/appdesignblue"-->
+<!--            app:titleTextColor="@color/white"/>-->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="85dp"
-        android:layout_height="100dp"
-        android:background="@drawable/greycurvebackground"
-        android:id="@+id/addpointlyt"
-        android:orientation="vertical"
-        android:layout_margin="30dp">
 
-        <LinearLayout
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="3dp"
-            android:background="@drawable/whitebackgroundcruve"
-            android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/addpoint" />
-
-        </LinearLayout>
-
-        <TextView
+        <RelativeLayout
+            android:id="@+id/top_appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Points"
-            android:textStyle="bold"
-            android:layout_margin="3dp"
-            android:textSize="10dp"
-            android:gravity="center"
-            android:textColor="@color/white"/>
+            android:background="@color/primaryColor"
 
-    </LinearLayout>
+            >
 
-        <LinearLayout
-            android:layout_width="85dp"
-            android:layout_height="100dp"
-            android:background="@drawable/greycurvebackground"
-            android:id="@+id/jodilyt"
-            android:orientation="vertical"
-            android:layout_margin="30dp">
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/whitebackgroundcruve"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/jodi" />
-
-            </LinearLayout>
+                android:layout_marginStart="20dp"
+                android:src="@drawable/billion_logo" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jodi"
-                android:layout_margin="3dp"
-                android:textSize="10dp"
-                android:textStyle="bold"
+                android:layout_centerInParent="true"
                 android:gravity="center"
-                android:textColor="@color/white"/>
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="22dp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="85dp"
-            android:layout_height="100dp"
-            android:background="@drawable/greycurvebackground"
-            android:id="@+id/haruflyt"
-            android:orientation="vertical"
-            android:layout_margin="30dp">
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/whitebackgroundcruve"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/haruf" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/moremenu"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Haruf"
-                android:textStyle="bold"
-                android:layout_margin="3dp"
-                android:textSize="10dp"
-                android:gravity="center"
-                android:textColor="@color/white"/>
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_baseline_more_vert_24" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomNavigationView"
+            android:layout_below="@+id/top_appbar"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <LinearLayout
-            android:layout_width="85dp"
-            android:layout_height="100dp"
-            android:background="@drawable/greycurvebackground"
-            android:id="@+id/transactionlyt"
-            android:orientation="vertical"
-            android:layout_margin="30dp">
 
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/whitebackgroundcruve"
-                android:orientation="vertical">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemIconTint="@drawable/bottom_navigation_selector"
+            app:itemTextColor="@drawable/bottom_navigation_selector"
+            app:menu="@menu/bottom" />
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/transactions" />
 
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Transactions"
-                android:textStyle="bold"
-                android:layout_margin="3dp"
-                android:textSize="10dp"
-                android:gravity="center"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="85dp"
-            android:layout_height="100dp"
-            android:background="@drawable/greycurvebackground"
-            android:id="@+id/crosslyt"
-            android:orientation="vertical"
-            android:layout_margin="30dp">
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/whitebackgroundcruve"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/quickcross" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Quick Cross"
-                android:layout_margin="3dp"
-                android:textSize="10dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="85dp"
-            android:layout_height="100dp"
-            android:background="@drawable/greycurvebackground"
-            android:id="@+id/oddlyt"
-            android:orientation="vertical"
-            android:layout_margin="30dp">
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/whitebackgroundcruve"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/oddeven" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Odd Even"
-                android:textStyle="bold"
-                android:layout_margin="3dp"
-                android:textSize="10dp"
-                android:gravity="center"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="85dp"
-            android:layout_height="100dp"
-            android:background="@drawable/greycurvebackground"
-            android:id="@+id/historylyt"
-            android:orientation="vertical"
-            android:layout_margin="30dp">
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/whitebackgroundcruve"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/bitshistory" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bits History"
-                android:textStyle="bold"
-                android:layout_margin="3dp"
-                android:textSize="10dp"
-                android:gravity="center"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="85dp"
-            android:layout_height="100dp"
-            android:background="@drawable/greycurvebackground"
-            android:id="@+id/withdrawlyt"
-            android:orientation="vertical"
-            android:layout_margin="30dp">
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/whitebackgroundcruve"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/withdrawpoints" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Withdraw Points"
-                android:layout_margin="3dp"
-                android:textSize="10dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="85dp"
-            android:layout_height="100dp"
-            android:background="@drawable/greycurvebackground"
-            android:id="@+id/sharelyt"
-            android:orientation="vertical"
-            android:layout_margin="30dp">
-
-            <LinearLayout
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/whitebackgroundcruve"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/sharepoints" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Share Points"
-                android:textStyle="bold"
-                android:layout_margin="3dp"
-                android:textSize="10dp"
-                android:gravity="center"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Account"
-        android:textSize="15dp"
-        android:paddingStart="50dp"
-        android:id="@+id/addbtn"
-        android:paddingEnd="50dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#0E74F1"
-        android:layout_gravity="center"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Result"
-        android:textSize="15dp"
-        android:id="@+id/resultbtn"
-        android:paddingStart="80dp"
-        android:paddingEnd="80dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#0E74F1"
-        android:layout_gravity="center"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="side view"
-        android:textSize="15dp"
-        android:id="@+id/sidebtn"
-        android:paddingStart="70dp"
-        android:paddingEnd="70dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#0E74F1"
-        android:layout_gravity="center"/>
+    </RelativeLayout>
 
 
 
 
-
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

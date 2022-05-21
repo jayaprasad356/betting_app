@@ -88,7 +88,7 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
                         session.setData(Constant.IFSC_CODE, jsonArray.getJSONObject(0).getString(Constant.IFSC_CODE));
                         session.setData(Constant.HOLDER_NAME, jsonArray.getJSONObject(0).getString(Constant.HOLDER_NAME));
                         Toast.makeText(this, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(activity, MainActivity.class);
+                        Intent intent = new Intent(activity, HomeActivity.class);
                         startActivity(intent);
                         finish();
                     } else {

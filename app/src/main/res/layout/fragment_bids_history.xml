@@ -6,45 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/appblack"
+    android:background="@color/apppink"
     tools:context=".BidsHistoryActivity">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_margin="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/back"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:padding="5dp"
-                android:layout_gravity="center"
-                android:background="@drawable/bluecruve"
-                android:src="@drawable/ic_arrow_back" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My Bids History"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"/>
-
-
-
-        </LinearLayout>
-
-
-
-    </RelativeLayout>
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -61,15 +24,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="25dp"
                     android:text="Game"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_margin="25dp"/>
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spinGame"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginStart="20dp"
@@ -94,15 +60,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="25dp"
                     android:text="Day"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_margin="25dp"/>
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spinDay"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginStart="20dp"

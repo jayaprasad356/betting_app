@@ -31,21 +31,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="Betting App"
             android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="22dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_baseline_more_vert_24"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_marginRight="10dp"
-            />
+            android:visibility="gone"
+            android:background="@drawable/ic_baseline_more_vert_24" />
 
     </RelativeLayout>
 
@@ -59,21 +58,21 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-    <me.ibrahimsn.lib.SmoothBottomBar
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bottom_bg"
-        app:backgroundColor="@color/secondaryColor"
-        app:duration="300"
-        app:iconSize="20dp"
-        app:iconTint="@color/black"
-        app:iconTintActive="@color/white"
-        app:indicatorColor="@color/primaryColor"
-        app:indicatorRadius="10dp"
-        app:menu="@menu/bottom"
-        app:textColor="@color/white" />
+        <me.ibrahimsn.lib.SmoothBottomBar
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_bg"
+            app:backgroundColor="@color/secondaryColor"
+            app:duration="300"
+            app:iconSize="20dp"
+            app:iconTint="@color/black"
+            app:iconTintActive="@color/white"
+            app:indicatorColor="@color/primaryColor"
+            app:indicatorRadius="10dp"
+            app:menu="@menu/bottom"
+            app:textColor="@color/white" />
 
 
     </RelativeLayout>

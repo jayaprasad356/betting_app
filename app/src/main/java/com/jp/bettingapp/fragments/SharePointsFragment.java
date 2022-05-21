@@ -1,17 +1,23 @@
-package com.jp.bettingapp;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.jp.bettingapp.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.jp.bettingapp.HomeActivity;
+import com.jp.bettingapp.MainActivity;
+import com.jp.bettingapp.R;
+import com.jp.bettingapp.SharePointsActivity;
 import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
 import com.jp.bettingapp.helper.Session;
@@ -23,32 +29,30 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SharePointsActivity extends AppCompatActivity {
-
-    ImageButton back;
+public class SharePointsFragment extends Fragment {
     Button btnShare;
     EditText etPoints,etMobile;
     Activity activity;
     Session session;
+    View root;
 
+
+    public SharePointsFragment() {
+        // Required empty public constructor
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sharepoints);
-
-        activity = SharePointsActivity.this;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        root =  inflater.inflate(R.layout.fragment_share_points, container, false);
+        activity = getActivity();
         session = new Session(activity);
 
-        back = findViewById(R.id.back);
-        btnShare = findViewById(R.id.btnShare);
-        etPoints = findViewById(R.id.etPoints);
-        etMobile = findViewById(R.id.etMobile);
+        btnShare = root.findViewById(R.id.btnShare);
+        etPoints = root.findViewById(R.id.etPoints);
+        etMobile = root.findViewById(R.id.etMobile);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { onBackPressed(); }
-        });
 
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +63,8 @@ public class SharePointsActivity extends AppCompatActivity {
         });
 
 
+        return root;
     }
-
     private void sharePoints()
     {
         Map<String, String> params = new HashMap<>();

@@ -8,13 +8,18 @@
 
     <item
         android:id="@+id/item1"
-        android:title="Results"
+        android:title="Bids History"
         android:icon="@drawable/ic_result"/>
 
     <item
         android:id="@+id/item2"
-        android:title="Profile"
-        android:icon="@drawable/ic_person"/>
+        android:title="Transaction"
+        android:icon="@drawable/ic_transaction"/>
+
+    <item
+        android:id="@+id/item3"
+        android:title="Share Points"
+        android:icon="@drawable/ic_share_points"/>
 
 
 

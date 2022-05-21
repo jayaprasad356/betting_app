@@ -4,14 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
-import com.jp.bettingapp.helper.Constant;
 import com.jp.bettingapp.helper.Session;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
@@ -23,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     public static FragmentManager fm = null;
     public static Fragment gameFragment,resultFragment,profileFragment;
     public static Fragment active;
-    public static boolean gameClicked = false,resultClicked = false,profileClicked = false;
+    public static boolean gameClicked = false, bidsClicked = false, transactionClicked = false, shareClicked = false;
     Session session;
 
 
@@ -41,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         profileFragment = new ProfileFragment();
         active = gameFragment;
         gameClicked = true;
-        resultClicked = false;
-        profileClicked = false;
+        bidsClicked = false;
+        transactionClicked = false;
 
         fm.beginTransaction().add(R.id.container, gameFragment).commit();
 
@@ -62,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
                         active = gameFragment;
                         break;
                     case 1:
-                        if (!resultClicked) {
+                        if (!bidsClicked) {
                             fm.beginTransaction().add(R.id.container, resultFragment).show(resultFragment).hide(active).commit();
-                            resultClicked = true;
+                            bidsClicked = true;
                         } else {
                             fm.beginTransaction().show(resultFragment).hide(active).commit();
                         }
@@ -72,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case 2:
-                        if (!profileClicked) {
+                        if (!transactionClicked) {
                             fm.beginTransaction().add(R.id.container, profileFragment).show(profileFragment).hide(active).commit();
-                            profileClicked = true;
+                            transactionClicked = true;
                         } else {
                             fm.beginTransaction().show(profileFragment).hide(active).commit();
                         }

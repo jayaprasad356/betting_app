@@ -5,11 +5,12 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="lightblue">#4EAAEB</color>
     <color name="darkblue">#3678E0</color>
-    <color name="appdesignblue">#0E74F1</color>
+    <color name="appdesignblue">#616BC2</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
     <color name="appblack">#07070C</color>
+    <color name="apppink">#EEE0FF</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#0E74F1</color>

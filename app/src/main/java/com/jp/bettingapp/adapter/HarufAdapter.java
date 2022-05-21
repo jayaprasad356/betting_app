@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jp.bettingapp.HomeActivity;
 import com.jp.bettingapp.MainActivity;
 import com.jp.bettingapp.R;
 import com.jp.bettingapp.helper.ApiConfig;
@@ -347,7 +348,7 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(activity, MainActivity.class);
+                        Intent intent = new Intent(activity, HomeActivity.class);
                         activity.startActivity(intent);
                         activity.finish();
                     }

@@ -3,12 +3,14 @@ package com.jp.bettingapp.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -16,19 +18,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jp.bettingapp.HomeActivity;
 import com.jp.bettingapp.MainActivity;
 import com.jp.bettingapp.R;
 import com.jp.bettingapp.activities.JodiActivity;
 import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
 import com.jp.bettingapp.helper.Session;
+import com.jp.bettingapp.model.Game;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +56,7 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
     String TotalPoints = "";
     Session session;
     Spinner spinGame;
+    String spinGameName;
 
     public JodiFastCrossAdapter(Activity activity, TextView tvWarning, Button btnSubmit, Spinner spinGame) {
         this.activity = activity;
@@ -68,8 +76,23 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holderParent,  @SuppressLint("RecyclerView")int position) {
         final ItemHolder holder = (ItemHolder) holderParent;
         session = new Session(activity);
+        spinGame.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Game game = (Game) adapterView.getSelectedItem();
+                spinGameName = game.getGamename();
+                //Toast.makeText(activity, ""+game.getGamename(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
                 newPoints.clear();
@@ -111,9 +134,6 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                 else {
                     Toast.makeText(activity, "Please,Select Game", Toast.LENGTH_SHORT).show();
                 }
-
-                Log.d("JODIFASTCROSS",newPoints.toString());
-                Log.d("JODIFASTCROSSNUMBER",newNumbers.toString());
             }
         });
 
@@ -131,7 +151,6 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                 try{
                     if (s != null || !s.equals("")){
                         int num = Integer.parseInt(holder.etPoints.getText().toString());
-                        int ans = num/5;
                         if (num%5 == 0){
                             tvWarning.setVisibility(View.GONE);
 
@@ -154,6 +173,7 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                     if (isOnTextChanged){
                         isOnTextChanged = false;
                         try {
+                            int num = Integer.parseInt(editable.toString());
                             ExpenseFinalTotal = 0;
                             for (int i = 0; i<= position; i++) {
                                 int inposition1 = position;
@@ -161,7 +181,12 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                                     PointsArray.add("0");
                                 }else {
                                     PointsArray.add("0");
-                                    PointsArray.set(inposition1,editable.toString());
+                                    if (num%5 == 0){
+                                        PointsArray.set(inposition1,editable.toString());
+                                    }
+                                    else {
+                                        PointsArray.set(inposition1,"0");
+                                    }
                                     break;
                                 }
                             }
@@ -169,6 +194,9 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                                 int tempTotalExpense = Integer.parseInt(PointsArray.get(i));
                                 ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
 
+                            }
+                            if (ExpenseFinalTotal == 0){
+                                ExpenseFinalTotal = Integer.parseInt(editable.toString());
                             }
                             TotalPoints = ""+ExpenseFinalTotal;
                             ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
@@ -186,6 +214,9 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                                 int tempTotalExpense = Integer.parseInt(PointsArray.get(i));
                                 ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
 
+                            }
+                            if (ExpenseFinalTotal == 0){
+                                ExpenseFinalTotal = Integer.parseInt(editable.toString());
                             }
                             TotalPoints = ""+ExpenseFinalTotal;
                             ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
@@ -255,8 +286,12 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
         });
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void submitGame()
     {
+        LocalDate dateObj = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = dateObj.format(formatter);
         Map<String, String> params = new HashMap<>();
         //request
         params.put(Constant.USER_ID,session.getData(Constant.ID));
@@ -266,6 +301,7 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
         params.put(Constant.POINTS,newPoints.toString());
         params.put(Constant.NUMBER,newNumbers.toString());
         params.put(Constant.TOTAL_POINTS,TotalPoints);
+        params.put(Constant.GAME_DATE,date);
         ApiConfig.RequestToVolley((result, response) -> {
             if (result) {
 
@@ -283,7 +319,7 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
 
 
-                        Intent intent = new Intent(activity, MainActivity.class);
+                        Intent intent = new Intent(activity, HomeActivity.class);
                         activity.startActivity(intent);
                         activity.finish();
                     }

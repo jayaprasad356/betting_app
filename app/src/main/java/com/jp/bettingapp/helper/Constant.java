@@ -1,5 +1,13 @@
 package com.jp.bettingapp.helper;
 
+import android.app.Activity;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import com.jp.bettingapp.model.Game;
+
+import java.util.ArrayList;
+
 public class Constant {
     public static final String MainBaseUrl = "http://bigbillionenterprises.co.in/";
     //public static final String MainBaseUrl = "http://192.168.43.38/bigbillion_web/";
@@ -26,6 +34,7 @@ public class Constant {
     public static final String GAME_NAME = "game_name";
     public static final String GAME_TYPE = "game_type";
     public static final String DATE = "date";
+    public static final String GAME_DATE = "game_date";
     public static final String GAME_METHOD = "game_method";
     public static final String NUMBER = "number";
     public static final String POINTS = "points";
@@ -40,5 +49,6 @@ public class Constant {
     public static final String ACCOUNT_NO = "account_number";
     public static final String IFSC_CODE = "ifsc_code";
     public static final String HOLDER_NAME = "holder_name";
+
 
 }

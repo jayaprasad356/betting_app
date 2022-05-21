@@ -76,7 +76,7 @@ public class OTP_Activity extends AppCompatActivity {
                             session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
                             session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
 
-                            Intent intent = new Intent(OTP_Activity.this,MainActivity.class);
+                            Intent intent = new Intent(OTP_Activity.this,HomeActivity.class);
                             startActivity(intent);
                             finish();
 
