@@ -127,7 +127,7 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                     newNumbers.add(NumbersArray.get(i));
 
                 }
-                if (spinGame.getSelectedItemPosition() != 0 ){
+                if (spinGame.getSelectedItemPosition() != 0 && spinGame.getSelectedItemPosition() != 4){
                     submitGame();
 
                 }
@@ -170,10 +170,14 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
             @Override
             public void afterTextChanged(Editable editable) {
                     ExpenseFinalTotal = 0;
-                    if (isOnTextChanged){
-                        isOnTextChanged = false;
+                    try {
+                        String edit_str = editable.toString();
+                        if (edit_str.equals("")) {
+                            edit_str = "0";
+                        }
+
+                        int num = Integer.parseInt(edit_str);
                         try {
-                            int num = Integer.parseInt(editable.toString());
                             ExpenseFinalTotal = 0;
                             for (int i = 0; i<= position; i++) {
                                 int inposition1 = position;
@@ -195,9 +199,6 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                                 ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
 
                             }
-                            if (ExpenseFinalTotal == 0){
-                                ExpenseFinalTotal = Integer.parseInt(editable.toString());
-                            }
                             TotalPoints = ""+ExpenseFinalTotal;
                             ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
 
@@ -215,16 +216,16 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                                 ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
 
                             }
-                            if (ExpenseFinalTotal == 0){
-                                ExpenseFinalTotal = Integer.parseInt(editable.toString());
-                            }
                             TotalPoints = ""+ExpenseFinalTotal;
                             ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
 
                         }
 
+                    }catch (Exception e){
+
                     }
-                }
+
+            }
         });
         holder.etNumber.addTextChangedListener(new TextWatcher() {
             @Override
@@ -295,7 +296,7 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
         Map<String, String> params = new HashMap<>();
         //request
         params.put(Constant.USER_ID,session.getData(Constant.ID));
-        params.put(Constant.GAME_NAME,spinGame.getSelectedItem().toString());
+        params.put(Constant.GAME_NAME,spinGameName);
         params.put(Constant.GAME_TYPE,"jodi");
         params.put(Constant.GAME_METHOD,"fastcross");
         params.put(Constant.POINTS,newPoints.toString());

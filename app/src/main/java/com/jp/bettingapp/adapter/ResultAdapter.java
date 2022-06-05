@@ -34,7 +34,9 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holderParent, int position) {
         final ItemHolder holder = (ItemHolder) holderParent;
         final Result result = results.get(position);
-        holder.tvDate.setText(result.getDate());
+        String date = result.getDate();
+        String[] separated = date.split("-");
+        holder.tvDate.setText(separated[2]);
         holder.tvDS.setText(result.getDS());
         holder.tvFD.setText(result.getFD());
         holder.tvGB.setText(result.getGB());

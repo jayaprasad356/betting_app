@@ -18,7 +18,7 @@ public class Functions {
         countryList.add(new Game("FD", "FD-05:35 PM"));
         countryList.add(new Game("GB", "GB-07:35 PM"));
         countryList.add(new Game("GL", "GL-10:35 PM"));
-        countryList.add(new Game("ND", "Next Day Games"));
+        countryList.add(new Game("", "Next Day Games"));
         countryList.add(new Game("DS", "DS-02:10 AM"));
 
         //fill data in spinner

@@ -27,7 +27,7 @@ import java.util.Map;
 public class Add_Account_Details_Activity extends AppCompatActivity {
 
     ImageButton back;
-    EditText etAccountNo, etIFSC, etHolderName;
+    EditText etAccountNo, etIFSC, etHolderName,etGpay,etPhonepe;
     Button btnUpdate;
     Activity activity;
     Session session;
@@ -42,6 +42,8 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
         session = new Session(activity);
 
         back = findViewById(R.id.back);
+        etGpay = findViewById(R.id.etGpay);
+        etPhonepe = findViewById(R.id.etPhonepe);
         etAccountNo = findViewById(R.id.etAccountNo);
         etIFSC = findViewById(R.id.etIFSC);
         etHolderName = findViewById(R.id.etHolderName);
@@ -51,6 +53,8 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
         etAccountNo.setText(session.getData(Constant.ACCOUNT_NO));
         etIFSC.setText(session.getData(Constant.IFSC_CODE));
         etHolderName.setText(session.getData(Constant.HOLDER_NAME));
+        etPhonepe.setText(session.getData(Constant.PHONEPE));
+        etGpay.setText(session.getData(Constant.GPAY));
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,9 +65,19 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (etAccountNo.getText().toString().trim().equals("") || etIFSC.getText().toString().trim().equals("") || etHolderName.getText().toString().trim().equals("")) {
-                    Toast.makeText(activity, "Fill All Details", Toast.LENGTH_SHORT).show();
-                } else {
+                if (etAccountNo.getText().toString().trim().equals("")){
+                    etAccountNo.setError("Enter Account Number");
+                    etAccountNo.requestFocus();
+                }
+                else if (etIFSC.getText().toString().trim().equals("")){
+                    etIFSC.setError("Enter IFSC Code");
+                    etIFSC.requestFocus();
+                }
+                else if (etHolderName.getText().toString().trim().equals("")){
+                    etHolderName.setError("Enter Holder Name");
+                    etHolderName.requestFocus();
+                }
+                else {
                     updateAccountDetails();
                 }
             }
@@ -71,14 +85,16 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
 
     }
 
+
     private void updateAccountDetails() {
         Map<String, String> params = new HashMap<>();
         params.put(Constant.USER_ID, session.getData(Constant.ID));
         params.put(Constant.ACCOUNT_NO, etAccountNo.getText().toString().trim());
         params.put(Constant.IFSC_CODE, etIFSC.getText().toString().trim());
         params.put(Constant.HOLDER_NAME, etHolderName.getText().toString().trim());
+        params.put(Constant.GPAY, etGpay.getText().toString().trim());
+        params.put(Constant.PHONEPE, etPhonepe.getText().toString().trim());
         ApiConfig.RequestToVolley((result, response) -> {
-            Log.d("ACCOUNT_RESPONSE",""+result);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -87,6 +103,8 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
                         session.setData(Constant.ACCOUNT_NO, jsonArray.getJSONObject(0).getString(Constant.ACCOUNT_NO));
                         session.setData(Constant.IFSC_CODE, jsonArray.getJSONObject(0).getString(Constant.IFSC_CODE));
                         session.setData(Constant.HOLDER_NAME, jsonArray.getJSONObject(0).getString(Constant.HOLDER_NAME));
+                        session.setData(Constant.GPAY, jsonArray.getJSONObject(0).getString(Constant.GPAY));
+                        session.setData(Constant.PHONEPE, jsonArray.getJSONObject(0).getString(Constant.PHONEPE));
                         Toast.makeText(this, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(activity, HomeActivity.class);
                         startActivity(intent);

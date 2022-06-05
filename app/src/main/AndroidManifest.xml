@@ -90,9 +90,6 @@
             android:name=".WithdrawalActivity"
             android:exported="false" />
         <activity
-            android:name=".BidsHistoryActivity"
-            android:exported="false" />
-        <activity
             android:name=".Add_Account_Details_Activity"
             android:exported="false" />
         <activity

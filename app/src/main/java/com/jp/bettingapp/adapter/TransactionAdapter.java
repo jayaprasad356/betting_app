@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,22 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         session = new Session(activity);
         final ItemHolder holder = (ItemHolder) holderParent;
         final Transaction transaction = transactions.get(position);
+        if (transaction.getGame_type().equals("jodi")){
+            holder.transimg.setImageResource(R.drawable.dice);
+
+        }
+        else if (transaction.getGame_type().equals("andar") || transaction.getGame_type().equals("bahar")){
+            holder.transimg.setImageResource(R.drawable.casino);
+
+        }
+        else if (transaction.getGame_type().equals("quick_cross")){
+            holder.transimg.setImageResource(R.drawable.hockeysticks);
+
+        }
+        else if (transaction.getGame_type().equals("odd_even")){
+            holder.transimg.setImageResource(R.drawable.balanced);
+
+        }
         holder.tvtitle.setText("Deducted On "+transaction.getGame_type() +" \n"+transaction.getGame_name());
         holder.tvTime.setText(transaction.getDate_created());
         holder.tvPoints.setText(transaction.getPoints());
@@ -56,12 +73,14 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     static class ItemHolder extends RecyclerView.ViewHolder {
 
         TextView tvtitle,tvTime,tvPoints,tvBalance;
+        ImageView transimg;
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
             tvtitle = itemView.findViewById(R.id.tvtitle);
             tvPoints = itemView.findViewById(R.id.tvPoints);
             tvTime = itemView.findViewById(R.id.tvTime);
             tvBalance = itemView.findViewById(R.id.tvBalance);
+            transimg = itemView.findViewById(R.id.transimg);
 
 
         }

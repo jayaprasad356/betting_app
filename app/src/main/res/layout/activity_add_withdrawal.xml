@@ -57,6 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:backgroundTint="@null"
+        android:foreground="?android:attr/selectableItemBackground"
         android:background="@drawable/btndesign"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"

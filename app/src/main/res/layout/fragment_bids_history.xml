@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/apppink"
-    tools:context=".BidsHistoryActivity">
+    tools:context=".fragments.BidsHistoryFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,7 +43,6 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/whitebackgroundcruve"
-                    android:entries="@array/selectgame"
                     android:padding="10dp"
                     android:paddingStart="20dp"
                     android:paddingTop="10dp"

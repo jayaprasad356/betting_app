@@ -76,7 +76,7 @@
                     android:textAlignment="viewEnd"
                     android:layout_margin="20dp"
                     android:backgroundTint="@color/white"
-                    android:entries="@array/selectgame" />
+                     />
 
             </RelativeLayout>
 

@@ -17,16 +17,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jp.bettingapp.HomeActivity;
 import com.jp.bettingapp.MainActivity;
 import com.jp.bettingapp.R;
 import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
+import com.jp.bettingapp.helper.Functions;
 import com.jp.bettingapp.helper.Session;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,6 +67,7 @@ public class OddEvenActivity extends AppCompatActivity {
         tvTotal = findViewById(R.id.tvTotal);
         btnSubmit = findViewById(R.id.btnSubmit);
         spinGame = findViewById(R.id.spinGame);
+        Functions.setData(activity,spinGame);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +169,7 @@ public class OddEvenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 NumbersArray.clear();
                 PointsArray.clear();
-                if (spinGame.getSelectedItemPosition() == 0){
+                if (spinGame.getSelectedItemPosition() == 0  || spinGame.getSelectedItemPosition() == 4){
                     Toast.makeText(activity, "Please , Select Game", Toast.LENGTH_SHORT).show();
                 }
 
@@ -203,8 +209,9 @@ public class OddEvenActivity extends AppCompatActivity {
 
     private void submitGame()
     {
-        Log.d("ODDEVENARRAY",NumbersArray.toString());
-        Log.d("ODDEVENARRAY2",PointsArray.toString());
+        LocalDate dateObj = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = dateObj.format(formatter);
         Map<String, String> params = new HashMap<>();
         params.put(Constant.USER_ID,session.getData(Constant.ID));
         params.put(Constant.GAME_NAME,spinGame.getSelectedItem().toString());
@@ -213,14 +220,20 @@ public class OddEvenActivity extends AppCompatActivity {
         params.put(Constant.POINTS,PointsArray.toString());
         params.put(Constant.NUMBER,NumbersArray.toString());
         params.put(Constant.TOTAL_POINTS,tvTotal.getText().toString().trim());
+        params.put(Constant.GAME_DATE,date);
         ApiConfig.RequestToVolley((result, response) -> {
             if (result) {
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                        session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+                        session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
+                        session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
+                        session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(activity, MainActivity.class);
+                        Intent intent = new Intent(activity, HomeActivity.class);
                         activity.startActivity(intent);
                         activity.finish();
                     }

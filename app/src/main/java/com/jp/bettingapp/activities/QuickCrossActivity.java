@@ -1,14 +1,18 @@
 package com.jp.bettingapp.activities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -17,16 +21,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jp.bettingapp.HomeActivity;
-import com.jp.bettingapp.MainActivity;
 import com.jp.bettingapp.R;
 import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
+import com.jp.bettingapp.helper.Functions;
 import com.jp.bettingapp.helper.Session;
+import com.jp.bettingapp.model.Game;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +52,8 @@ public class QuickCrossActivity extends AppCompatActivity {
     Session session;
     TextView tvTotal;
     Spinner spinGame;
+    String spinGameName;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +82,20 @@ public class QuickCrossActivity extends AppCompatActivity {
         etb6 = findViewById(R.id.etb6);
         activity = QuickCrossActivity.this;
         session = new Session(activity);
+        Functions.setData(activity,spinGame);
+        spinGame.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Game game = (Game) adapterView.getSelectedItem();
+                spinGameName = game.getGamename();
+                //Toast.makeText(activity, ""+game.getGamename(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { onBackPressed(); }
@@ -94,6 +117,7 @@ public class QuickCrossActivity extends AppCompatActivity {
                             tvTotal.setText(""+total);
                         }
                         else{
+                            tvWarning.setText("Enter number like 10,15,20...");
                             tvWarning.setVisibility(View.VISIBLE);
                         }
                     }
@@ -107,10 +131,348 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
+        eta1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        AcheckValue();
+
+
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        eta2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        AcheckValue();
+
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        eta3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        AcheckValue();
+
+
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        eta4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        AcheckValue();
+
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        eta5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        AcheckValue();
+
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        eta6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        AcheckValue();
+
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        etb1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        BcheckValue();
+
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        etb2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        BcheckValue();
+
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        etb3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        BcheckValue();
+
+
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        etb4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        BcheckValue();
+
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        etb5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        BcheckValue();
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        etb6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    if (!editable.toString().equals("")){
+                        BcheckValue();
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
+                //view.startAnimation(buttonClick);
+                Toast.makeText(activity, ""+spinGame.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                 if (eta1.getText().toString().trim().equals("") || eta2.getText().toString().trim().equals("")  ||
                         eta3.getText().toString().trim().equals("") || eta4.getText().toString().trim().equals("") ||
                         eta5.getText().toString().trim().equals("") || eta6.getText().toString().trim().equals("") ||
@@ -126,7 +488,91 @@ public class QuickCrossActivity extends AppCompatActivity {
                         etb1.getText().toString().trim().equals("0") || etb2.getText().toString().trim().equals("0") ||
                         etb3.getText().toString().trim().equals("0") || etb4.getText().toString().trim().equals("0") ||
                         etb5.getText().toString().trim().equals("0") || etb6.getText().toString().trim().equals("0")){
-                    Toast.makeText(activity, "Value Not be Zero", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Number should not be repeated in same row", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (eta1.getText().toString().trim().equals(eta2.getText().toString().trim()) || eta1.getText().toString().trim().equals(eta3.getText().toString().trim())  ||
+                        eta1.getText().toString().trim().equals(eta4.getText().toString().trim()) || eta1.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
+                        eta1.getText().toString().trim().equals(eta6.getText().toString().trim())
+                        ){
+                    Toast.makeText(activity, "Number should not be repeated in same row", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (eta2.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta2.getText().toString().trim().equals(eta3.getText().toString().trim())  ||
+                        eta2.getText().toString().trim().equals(eta4.getText().toString().trim()) || eta2.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
+                        eta2.getText().toString().trim().equals(eta6.getText().toString().trim())
+                ){
+                    Toast.makeText(activity, "Number should not be repeated in same row", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (eta3.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta3.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
+                        eta3.getText().toString().trim().equals(eta4.getText().toString().trim()) || eta3.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
+                        eta3.getText().toString().trim().equals(eta6.getText().toString().trim())
+                ){
+                    Toast.makeText(activity, "Number should not be repeated in same row", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (eta4.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta4.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
+                        eta4.getText().toString().trim().equals(eta3.getText().toString().trim()) || eta4.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
+                        eta4.getText().toString().trim().equals(eta6.getText().toString().trim())
+                ){
+                    Toast.makeText(activity, "Number should not be repeated in same row", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (eta5.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta5.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
+                        eta5.getText().toString().trim().equals(eta3.getText().toString().trim()) || eta5.getText().toString().trim().equals(eta4.getText().toString().trim()) ||
+                        eta5.getText().toString().trim().equals(eta6.getText().toString().trim())
+                ){
+                    Toast.makeText(activity, "Number should not be repeated in same row" , Toast.LENGTH_SHORT).show();
+
+                }
+                else if (eta6.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta6.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
+                        eta6.getText().toString().trim().equals(eta3.getText().toString().trim()) || eta6.getText().toString().trim().equals(eta4.getText().toString().trim()) ||
+                        eta6.getText().toString().trim().equals(eta5.getText().toString().trim())
+                ){
+                    Toast.makeText(activity, "Number should not be repeated in same row", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (etb1.getText().toString().trim().equals(etb2.getText().toString().trim()) || etb1.getText().toString().trim().equals(etb3.getText().toString().trim())  ||
+                        etb1.getText().toString().trim().equals(etb4.getText().toString().trim()) || etb1.getText().toString().trim().equals(etb5.getText().toString().trim()) ||
+                        etb1.getText().toString().trim().equals(etb6.getText().toString().trim())
+                ){
+                    Toast.makeText(activity, "Number should not be repeated in same row", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (etb2.getText().toString().trim().equals(etb1.getText().toString().trim()) || etb2.getText().toString().trim().equals(etb3.getText().toString().trim())  ||
+                        etb2.getText().toString().trim().equals(etb4.getText().toString().trim()) || etb2.getText().toString().trim().equals(etb5.getText().toString().trim()) ||
+                        etb2.getText().toString().trim().equals(etb6.getText().toString().trim())
+                ){
+                    Toast.makeText(activity, "Number should not be repeated in same row", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (etb3.getText().toString().trim().equals(etb1.getText().toString().trim()) || etb3.getText().toString().trim().equals(etb2.getText().toString().trim())  ||
+                        etb3.getText().toString().trim().equals(etb4.getText().toString().trim()) || etb3.getText().toString().trim().equals(etb5.getText().toString().trim()) ||
+                        etb3.getText().toString().trim().equals(etb6.getText().toString().trim())
+                ){
+                    Toast.makeText(activity, "Number should not be repeated in same row", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (etb4.getText().toString().trim().equals(etb1.getText().toString().trim()) || etb4.getText().toString().trim().equals(etb2.getText().toString().trim())  ||
+                        etb4.getText().toString().trim().equals(etb3.getText().toString().trim()) || etb4.getText().toString().trim().equals(etb5.getText().toString().trim()) ||
+                        etb4.getText().toString().trim().equals(etb6.getText().toString().trim())
+                ){
+                    Toast.makeText(activity, "Number should not be repeated in same row", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (etb5.getText().toString().trim().equals(etb1.getText().toString().trim()) || etb5.getText().toString().trim().equals(etb2.getText().toString().trim())  ||
+                        etb5.getText().toString().trim().equals(etb3.getText().toString().trim()) || etb5.getText().toString().trim().equals(etb4.getText().toString().trim()) ||
+                        etb5.getText().toString().trim().equals(etb6.getText().toString().trim())
+                ){
+                    Toast.makeText(activity, "Number should not be repeated in same row" , Toast.LENGTH_SHORT).show();
+
+                }
+                else if (etb6.getText().toString().trim().equals(etb1.getText().toString().trim()) || etb6.getText().toString().trim().equals(etb2.getText().toString().trim())  ||
+                        etb6.getText().toString().trim().equals(etb3.getText().toString().trim()) || etb6.getText().toString().trim().equals(etb4.getText().toString().trim()) ||
+                        etb6.getText().toString().trim().equals(etb5.getText().toString().trim())
+                ){
+                    Toast.makeText(activity, "Number should not be repeated in same row", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (etPoints.getText().toString().equals("")){
@@ -137,7 +583,7 @@ public class QuickCrossActivity extends AppCompatActivity {
                     etPoints.setError("Enter Valid Points");
                     etPoints.requestFocus();
                 }
-                else if (spinGame.getSelectedItemPosition() == 0){
+                else if (spinGame.getSelectedItemPosition() == 0  || spinGame.getSelectedItemPosition() == 4){
                     Toast.makeText(activity, "Please , Select Game", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -185,23 +631,131 @@ public class QuickCrossActivity extends AppCompatActivity {
                     submitGame();
 
                 }
-
-                Log.d("QA1", NumbersArray.toString());
-                Log.d("QA2", PointsArray.toString());
             }
         });
     }
 
+    private void BcheckValue() {
+        if (etb1.getText().toString().trim().equals(etb2.getText().toString().trim()) || etb1.getText().toString().trim().equals(etb3.getText().toString().trim())  ||
+                etb1.getText().toString().trim().equals(etb4.getText().toString().trim()) || etb1.getText().toString().trim().equals(etb5.getText().toString().trim()) ||
+                etb1.getText().toString().trim().equals(etb6.getText().toString().trim())
+        ){
+            tvWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Number should not be repeated in same row");
+
+        }else if (etb2.getText().toString().trim().equals(etb1.getText().toString().trim()) || etb2.getText().toString().trim().equals(etb3.getText().toString().trim())  ||
+                etb2.getText().toString().trim().equals(etb4.getText().toString().trim()) || etb2.getText().toString().trim().equals(etb5.getText().toString().trim()) ||
+                etb2.getText().toString().trim().equals(etb6.getText().toString().trim())
+        ){
+            tvWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Number should not be repeated in same row");
+
+        }else if (etb3.getText().toString().trim().equals(etb1.getText().toString().trim()) || etb3.getText().toString().trim().equals(etb2.getText().toString().trim())  ||
+                etb3.getText().toString().trim().equals(etb4.getText().toString().trim()) || etb3.getText().toString().trim().equals(etb5.getText().toString().trim()) ||
+                etb3.getText().toString().trim().equals(etb6.getText().toString().trim())
+        ){
+            tvWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Number should not be repeated in same row");
+
+        }else if (etb4.getText().toString().trim().equals(etb1.getText().toString().trim()) || etb4.getText().toString().trim().equals(etb2.getText().toString().trim())  ||
+                etb4.getText().toString().trim().equals(etb3.getText().toString().trim()) || etb4.getText().toString().trim().equals(etb5.getText().toString().trim()) ||
+                etb4.getText().toString().trim().equals(etb6.getText().toString().trim())
+        ){
+            tvWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Number should not be repeated in same row");
+
+        }else if (etb5.getText().toString().trim().equals(etb1.getText().toString().trim()) || etb5.getText().toString().trim().equals(etb2.getText().toString().trim())  ||
+                etb5.getText().toString().trim().equals(etb3.getText().toString().trim()) || etb5.getText().toString().trim().equals(etb4.getText().toString().trim()) ||
+                etb5.getText().toString().trim().equals(etb6.getText().toString().trim())
+        ){
+            tvWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Number should not be repeated in same row");
+
+        }else if (etb6.getText().toString().trim().equals(etb1.getText().toString().trim()) || etb6.getText().toString().trim().equals(etb2.getText().toString().trim())  ||
+                etb6.getText().toString().trim().equals(etb3.getText().toString().trim()) || etb6.getText().toString().trim().equals(etb4.getText().toString().trim()) ||
+                etb6.getText().toString().trim().equals(etb5.getText().toString().trim())
+        ){
+            tvWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Number should not be repeated in same row");
+
+        }
+        else{
+            tvWarning.setVisibility(View.GONE);
+
+        }
+
+    }
+
+    private void AcheckValue() {
+        if (eta1.getText().toString().trim().equals(eta2.getText().toString().trim()) || eta1.getText().toString().trim().equals(eta3.getText().toString().trim())  ||
+                eta1.getText().toString().trim().equals(eta4.getText().toString().trim()) || eta1.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
+                eta1.getText().toString().trim().equals(eta6.getText().toString().trim())
+        ){
+            tvWarningmsg();
+        }
+        else if (eta2.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta2.getText().toString().trim().equals(eta3.getText().toString().trim())  ||
+                eta2.getText().toString().trim().equals(eta4.getText().toString().trim()) || eta2.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
+                eta2.getText().toString().trim().equals(eta6.getText().toString().trim())
+        ){
+            tvWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Number should not be repeated in same row");
+
+        }else if (eta3.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta3.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
+                eta3.getText().toString().trim().equals(eta4.getText().toString().trim()) || eta3.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
+                eta3.getText().toString().trim().equals(eta6.getText().toString().trim())
+        ){
+            tvWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Number should not be repeated in same row");
+
+        }else if (eta4.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta4.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
+                eta4.getText().toString().trim().equals(eta3.getText().toString().trim()) || eta4.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
+                eta4.getText().toString().trim().equals(eta6.getText().toString().trim())
+        ){
+            tvWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Number should not be repeated in same row");
+
+        }else if (eta5.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta5.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
+                eta5.getText().toString().trim().equals(eta3.getText().toString().trim()) || eta5.getText().toString().trim().equals(eta4.getText().toString().trim()) ||
+                eta5.getText().toString().trim().equals(eta6.getText().toString().trim())
+        ){
+            tvWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Number should not be repeated in same row");
+
+        }else if (eta6.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta6.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
+                eta6.getText().toString().trim().equals(eta3.getText().toString().trim()) || eta6.getText().toString().trim().equals(eta4.getText().toString().trim()) ||
+                eta6.getText().toString().trim().equals(eta5.getText().toString().trim())
+        ){
+            tvWarning.setVisibility(View.VISIBLE);
+            tvWarning.setText("Number should not be repeated in same row");
+        }
+        else{
+            tvWarning.setVisibility(View.GONE);
+
+        }
+    }
+
+    private void tvWarningmsg()
+    {
+        tvWarning.setVisibility(View.VISIBLE);
+        tvWarning.setText("Number should not be repeated in same row");
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void submitGame()
     {
+        LocalDate dateObj = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = dateObj.format(formatter);
         Map<String, String> params = new HashMap<>();
         params.put(Constant.USER_ID,session.getData(Constant.ID));
-        params.put(Constant.GAME_NAME,spinGame.getSelectedItem().toString());
+        params.put(Constant.GAME_NAME,spinGameName);
         params.put(Constant.GAME_TYPE,"quick_cross");
         params.put(Constant.GAME_METHOD,"none");
         params.put(Constant.POINTS,PointsArray.toString());
         params.put(Constant.NUMBER,NumbersArray.toString());
         params.put(Constant.TOTAL_POINTS,tvTotal.getText().toString().trim());
+        params.put(Constant.GAME_DATE,date);
         ApiConfig.RequestToVolley((result, response) -> {
             if (result) {
 

@@ -59,9 +59,35 @@
 
         </LinearLayout>
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnChoose"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@drawable/btndesign"
+                app:backgroundTint="@null"
+                android:text="Choose Date"
+                android:textSize="12dp"
+                />
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:visibility="gone"
             android:orientation="horizontal"
             android:layout_weight="2">
             <LinearLayout
@@ -124,7 +150,6 @@
 
 
         <Button
-
             android:id="@+id/btnSubmit"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
@@ -134,6 +159,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
+            android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/btndesign"
             android:text="Submit"
             android:textAllCaps="false"

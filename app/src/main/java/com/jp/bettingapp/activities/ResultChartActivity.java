@@ -11,7 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.github.dewinjm.monthyearpicker.MonthYearPickerDialog;
+import com.github.dewinjm.monthyearpicker.MonthYearPickerDialogFragment;
 import com.google.gson.Gson;
 import com.jp.bettingapp.R;
 import com.jp.bettingapp.adapter.ResultAdapter;
@@ -24,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +40,11 @@ public class ResultChartActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ImageButton back;
+    Button btnChoose;
+    TextView tvDate;
+    int yearSelected;
+    int monthSelected;
+    String Year = "",Month = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +53,43 @@ public class ResultChartActivity extends AppCompatActivity {
         activity = ResultChartActivity.this;
         recyclerView = findViewById(R.id.recyclerView);
         back = findViewById(R.id.back);
+        btnChoose = findViewById(R.id.btnChoose);
 
         spinMonth = findViewById(R.id.spinMonth);
         spinYear = findViewById(R.id.spinYear);
+        tvDate = findViewById(R.id.tvDate);
 
         btnSubmit = findViewById(R.id.btnSubmit);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(linearLayoutManager);
         resultAdapter = new ResultAdapter(activity, results);
+
+        btnChoose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+//Set default values
+                Calendar calendar = Calendar.getInstance();
+                yearSelected = calendar.get(Calendar.YEAR);
+                monthSelected = calendar.get(Calendar.MONTH);
+
+                MonthYearPickerDialogFragment dialogFragment = MonthYearPickerDialogFragment
+                        .getInstance(monthSelected, yearSelected);
+
+                dialogFragment.show(getSupportFragmentManager(), null);
+                dialogFragment.setOnDateSetListener(new MonthYearPickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(int year, int monthOfYear) {
+
+                        monthOfYear = monthOfYear + 1;
+                        Year = ""+year;
+                        Month = ""+monthOfYear;
+                        tvDate.setText(""+year+" - "+monthOfYear);
+                    }
+                });
+            }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,8 +110,8 @@ public class ResultChartActivity extends AppCompatActivity {
     {
         results.clear();
         Map<String, String> params = new HashMap<>();
-        params.put(Constant.MONTH, spinMonth.getSelectedItem().toString().trim());
-        params.put(Constant.YEAR, spinYear.getSelectedItem().toString().trim());
+        params.put(Constant.MONTH, Month);
+        params.put(Constant.YEAR, Year);
         ApiConfig.RequestToVolley((result, response) -> {
             Log.d("RESULT_RESPONSE",response);
             if (result) {

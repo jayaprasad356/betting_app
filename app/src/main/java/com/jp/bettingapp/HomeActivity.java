@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,18 +16,34 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.github.dewinjm.monthyearpicker.MonthYearPickerDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.gson.Gson;
 import com.jp.bettingapp.activities.HarufActivity;
 import com.jp.bettingapp.activities.JodiActivity;
 import com.jp.bettingapp.activities.OddEvenActivity;
 import com.jp.bettingapp.activities.QuickCrossActivity;
 import com.jp.bettingapp.activities.ResultChartActivity;
+import com.jp.bettingapp.adapter.WithdrawalAdapter;
 import com.jp.bettingapp.fragments.BidsHistoryFragment;
 import com.jp.bettingapp.fragments.SharePointsFragment;
 import com.jp.bettingapp.fragments.TransactionFragment;
+import com.jp.bettingapp.helper.ApiConfig;
+import com.jp.bettingapp.helper.Constant;
 import com.jp.bettingapp.helper.Session;
+import com.jp.bettingapp.model.Withdrawal;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity  implements NavigationBarView.OnItemSelectedListener{
     GamesFragment gamesFragment;
@@ -43,6 +60,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         gamesFragment = new GamesFragment();
         bidsHistoryFragment = new BidsHistoryFragment();
         transactionFragment = new TransactionFragment();
@@ -54,10 +72,12 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
         getSupportFragmentManager().beginTransaction().replace(R.id.container, gamesFragment,"GAME").commit();
 
         ImageView moremenu = findViewById(R.id.moremenu);
+        myUser();
 
         moremenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 showPopup(view);
             }
         });
@@ -98,6 +118,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item0:
+                myUser();
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, gamesFragment,"GAME").commit();
                 return true;
 
@@ -113,5 +134,40 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
         }
 
         return false;
+    }
+
+    private void myUser() {
+        Map<String, String> params = new HashMap<>();
+        //request
+        params.put(Constant.USER_ID,session.getData(Constant.ID));
+        ApiConfig.RequestToVolley((result, response) -> {
+            if (result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                        session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+                        session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
+                        session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
+                        session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
+
+                    }
+                    else {
+                        //Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+
+
+
+            }
+            else {
+                Toast.makeText(activity, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
+
+            }
+            //pass url
+        }, activity, Constant.MYUSER_URL, params,true);
+
     }
 }

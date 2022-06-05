@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.jp.bettingapp"
-        minSdk 21
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -31,6 +31,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.github.dewinjm:monthyear-picker:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
     implementation 'com.github.aabhasr1:OtpView:v1.1.2'

@@ -89,8 +89,7 @@
         <Spinner
             android:id="@+id/spinGame"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:entries="@array/selectgame" />
+            android:layout_height="40dp" />
 
     </RelativeLayout>
 
@@ -257,8 +256,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/bluelinebackground"
+            android:maxLength="1"
+            android:textCursorDrawable="@null"
 
-            android:textColor="@color/black"            android:textCursorDrawable="@null"
+            android:textColor="@color/black"
             android:layout_margin="5dp"
             android:inputType="number"
             android:padding="10dp"/>
@@ -268,6 +269,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/bluelinebackground"
+            android:maxLength="1"
 
             android:textColor="@color/black"            android:textCursorDrawable="@null"
             android:layout_margin="5dp"
@@ -318,13 +320,15 @@
     </LinearLayout>
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_gravity="center"
-        android:layout_marginStart="30dp"
         android:background="@drawable/btndesign"
         android:text="Submit"
-        android:layout_margin="20dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
         android:textAllCaps="false"
         android:textSize="12dp"
         app:backgroundTint="@null" />

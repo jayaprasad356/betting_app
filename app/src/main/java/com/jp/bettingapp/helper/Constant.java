@@ -16,6 +16,7 @@ public class Constant {
     public static final String LOGIN_URL = BaseUrl + "login.php";
     public static final String UPDATE_USER_URL = BaseUrl + "updateuser.php";
     public static final String GAME_URL = BaseUrl + "game.php";
+    public static final String MYUSER_URL = BaseUrl + "myuser.php";
     public static final String HARUF_URL = BaseUrl + "haruf.php";
     public static final String BIDSLIST_URL = BaseUrl + "bidslist.php";
     public static final String HARUFBIDSLIST_URL = BaseUrl + "harufbidslist.php";
@@ -49,6 +50,8 @@ public class Constant {
     public static final String ACCOUNT_NO = "account_number";
     public static final String IFSC_CODE = "ifsc_code";
     public static final String HOLDER_NAME = "holder_name";
+    public static final String GPAY = "gpay";
+    public static final String PHONEPE = "phonepe";
 
 
 }

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.jp.bettingapp.R;
 import com.jp.bettingapp.adapter.HarufAdapter;
 import com.jp.bettingapp.adapter.JodiFastCrossAdapter;
+import com.jp.bettingapp.helper.Functions;
 
 public class HarufActivity extends AppCompatActivity {
 
@@ -56,5 +57,6 @@ public class HarufActivity extends AppCompatActivity {
 
         harufAdapter = new HarufAdapter(activity,tvWarning,tvTotal,btnSubmit,spinGame);
         recyclerView.setAdapter(harufAdapter);
+        Functions.setData(activity,spinGame);
     }
 }

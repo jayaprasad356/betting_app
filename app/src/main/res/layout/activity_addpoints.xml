@@ -60,6 +60,7 @@
         android:background="@drawable/btndesign"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
+        android:foreground="?android:attr/selectableItemBackground"
         android:text="Add Points"
         android:textAllCaps="false"
         android:id="@+id/pointsbtn"

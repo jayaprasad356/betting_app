@@ -51,7 +51,7 @@ public class JodiActivity extends AppCompatActivity {
         JodiTabsAdapter tabsAdapter = new JodiTabsAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(tabsAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        viewPager.setOffscreenPageLimit(0);
+        viewPager.setOffscreenPageLimit(1);
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -69,6 +69,7 @@ public class JodiActivity extends AppCompatActivity {
         });
 
     }
+
 
     public void setTotal(int total) {
         tvTotal.setText("" + total);

@@ -100,7 +100,7 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 for (int i = 0; i < PointsArray.size(); i++){
                     NumbersArray.add(String.valueOf(i));
                 }
-                if (spinGame.getSelectedItemPosition() != 0 ){
+                if (spinGame.getSelectedItemPosition() != 0  && spinGame.getSelectedItemPosition() != 4){
                     submitGame();
 
                 }
@@ -139,11 +139,6 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 }catch (Exception e){
 
                 }
-
-
-
-
-
             }
 
             @Override
@@ -151,70 +146,63 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 ExpenseFinalTotal = 0;
 
                 try{
-                    int num = Integer.parseInt(editable.toString());
-                    if (isOnTextChanged){
-                        isOnTextChanged = false;
-                        try {
-                            ExpenseFinalTotal = 0;
-                            for (int i = 0; i<= position; i++) {
-                                int inposition1 = position;
-                                if (i != position) {
-                                    PointsArray.add("0");
-                                }else {
-                                    PointsArray.add("0");
-                                    if (num%5 == 0){
-                                        PointsArray.set(inposition1,editable.toString());
-
-                                    }
-                                    else {
-                                        PointsArray.set(inposition1,"0");
-
-
-                                    }
-
-                                    break;
-                                }
-                            }
-                            for (int i = 0; i < PointsArray.size() - 1; i++){
-
-
-                                int tempTotalExpense = Integer.parseInt(PointsArray.get(i));
-                                ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
-
-                            }
-                            if (ExpenseFinalTotal == 0){
-                                ExpenseFinalTotal = Integer.parseInt(editable.toString());
-                            }
-                            TotalPoints = ""+ExpenseFinalTotal;
-
-
-                            ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
-
-                        }catch (NumberFormatException e){
-                            ExpenseFinalTotal = 0;
-                            for (int i = 0; i<= position; i++) {
-                                int newposition = position;
-                                if (i== newposition){
-                                    PointsArray.set(newposition,"0");
-                                }
-
-                            }
-                            for (int i = 0; i <= PointsArray.size() - 1; i ++){
-                                int tempTotalExpense = Integer.parseInt(PointsArray.get(i));
-                                ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
-
-
-                            }
-                            if (ExpenseFinalTotal == 0){
-                                ExpenseFinalTotal = Integer.parseInt(editable.toString());
-                            }
-                            TotalPoints = ""+ExpenseFinalTotal;
-                            ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
-                        }
-
+                    String edit_str = editable.toString();
+                    if (edit_str.equals("")) {
+                        edit_str = "0";
                     }
 
+                    int num = Integer.parseInt(edit_str);
+                    try {
+                        ExpenseFinalTotal = 0;
+                        for (int i = 0; i<= position; i++) {
+                            int inposition1 = position;
+                            if (i != position) {
+                                PointsArray.add("0");
+                            }else {
+                                PointsArray.add("0");
+                                if (num%5 == 0){
+                                    PointsArray.set(inposition1,editable.toString());
+
+                                }
+                                else {
+                                    PointsArray.set(inposition1,"0");
+
+
+                                }
+
+                                break;
+                            }
+                        }
+                        for (int i = 0; i < PointsArray.size() - 1; i++){
+
+
+                            int tempTotalExpense = Integer.parseInt(PointsArray.get(i));
+                            ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
+
+                        }
+                        TotalPoints = ""+ExpenseFinalTotal;
+                        ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
+
+                    }catch (NumberFormatException e){
+                        ExpenseFinalTotal = 0;
+                        for (int i = 0; i<= position; i++) {
+                            int newposition = position;
+                            if (i== newposition){
+                                PointsArray.set(newposition,"0");
+                            }
+
+                        }
+                        for (int i = 0; i <= PointsArray.size() - 1; i ++){
+                            int tempTotalExpense = Integer.parseInt(PointsArray.get(i));
+                            ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
+
+
+                        }
+                        TotalPoints = ""+ExpenseFinalTotal;
+                        ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
+                    }
                 }catch (Exception e){
+
 
 
                 }

@@ -17,6 +17,8 @@
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/drawable/bg2.xml" value="0.1375" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/drawable/bg3.xml" value="0.1375" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/drawable/bg4.xml" value="0.1375" />
+        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/drawable/bg5.xml" value="0.1375" />
+        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/drawable/bg6.xml" value="0.1375" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/drawable/bluecruve.xml" value="0.18" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/drawable/bluelinebackground.xml" value="0.1795" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/drawable/bottom_navigation_selector.xml" value="0.1375" />
@@ -28,19 +30,20 @@
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_add_withdrawal.xml" value="0.17135416666666667" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_addpoints.xml" value="0.3333333333333333" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_bids_list.xml" value="0.17135416666666667" />
-        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_bidshistory.xml" value="0.22" />
+        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_bidshistory.xml" value="0.1" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_bits_history.xml" value="0.17083333333333334" />
+        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_fast_cross.xml" value="0.1" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_haruf.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_haruf2.xml" value="0.22" />
-        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_home.xml" value="0.14666666666666667" />
+        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_jodi.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_jodi2.xml" value="0.3333333333333333" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_login.xml" value="0.22" />
-        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_main.xml" value="0.17083333333333334" />
+        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_my_transaction.xml" value="0.17083333333333334" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_mytransaction.xml" value="0.17135416666666667" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_odd_even.xml" value="0.17083333333333334" />
-        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_oddeven.xml" value="0.3333333333333333" />
+        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_oddeven.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_otp.xml" value="0.17135416666666667" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_quick_cross.xml" value="0.3333333333333333" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_quickcross.xml" value="0.3333333333333333" />

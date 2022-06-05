@@ -13,21 +13,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.jp.bettingapp.BidsHistoryActivity;
 import com.jp.bettingapp.R;
 import com.jp.bettingapp.adapter.BidAdapter;
 import com.jp.bettingapp.adapter.HarufBidAdapter;
 import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
+import com.jp.bettingapp.helper.Functions;
 import com.jp.bettingapp.helper.Session;
 import com.jp.bettingapp.model.BIDS;
+import com.jp.bettingapp.model.Game;
 import com.jp.bettingapp.model.HarufBids;
 
 import org.json.JSONArray;
@@ -55,6 +56,7 @@ public class BidsHistoryFragment extends Fragment {
     ArrayList<BIDS> bids = new ArrayList<>();
     ArrayList<HarufBids> harufBids = new ArrayList<>();
     View root;
+    String spinGameName;
 
     public BidsHistoryFragment() {
         // Required empty public constructor
@@ -75,6 +77,21 @@ public class BidsHistoryFragment extends Fragment {
         btnSubmit = root.findViewById(R.id.btnSubmit);
         spinGame = root.findViewById(R.id.spinGame);
         spinDay = root.findViewById(R.id.spinDay);
+        Functions.setData(activity,spinGame);
+
+        spinGame.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Game game = (Game) adapterView.getSelectedItem();
+                spinGameName = game.getGamename();
+                //Toast.makeText(activity, ""+game.getGamename(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(activity);
@@ -89,7 +106,7 @@ public class BidsHistoryFragment extends Fragment {
                 if (spinGame.getSelectedItemPosition() == 0){
                     Toast.makeText(activity, "Please,Select Game", Toast.LENGTH_SHORT).show();
                 }
-                else if (spinDay.getSelectedItemPosition() == 0){
+                else if (spinDay.getSelectedItemPosition() == 0  || spinGame.getSelectedItemPosition() == 4){
                     Toast.makeText(activity, "Please,Select Day", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -132,12 +149,13 @@ public class BidsHistoryFragment extends Fragment {
     private void harufbidsList()
     {
         harufBids.clear();
+
         Map<String, String> params = new HashMap<>();
         params.put(Constant.USER_ID,session.getData(Constant.ID));
         params.put(Constant.GAME_NAME,spinGame.getSelectedItem().toString());
         params.put(Constant.DATE,date);
         ApiConfig.RequestToVolley((result, response) -> {
-            Log.d("HARUFBIDSLIST",response);
+
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -181,7 +199,7 @@ public class BidsHistoryFragment extends Fragment {
         bids.clear();
         Map<String, String> params = new HashMap<>();
         params.put(Constant.USER_ID,session.getData(Constant.ID));
-        params.put(Constant.GAME_NAME,spinGame.getSelectedItem().toString());
+        params.put(Constant.GAME_NAME,spinGameName);
         params.put(Constant.DATE,date);
         ApiConfig.RequestToVolley((result, response) -> {
             if (result) {
