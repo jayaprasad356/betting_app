@@ -40,26 +40,54 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         session = new Session(activity);
         final ItemHolder holder = (ItemHolder) holderParent;
         final Transaction transaction = transactions.get(position);
-        if (transaction.getGame_type().equals("jodi")){
-            holder.transimg.setImageResource(R.drawable.dice);
+        if (transaction.getType().equals("game")){
+            if (transaction.getGame_type().equals("jodi")){
+                holder.transimg.setImageResource(R.drawable.dice);
+
+            }
+            else if (transaction.getGame_type().equals("andar") || transaction.getGame_type().equals("bahar")){
+                holder.transimg.setImageResource(R.drawable.casino);
+
+            }
+            else if (transaction.getGame_type().equals("quick_cross")){
+                holder.transimg.setImageResource(R.drawable.hockeysticks);
+
+            }
+            else if (transaction.getGame_type().equals("odd_even")){
+                holder.transimg.setImageResource(R.drawable.balanced);
+
+            }
+            holder.tvtitle.setText("Deducted On "+transaction.getGame_type() +" \n"+transaction.getGame_name());
+            holder.tvTime.setText(transaction.getDate_created());
+            holder.tvPoints.setText(transaction.getPoints());
+            holder.tvBalance.setText("Balanace "+ transaction.getBalance());
 
         }
-        else if (transaction.getGame_type().equals("andar") || transaction.getGame_type().equals("bahar")){
-            holder.transimg.setImageResource(R.drawable.casino);
+        else if (transaction.getType().equals("withdrawal")){
+            holder.transimg.setImageResource(R.drawable.transaction);
+            holder.tvtitle.setText("Withdrawal");
+            holder.tvTime.setText(transaction.getDate_created());
+            holder.tvPoints.setText(transaction.getPoints());
+            holder.tvBalance.setText("Balanace "+ transaction.getBalance());
 
         }
-        else if (transaction.getGame_type().equals("quick_cross")){
-            holder.transimg.setImageResource(R.drawable.hockeysticks);
+        else if (transaction.getType().equals("sharepoints")){
+            holder.transimg.setImageResource(R.drawable.transaction);
+            holder.tvtitle.setText("Share Points");
+            holder.tvTime.setText(transaction.getDate_created());
+            holder.tvPoints.setText(transaction.getPoints());
+            holder.tvBalance.setText("Balanace "+ transaction.getBalance());
 
         }
-        else if (transaction.getGame_type().equals("odd_even")){
-            holder.transimg.setImageResource(R.drawable.balanced);
+        else if (transaction.getType().equals("deposit")){
+            holder.transimg.setImageResource(R.drawable.transaction);
+            holder.tvtitle.setText("Deposit Points");
+            holder.tvTime.setText(transaction.getDate_created());
+            holder.tvPoints.setText(transaction.getPoints());
+            holder.tvBalance.setText("Balanace "+ transaction.getBalance());
 
         }
-        holder.tvtitle.setText("Deducted On "+transaction.getGame_type() +" \n"+transaction.getGame_name());
-        holder.tvTime.setText(transaction.getDate_created());
-        holder.tvPoints.setText(transaction.getPoints());
-        holder.tvBalance.setText("Balanace "+ transaction.getBalance());
+
     }
     @Override
     public int getItemViewType(int position) {

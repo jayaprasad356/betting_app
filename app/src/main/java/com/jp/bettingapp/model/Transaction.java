@@ -1,12 +1,12 @@
 package com.jp.bettingapp.model;
 
 public class Transaction {
-    String id,user_id,game_name,game_type,game_method,balance,points,date_created;
+    String id,user_id,game_name,game_type,game_method,balance,points,type,date_created;
     public Transaction(){
 
     }
 
-    public Transaction(String id, String user_id, String game_name, String game_type, String game_method, String balance, String points, String date_created) {
+    public Transaction(String id, String user_id, String game_name, String game_type, String game_method, String balance, String points, String type, String date_created) {
         this.id = id;
         this.user_id = user_id;
         this.game_name = game_name;
@@ -14,6 +14,7 @@ public class Transaction {
         this.game_method = game_method;
         this.balance = balance;
         this.points = points;
+        this.type = type;
         this.date_created = date_created;
     }
 
@@ -71,6 +72,14 @@ public class Transaction {
 
     public void setPoints(String points) {
         this.points = points;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDate_created() {

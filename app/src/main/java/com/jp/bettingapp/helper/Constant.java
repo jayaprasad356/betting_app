@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Constant {
     public static final String MainBaseUrl = "http://bigbillionenterprises.co.in/";
-    //public static final String MainBaseUrl = "http://192.168.43.38/bigbillion_web/";
+    //public static final String MainBaseUrl = "http://192.168.43.38/bigbillion/";
     public static final String BaseUrl = MainBaseUrl + "api/";
     public static final String SIGNUP_USER_URL = BaseUrl + "signup_user.php";
     public static final String LOGIN_URL = BaseUrl + "login.php";
@@ -23,6 +23,7 @@ public class Constant {
     public static final String RESULT_LISTS_URL = BaseUrl + "resultslists.php";
     public static final String ADD_POINTS_URL = BaseUrl + "addpoints.php";
     public static final String WITHDRAWAL_URL = BaseUrl + "withdrawal.php";
+    public static final String DELETE_BIDS_URL = BaseUrl + "deletebid.php";
     public static final String SHAREPOINTS_URL = BaseUrl + "sharepoints.php";
     public static final String TRANSLISTS_URL = BaseUrl + "translists.php";
     public static final String WITHDRAWALLISTS_URL = BaseUrl + "withdrawallists.php";
@@ -50,7 +51,7 @@ public class Constant {
     public static final String ACCOUNT_NO = "account_number";
     public static final String IFSC_CODE = "ifsc_code";
     public static final String HOLDER_NAME = "holder_name";
-    public static final String GPAY = "gpay";
+    public static final String PAYTM = "paytm";
     public static final String PHONEPE = "phonepe";
 
 

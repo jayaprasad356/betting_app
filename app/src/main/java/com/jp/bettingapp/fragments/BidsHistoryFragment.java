@@ -1,6 +1,7 @@
 package com.jp.bettingapp.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -20,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.jp.bettingapp.HomeActivity;
 import com.jp.bettingapp.R;
 import com.jp.bettingapp.adapter.BidAdapter;
 import com.jp.bettingapp.adapter.HarufBidAdapter;
@@ -57,6 +59,7 @@ public class BidsHistoryFragment extends Fragment {
     ArrayList<HarufBids> harufBids = new ArrayList<>();
     View root;
     String spinGameName;
+    Button btnDelete;
 
     public BidsHistoryFragment() {
         // Required empty public constructor
@@ -77,6 +80,7 @@ public class BidsHistoryFragment extends Fragment {
         btnSubmit = root.findViewById(R.id.btnSubmit);
         spinGame = root.findViewById(R.id.spinGame);
         spinDay = root.findViewById(R.id.spinDay);
+        btnDelete = root.findViewById(R.id.btnDelete);
         Functions.setData(activity,spinGame);
 
         spinGame.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -140,6 +144,46 @@ public class BidsHistoryFragment extends Fragment {
 
             }
         });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String, String> params = new HashMap<>();
+                params.put(Constant.USER_ID,session.getData(Constant.ID));
+                params.put(Constant.GAME_NAME,spinGameName);
+                params.put(Constant.DATE,date);
+                ApiConfig.RequestToVolley((result, response) -> {
+                    Log.d("DELETE_BIDS_RES",response);
+                    if (result) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                                JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                                session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+                                session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
+                                session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
+                                session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
+
+                                Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(activity, HomeActivity.class);
+                                activity.startActivity(intent);
+                                activity.finish();
+                            }
+                            else {
+                                Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                    else {
+                        Toast.makeText(activity, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
+
+                    }
+                    //pass url
+                }, activity, Constant.DELETE_BIDS_URL, params,true);
+            }
+        });
 
 
 
@@ -161,6 +205,7 @@ public class BidsHistoryFragment extends Fragment {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
                         bidsl2.setVisibility(View.VISIBLE);
+                        btnDelete.setVisibility(View.VISIBLE);
                         JSONObject object = new JSONObject(response);
                         JSONArray jsonArray = object.getJSONArray(Constant.DATA);
                         Gson g = new Gson();
@@ -207,6 +252,7 @@ public class BidsHistoryFragment extends Fragment {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
                         bidsl1.setVisibility(View.VISIBLE);
+                        btnDelete.setVisibility(View.VISIBLE);
                         JSONObject object = new JSONObject(response);
                         JSONArray jsonArray = object.getJSONArray(Constant.DATA);
                         Gson g = new Gson();

@@ -5,12 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.jp.bettingapp.helper.ApiConfig;
@@ -27,7 +25,7 @@ import java.util.Map;
 public class Add_Account_Details_Activity extends AppCompatActivity {
 
     ImageButton back;
-    EditText etAccountNo, etIFSC, etHolderName,etGpay,etPhonepe;
+    EditText etAccountNo, etIFSC, etHolderName, etPaytm,etPhonepe;
     Button btnUpdate;
     Activity activity;
     Session session;
@@ -42,7 +40,7 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
         session = new Session(activity);
 
         back = findViewById(R.id.back);
-        etGpay = findViewById(R.id.etGpay);
+        etPaytm = findViewById(R.id.etPaytm);
         etPhonepe = findViewById(R.id.etPhonepe);
         etAccountNo = findViewById(R.id.etAccountNo);
         etIFSC = findViewById(R.id.etIFSC);
@@ -54,7 +52,7 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
         etIFSC.setText(session.getData(Constant.IFSC_CODE));
         etHolderName.setText(session.getData(Constant.HOLDER_NAME));
         etPhonepe.setText(session.getData(Constant.PHONEPE));
-        etGpay.setText(session.getData(Constant.GPAY));
+        etPaytm.setText(session.getData(Constant.PAYTM));
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,24 +63,39 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (etAccountNo.getText().toString().trim().equals("")){
-                    etAccountNo.setError("Enter Account Number");
-                    etAccountNo.requestFocus();
+                if (!isFillAccount() && etPaytm.getText().toString().trim().equals("") && etPhonepe.getText().toString().trim().equals("")){
+                    Toast.makeText(activity, "Should Fill Any One Payment Method", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    if (!etAccountNo.getText().toString().trim().equals("") || !etIFSC.getText().toString().trim().equals("") || !etHolderName.getText().toString().trim().equals("")){
+                        if (etAccountNo.getText().toString().trim().equals("") || etIFSC.getText().toString().trim().equals("") || etHolderName.getText().toString().trim().equals("")){
+                            Toast.makeText(activity, "Fill Account Details", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            updateAccountDetails();
+
+                        }
+
+                    }
+                    else{
+                        updateAccountDetails();
+                    }
+
                 }
-                else if (etIFSC.getText().toString().trim().equals("")){
-                    etIFSC.setError("Enter IFSC Code");
-                    etIFSC.requestFocus();
-                }
-                else if (etHolderName.getText().toString().trim().equals("")){
-                    etHolderName.setError("Enter Holder Name");
-                    etHolderName.requestFocus();
-                }
-                else {
-                    updateAccountDetails();
-                }
+
             }
         });
 
+    }
+
+    private boolean isFillAccount() {
+        if (!etAccountNo.getText().toString().trim().equals("") || !etIFSC.getText().toString().trim().equals("") || !etHolderName.getText().toString().trim().equals("")){
+            return true;
+        }
+
+
+
+        return false;
     }
 
 
@@ -92,7 +105,7 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
         params.put(Constant.ACCOUNT_NO, etAccountNo.getText().toString().trim());
         params.put(Constant.IFSC_CODE, etIFSC.getText().toString().trim());
         params.put(Constant.HOLDER_NAME, etHolderName.getText().toString().trim());
-        params.put(Constant.GPAY, etGpay.getText().toString().trim());
+        params.put(Constant.PAYTM, etPaytm.getText().toString().trim());
         params.put(Constant.PHONEPE, etPhonepe.getText().toString().trim());
         ApiConfig.RequestToVolley((result, response) -> {
             if (result) {
@@ -103,7 +116,7 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
                         session.setData(Constant.ACCOUNT_NO, jsonArray.getJSONObject(0).getString(Constant.ACCOUNT_NO));
                         session.setData(Constant.IFSC_CODE, jsonArray.getJSONObject(0).getString(Constant.IFSC_CODE));
                         session.setData(Constant.HOLDER_NAME, jsonArray.getJSONObject(0).getString(Constant.HOLDER_NAME));
-                        session.setData(Constant.GPAY, jsonArray.getJSONObject(0).getString(Constant.GPAY));
+                        session.setData(Constant.PAYTM, jsonArray.getJSONObject(0).getString(Constant.PAYTM));
                         session.setData(Constant.PHONEPE, jsonArray.getJSONObject(0).getString(Constant.PHONEPE));
                         Toast.makeText(this, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(activity, HomeActivity.class);

@@ -107,6 +107,14 @@
 
 
         </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Or"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,7 +129,7 @@
                 android:text="Paytm Number"
                 android:textColor="@color/white"/>
             <EditText
-                android:id="@+id/etGpay"
+                android:id="@+id/etPaytm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Paytm Number"
@@ -134,6 +142,14 @@
 
 
         </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Or"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

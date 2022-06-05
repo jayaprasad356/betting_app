@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
@@ -147,7 +146,11 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        AcheckValue();
+                        if (!checkAvalueempty()){
+                            AcheckValue();
+
+                        }
+
 
 
                     }
@@ -175,7 +178,10 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        AcheckValue();
+                        if (!checkAvalueempty()){
+                            AcheckValue();
+
+                        }
 
                     }
 
@@ -202,7 +208,10 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        AcheckValue();
+                        if (!checkAvalueempty()){
+                            AcheckValue();
+
+                        }
 
 
                     }
@@ -230,7 +239,10 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        AcheckValue();
+                        if (!checkAvalueempty()){
+                            AcheckValue();
+
+                        }
 
                     }
 
@@ -257,7 +269,10 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        AcheckValue();
+                        if (!checkAvalueempty()){
+                            AcheckValue();
+
+                        }
 
                     }
 
@@ -284,7 +299,10 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        AcheckValue();
+                        if (!checkAvalueempty()){
+                            AcheckValue();
+
+                        }
 
                     }
 
@@ -311,7 +329,11 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        BcheckValue();
+                        if (!checkBvalueempty()){
+                            BcheckValue();
+
+                        }
+
 
                     }
 
@@ -338,7 +360,10 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        BcheckValue();
+                        if (!checkBvalueempty()){
+                            BcheckValue();
+
+                        }
 
                     }
 
@@ -365,7 +390,10 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        BcheckValue();
+                        if (!checkBvalueempty()){
+                            BcheckValue();
+
+                        }
 
 
                     }
@@ -393,7 +421,10 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        BcheckValue();
+                        if (!checkBvalueempty()){
+                            BcheckValue();
+
+                        }
 
                     }
 
@@ -420,7 +451,10 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        BcheckValue();
+                        if (!checkBvalueempty()){
+                            BcheckValue();
+
+                        }
                     }
 
 
@@ -446,7 +480,10 @@ public class QuickCrossActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 try {
                     if (!editable.toString().equals("")){
-                        BcheckValue();
+                        if (!checkBvalueempty()){
+                            BcheckValue();
+
+                        }
                     }
 
 
@@ -456,6 +493,8 @@ public class QuickCrossActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
 
@@ -635,6 +674,60 @@ public class QuickCrossActivity extends AppCompatActivity {
         });
     }
 
+    private boolean checkAvalueempty() {
+        if (eta1.getText().toString().trim().equals("")){
+            return true;
+
+        }else if (eta2.getText().toString().trim().equals("")){
+            return true;
+
+        }else if (eta3.getText().toString().trim().equals("")){
+            return true;
+
+        }else if (eta4.getText().toString().trim().equals("")){
+            return true;
+
+        }else if (eta5.getText().toString().trim().equals("")){
+            return true;
+
+        }else if (eta6.getText().toString().trim().equals("")){
+            return true;
+
+        }
+        else {
+            return false;
+
+        }
+
+    }
+    private boolean checkBvalueempty() {
+        if (etb1.getText().toString().trim().equals("")){
+            return true;
+
+        }else if (etb2.getText().toString().trim().equals("")){
+            return true;
+
+        }else if (etb3.getText().toString().trim().equals("")){
+            return true;
+
+        }else if (etb4.getText().toString().trim().equals("")){
+            return true;
+
+        }else if (etb5.getText().toString().trim().equals("")){
+            return true;
+
+        }else if (etb6.getText().toString().trim().equals("")){
+            return true;
+
+        }
+        else {
+            return false;
+
+        }
+
+    }
+
+
     private void BcheckValue() {
         if (etb1.getText().toString().trim().equals(etb2.getText().toString().trim()) || etb1.getText().toString().trim().equals(etb3.getText().toString().trim())  ||
                 etb1.getText().toString().trim().equals(etb4.getText().toString().trim()) || etb1.getText().toString().trim().equals(etb5.getText().toString().trim()) ||
@@ -686,6 +779,7 @@ public class QuickCrossActivity extends AppCompatActivity {
 
     }
 
+
     private void AcheckValue() {
         if (eta1.getText().toString().trim().equals(eta2.getText().toString().trim()) || eta1.getText().toString().trim().equals(eta3.getText().toString().trim())  ||
                 eta1.getText().toString().trim().equals(eta4.getText().toString().trim()) || eta1.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
@@ -697,36 +791,31 @@ public class QuickCrossActivity extends AppCompatActivity {
                 eta2.getText().toString().trim().equals(eta4.getText().toString().trim()) || eta2.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
                 eta2.getText().toString().trim().equals(eta6.getText().toString().trim())
         ){
-            tvWarning.setVisibility(View.VISIBLE);
-            tvWarning.setText("Number should not be repeated in same row");
+            tvWarningmsg();
 
         }else if (eta3.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta3.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
                 eta3.getText().toString().trim().equals(eta4.getText().toString().trim()) || eta3.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
                 eta3.getText().toString().trim().equals(eta6.getText().toString().trim())
         ){
-            tvWarning.setVisibility(View.VISIBLE);
-            tvWarning.setText("Number should not be repeated in same row");
+            tvWarningmsg();
 
         }else if (eta4.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta4.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
                 eta4.getText().toString().trim().equals(eta3.getText().toString().trim()) || eta4.getText().toString().trim().equals(eta5.getText().toString().trim()) ||
                 eta4.getText().toString().trim().equals(eta6.getText().toString().trim())
         ){
-            tvWarning.setVisibility(View.VISIBLE);
-            tvWarning.setText("Number should not be repeated in same row");
+            tvWarningmsg();
 
         }else if (eta5.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta5.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
                 eta5.getText().toString().trim().equals(eta3.getText().toString().trim()) || eta5.getText().toString().trim().equals(eta4.getText().toString().trim()) ||
                 eta5.getText().toString().trim().equals(eta6.getText().toString().trim())
         ){
-            tvWarning.setVisibility(View.VISIBLE);
-            tvWarning.setText("Number should not be repeated in same row");
+            tvWarningmsg();
 
         }else if (eta6.getText().toString().trim().equals(eta1.getText().toString().trim()) || eta6.getText().toString().trim().equals(eta2.getText().toString().trim())  ||
                 eta6.getText().toString().trim().equals(eta3.getText().toString().trim()) || eta6.getText().toString().trim().equals(eta4.getText().toString().trim()) ||
                 eta6.getText().toString().trim().equals(eta5.getText().toString().trim())
         ){
-            tvWarning.setVisibility(View.VISIBLE);
-            tvWarning.setText("Number should not be repeated in same row");
+            tvWarningmsg();
         }
         else{
             tvWarning.setVisibility(View.GONE);
