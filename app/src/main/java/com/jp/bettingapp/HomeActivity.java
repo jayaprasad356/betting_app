@@ -136,6 +136,8 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
         return false;
     }
 
+
+
     private void myUser() {
         Map<String, String> params = new HashMap<>();
         //request
@@ -150,6 +152,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
                         session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
                         session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
+                        gamesFragment.setText(session.getData(Constant.POINTS));
 
                     }
                     else {
@@ -169,5 +172,11 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
             //pass url
         }, activity, Constant.MYUSER_URL, params,true);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        myUser();
     }
 }

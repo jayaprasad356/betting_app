@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -24,6 +25,7 @@ import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
 import com.jp.bettingapp.helper.Functions;
 import com.jp.bettingapp.helper.Session;
+import com.jp.bettingapp.model.Game;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +51,7 @@ public class OddEvenActivity extends AppCompatActivity {
     Spinner spinGame;
     Activity activity;
     Session session;
+    String spinGameName;
 
 
 
@@ -100,21 +103,27 @@ public class OddEvenActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                String val = "";
                 if (!s.toString().equals("")){
-                    int num = Integer.parseInt(s.toString());
-                    String even = tvEven.getText().toString();
-                    if (even.equals("")){
-                        even = "0";
-                    }
-                    String odd = tvOdd.getText().toString();
-                    if (odd.equals("")){
-                        odd = "0";
-                    }
-                    if (num%5 == 0){
-                        int value = (Integer.parseInt(even) * 50) + (Integer.parseInt(odd) * 50);
-                        tvTotal.setText(""+value);
+                    val = s.toString();
 
-                    }
+                }
+
+                else {
+                    val = "0";
+                }
+                int num = Integer.parseInt(val);
+                String even = tvEven.getText().toString();
+                if (even.equals("")){
+                    even = "0";
+                }
+                String odd = tvOdd.getText().toString();
+                if (odd.equals("")){
+                    odd = "0";
+                }
+                if (num%5 == 0){
+                    int value = (Integer.parseInt(even) * 50) + (Integer.parseInt(odd) * 50);
+                    tvTotal.setText(""+value);
 
                 }
             }
@@ -145,23 +154,42 @@ public class OddEvenActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                String val = "";
                 if (!s.toString().equals("")){
-                    int num = Integer.parseInt(s.toString());
-                    String even = tvEven.getText().toString();
-                    if (even.equals("")){
-                        even = "0";
-                    }
-                    String odd = tvOdd.getText().toString();
-                    if (odd.equals("")){
-                        odd = "0";
-                    }
-                    if (num%5 == 0){
-                        int value = (Integer.parseInt(even) * 50) + (Integer.parseInt(odd) * 50);
-                        tvTotal.setText(""+value);
-
-                    }
+                    val = s.toString();
 
                 }
+
+                else {
+                    val = "0";
+                }
+                int num = Integer.parseInt(val);
+                String even = tvEven.getText().toString();
+                if (even.equals("")){
+                    even = "0";
+                }
+                String odd = tvOdd.getText().toString();
+                if (odd.equals("")){
+                    odd = "0";
+                }
+                if (num%5 == 0){
+                    int value = (Integer.parseInt(even) * 50) + (Integer.parseInt(odd) * 50);
+                    tvTotal.setText(""+value);
+
+                }
+            }
+        });
+        spinGame.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Game game = (Game) adapterView.getSelectedItem();
+                spinGameName = game.getGamename();
+                //Toast.makeText(activity, ""+game.getGamename(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -172,34 +200,17 @@ public class OddEvenActivity extends AppCompatActivity {
                 if (spinGame.getSelectedItemPosition() == 0  || spinGame.getSelectedItemPosition() == 4){
                     Toast.makeText(activity, "Please , Select Game", Toast.LENGTH_SHORT).show();
                 }
+                else if (tvEven.getText().toString().equals("") && tvOdd.getText().toString().equals("")){
+                    Toast.makeText(activity, "Enter Value", Toast.LENGTH_SHORT).show();
 
-
-                else if (tvEven.getText().toString().equals("") || tvEven.getText().toString().equals("0")){
-                    evenarrayadd();
-                    if (tvOdd.getText().toString().equals("") || tvOdd.getText().toString().equals("0")) {
-                        oddarrayadd();
-                    }
-                    else {
-                        submitGame();
-
-                    }
-
-
-                }else if (tvOdd.getText().toString().equals("") || tvOdd.getText().toString().equals("0")) {
-                    oddarrayadd();
-                    if (tvEven.getText().toString().equals("") || tvEven.getText().toString().equals("0")) {
-                        evenarrayadd();
-                    }
-                    else {
-                        submitGame();
-
-                    }
-                }
-                else {
+                }else {
                     oddarrayadd();
                     evenarrayadd();
                     submitGame();
+
                 }
+
+
 
             }
         });
@@ -214,7 +225,7 @@ public class OddEvenActivity extends AppCompatActivity {
         String date = dateObj.format(formatter);
         Map<String, String> params = new HashMap<>();
         params.put(Constant.USER_ID,session.getData(Constant.ID));
-        params.put(Constant.GAME_NAME,spinGame.getSelectedItem().toString());
+        params.put(Constant.GAME_NAME,spinGameName);
         params.put(Constant.GAME_TYPE,"odd_even");
         params.put(Constant.GAME_METHOD,"none");
         params.put(Constant.POINTS,PointsArray.toString());
@@ -223,6 +234,7 @@ public class OddEvenActivity extends AppCompatActivity {
         params.put(Constant.GAME_DATE,date);
         ApiConfig.RequestToVolley((result, response) -> {
             if (result) {
+
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -259,28 +271,35 @@ public class OddEvenActivity extends AppCompatActivity {
     }
 
     private void oddarrayadd() {
-        for (int i = 0; i < 100; i++){
-            if (i % 2 !=0){
-                NumbersArray.add(""+i);
-                PointsArray.add(tvOdd.getText().toString().trim());
+        if (!tvOdd.getText().toString().trim().equals("")){
+            for (int i = 0; i < 100; i++){
+                if (i % 2 !=0){
+                    NumbersArray.add(""+i);
+                    PointsArray.add(tvOdd.getText().toString().trim());
+
+                }
+
 
             }
 
-
         }
+
     }
 
     private void evenarrayadd()
     {
-        for (int i = 0; i < 100; i++){
-            if (i % 2 ==0){
-                NumbersArray.add(""+i);
-                PointsArray.add(tvEven.getText().toString().trim());
+        if (!tvEven.getText().toString().trim().equals("")){
+            for (int i = 0; i < 100; i++){
+                if (i % 2 ==0){
+                    NumbersArray.add(""+i);
+                    PointsArray.add(tvEven.getText().toString().trim());
+
+                }
+
 
             }
-
-
         }
+
     }
 }
 

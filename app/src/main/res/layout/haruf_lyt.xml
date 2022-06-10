@@ -24,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/bluelinebackground"
-            android:maxLength="2"
             android:layout_margin="10dp"
             android:textCursorDrawable="@null"
             android:inputType="number"

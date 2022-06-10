@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -24,6 +25,7 @@ import com.jp.bettingapp.R;
 import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
 import com.jp.bettingapp.helper.Session;
+import com.jp.bettingapp.model.Game;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +54,7 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     ArrayList<String> BaharnewPoints = new ArrayList<>();
     Spinner spinGame;
     Session session;
+    String spinGameName;
 
     public HarufAdapter(Activity activity, TextView tvWarning, TextView tvTotal, Button btnSubmit, Spinner spinGame) {
         this.activity = activity;
@@ -72,6 +75,19 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         session = new Session(activity);
         holder.tvAndar.setText(""+position);
         holder.tvBadar.setText(""+position);
+        spinGame.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Game game = (Game) adapterView.getSelectedItem();
+                spinGameName = game.getGamename();
+                //Toast.makeText(activity, ""+game.getGamename(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         holder.etAndar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -259,7 +275,22 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     BaharnewNumbers.add(""+i);
                 }
                 if (spinGame.getSelectedItemPosition() != 0 ){
-                    submitAndarGame();
+                    Log.d("HARUF_RES",BaharTotalPoints);
+                    if (AndarTotalPoints.equals("0") && BaharTotalPoints.equals("0")){
+                        Toast.makeText(activity, "Value is Empty", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else if (AndarTotalPoints.equals("0")){
+                        submitBaharGame();
+
+                    }
+                    else if (BaharTotalPoints.equals("0")){
+                        submitAndarGame();
+
+                    }else {
+
+                    }
+
                 }
                 else {
                     Toast.makeText(activity, "Please,Select Game", Toast.LENGTH_SHORT).show();
@@ -296,7 +327,7 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Map<String, String> params = new HashMap<>();
         //request
         params.put(Constant.USER_ID,session.getData(Constant.ID));
-        params.put(Constant.GAME_NAME,spinGame.getSelectedItem().toString());
+        params.put(Constant.GAME_NAME,spinGameName);
         params.put(Constant.GAME_TYPE,"andar");
         params.put(Constant.GAME_METHOD,"none");
         params.put(Constant.POINTS, AndarnewPoints.toString());
@@ -307,7 +338,20 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
-                        submitBaharGame();
+                        if (BaharTotalPoints.equals("0")){
+                            JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                            session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+                            session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
+                            session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
+                            session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
+                            Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(activity, HomeActivity.class);
+                            activity.startActivity(intent);
+                            activity.finish();
+
+                        }else {
+                            submitBaharGame();
+                        }
                     }
                     else {
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
@@ -331,7 +375,7 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Map<String, String> params = new HashMap<>();
         //request
         params.put(Constant.USER_ID,session.getData(Constant.ID));
-        params.put(Constant.GAME_NAME,spinGame.getSelectedItem().toString());
+        params.put(Constant.GAME_NAME,spinGameName);
         params.put(Constant.GAME_TYPE,"bahar");
         params.put(Constant.GAME_METHOD,"none");
         params.put(Constant.POINTS, BaharnewPoints.toString());
@@ -342,15 +386,21 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
-                        JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
-                        session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
-                        session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
-                        session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
-                        session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
-                        Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(activity, HomeActivity.class);
-                        activity.startActivity(intent);
-                        activity.finish();
+                        if (AndarTotalPoints.equals("0")){
+                            JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                            session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+                            session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
+                            session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
+                            session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
+                            Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(activity, HomeActivity.class);
+                            activity.startActivity(intent);
+                            activity.finish();
+
+                        }else {
+                            submitAndarGame();
+                        }
+
                     }
                     else {
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();

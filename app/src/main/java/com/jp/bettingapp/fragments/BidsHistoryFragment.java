@@ -152,7 +152,6 @@ public class BidsHistoryFragment extends Fragment {
                 params.put(Constant.GAME_NAME,spinGameName);
                 params.put(Constant.DATE,date);
                 ApiConfig.RequestToVolley((result, response) -> {
-                    Log.d("DELETE_BIDS_RES",response);
                     if (result) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);

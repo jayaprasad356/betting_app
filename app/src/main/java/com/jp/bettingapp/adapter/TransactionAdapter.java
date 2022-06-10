@@ -64,7 +64,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         }
         else if (transaction.getType().equals("withdrawal")){
-            holder.transimg.setImageResource(R.drawable.transaction);
+            holder.transimg.setImageResource(R.drawable.withdraw);
             holder.tvtitle.setText("Withdrawal");
             holder.tvTime.setText(transaction.getDate_created());
             holder.tvPoints.setText(transaction.getPoints());
@@ -72,16 +72,33 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         }
         else if (transaction.getType().equals("sharepoints")){
-            holder.transimg.setImageResource(R.drawable.transaction);
-            holder.tvtitle.setText("Share Points");
+            holder.transimg.setImageResource(R.drawable.sharepoints);
+            if (transaction.getShare_from() != null){
+                holder.tvtitle.setText("Share Points received from \n"+transaction.getShare_from());
+
+            }
+            else {
+                holder.tvtitle.setText("Share Points sent to \n"+transaction.getShare_to());
+
+
+            }
+
             holder.tvTime.setText(transaction.getDate_created());
             holder.tvPoints.setText(transaction.getPoints());
             holder.tvBalance.setText("Balanace "+ transaction.getBalance());
 
         }
         else if (transaction.getType().equals("deposit")){
-            holder.transimg.setImageResource(R.drawable.transaction);
+            holder.transimg.setImageResource(R.drawable.deposit);
             holder.tvtitle.setText("Deposit Points");
+            holder.tvTime.setText(transaction.getDate_created());
+            holder.tvPoints.setText(transaction.getPoints());
+            holder.tvBalance.setText("Balanace "+ transaction.getBalance());
+
+        }
+        else if (transaction.getType().equals("delete_bids")){
+            holder.transimg.setImageResource(R.drawable.coins);
+            holder.tvtitle.setText("Delete Bids");
             holder.tvTime.setText(transaction.getDate_created());
             holder.tvPoints.setText(transaction.getPoints());
             holder.tvBalance.setText("Balanace "+ transaction.getBalance());

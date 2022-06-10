@@ -57,6 +57,8 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
     Session session;
     Spinner spinGame;
     String spinGameName;
+    String n1 = "",p1 = "",n2 = "",p2 = "",n3 = "",p3 = "",n4 = "",p4 = "",
+            n5 = "",p5 = "",n6 = "",p6 = "",n7 = "",p7 = "",n8 = "",p8 = "",n9 = "",p9 = "",n10 = "",p10 = "";
 
     public JodiFastCrossAdapter(Activity activity, TextView tvWarning, Button btnSubmit, Spinner spinGame) {
         this.activity = activity;
@@ -97,43 +99,58 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
             public void onClick(View view) {
                 newPoints.clear();
                 newNumbers.clear();
-                int totalPoints = 0;
-                int totalNumbers = 0;
-                if (PointsArray.size() > 10){
-                    totalPoints = 10;
+                if ((p1.equals("") && !n1.equals("")) || (!p1.equals("") && n1.equals(""))
+                        || (p2.equals("") && !n2.equals("")) || (!p2.equals("") && n2.equals(""))
+                        || (p3.equals("") && !n3.equals("")) || (!p3.equals("") && n3.equals(""))
+                        || (p4.equals("") && !n4.equals("")) || (!p4.equals("") && n4.equals(""))
+                        || (p5.equals("") && !n5.equals("")) || (!p5.equals("") && n5.equals(""))
+                        || (p6.equals("") && !n6.equals("")) || (!p6.equals("") && n6.equals(""))
+                        || (p7.equals("") && !n7.equals("")) || (!p7.equals("") && n7.equals(""))
+                        || (p8.equals("") && !n8.equals("")) || (!p8.equals("") && n8.equals(""))
+                        || (p9.equals("") && !n9.equals("")) || (!p9.equals("") && n9.equals(""))
+                        || (p10.equals("") && !n10.equals("")) || (!p10.equals("") && n10.equals(""))){
+                    Toast.makeText(activity, "Assign Number or Points Not be Empty", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    int totalPoints = 0;
+                    int totalNumbers = 0;
+                    if (PointsArray.size() > 10){
+                        totalPoints = 10;
 
 
+                    }
+                    else {
+                        totalPoints = PointsArray.size();
+                    }
+
+                    if (NumbersArray.size() > 10){
+                        totalNumbers = 10;
+
+
+                    }
+                    else {
+                        totalNumbers = NumbersArray.size();
+                    }
+
+
+
+                    for (int i = 0; i < totalPoints; i++){
+                        newPoints.add(PointsArray.get(i));
+
+                    }
+                    for (int i = 0; i < totalNumbers; i++){
+                        newNumbers.add(NumbersArray.get(i));
+
+                    }
+                    if (spinGame.getSelectedItemPosition() != 0 && spinGame.getSelectedItemPosition() != 4){
+                        submitGame();
+
+                    }
+                    else {
+                        Toast.makeText(activity, "Please,Select Game", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else {
-                    totalPoints = PointsArray.size();
-                }
 
-                if (NumbersArray.size() > 10){
-                    totalNumbers = 10;
-
-
-                }
-                else {
-                    totalNumbers = NumbersArray.size();
-                }
-
-
-
-                for (int i = 0; i < totalPoints; i++){
-                    newPoints.add(PointsArray.get(i));
-
-                }
-                for (int i = 0; i < totalNumbers; i++){
-                    newNumbers.add(NumbersArray.get(i));
-
-                }
-                if (spinGame.getSelectedItemPosition() != 0 && spinGame.getSelectedItemPosition() != 4){
-                    submitGame();
-
-                }
-                else {
-                    Toast.makeText(activity, "Please,Select Game", Toast.LENGTH_SHORT).show();
-                }
             }
         });
 
@@ -169,14 +186,19 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             @Override
             public void afterTextChanged(Editable editable) {
+                setPointsValue(position,editable.toString());
+
+
                     ExpenseFinalTotal = 0;
                     try {
                         String edit_str = editable.toString();
+
                         if (edit_str.equals("")) {
                             edit_str = "0";
                         }
 
                         int num = Integer.parseInt(edit_str);
+
                         try {
                             ExpenseFinalTotal = 0;
                             for (int i = 0; i<= position; i++) {
@@ -244,10 +266,20 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             @Override
             public void afterTextChanged(Editable editable) {
+                setNumbersValue(position,editable.toString());
+
+
                 NumberFinalTotal = 0;
                 if (isOnTextChanged2){
                     isOnTextChanged2 = false;
                     try {
+                        String edit_str = editable.toString();
+
+                        if (edit_str.equals("")) {
+                            edit_str = "0";
+                        }
+
+                        int num = Integer.parseInt(edit_str);
                         NumberFinalTotal = 0;
                         for (int i = 0; i<= position; i++) {
                             int inposition1 = position;
@@ -287,6 +319,75 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
         });
 
     }
+
+    private void setNumbersValue(int position, String s) {
+        if (position == 0){
+            n1 = s;
+        }
+        else if (position == 1){
+            n2 = s;
+        }
+        else if (position == 2){
+            n3 = s;
+        }
+        else if (position == 3){
+            n4 = s;
+        }
+        else if (position == 4){
+            n5 = s;
+        }
+        else if (position == 5){
+            n6 = s;
+        }
+        else if (position == 6){
+            n7 = s;
+        }
+        else if (position == 7){
+            n8 = s;
+        }
+        else if (position == 8){
+            n9 = s;
+        }
+        else if (position == 9){
+            n10 = s;
+        }
+
+    }
+
+    private void setPointsValue(int position, String s) {
+        if (position == 0){
+            p1 = s;
+        }
+        else if (position == 1){
+            p2 = s;
+        }
+        else if (position == 2){
+            p3 = s;
+        }
+        else if (position == 3){
+            p4 = s;
+        }
+        else if (position == 4){
+            p5 = s;
+        }
+        else if (position == 5){
+            p6 = s;
+        }
+        else if (position == 6){
+            p7 = s;
+        }
+        else if (position == 7){
+            p8 = s;
+        }
+        else if (position == 8){
+            p9 = s;
+        }
+        else if (position == 9){
+            p10 = s;
+        }
+
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void submitGame()
     {
