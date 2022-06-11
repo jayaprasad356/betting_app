@@ -132,11 +132,21 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 break;
                             }
                         }
-                        for (int i = 0; i < AndarPointsArray.size() - 1; i++){
-                            int tempTotalExpense = Integer.parseInt(AndarPointsArray.get(i));
+                        if (AndarPointsArray.size() == 1){
+                            int tempTotalExpense = Integer.parseInt(AndarPointsArray.get(0));
                             AndarFinalTotal = AndarFinalTotal + tempTotalExpense;
 
                         }
+                        else {
+                            for (int i = 0; i < AndarPointsArray.size() - 1; i++){
+                                int tempTotalExpense = Integer.parseInt(AndarPointsArray.get(i));
+                                AndarFinalTotal = AndarFinalTotal + tempTotalExpense;
+
+                            }
+
+                        }
+
+
                         AndarTotalPoints = ""+ AndarFinalTotal;
                         int totalsum = Integer.parseInt(AndarTotalPoints) + Integer.parseInt(BaharTotalPoints);
                         tvTotal.setText(""+totalsum);
@@ -196,8 +206,12 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             @Override
             public void afterTextChanged(Editable editable) {
                 BaharFinalTotal = 0;
-                if (BaharisOnTextChanged){
-                    BaharisOnTextChanged = false;
+                try{
+                    String edit_str = editable.toString();
+                    if (edit_str.equals("")) {
+                        edit_str = "0";
+                    }
+                    int num = Integer.parseInt(edit_str);
                     try {
                         BaharFinalTotal = 0;
                         for (int i = 0; i<= position; i++) {
@@ -206,20 +220,37 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 BaharPointsArray.add("0");
                             }else {
                                 BaharPointsArray.add("0");
-                                BaharPointsArray.set(inposition1,editable.toString());
+                                if (num%5 == 0){
+                                    BaharPointsArray.set(inposition1,editable.toString());
+
+                                }
+                                else {
+                                    BaharPointsArray.set(inposition1,"0");
+
+
+                                }
                                 break;
                             }
                         }
-                        for (int i = 0; i < BaharPointsArray.size() - 1; i++){
-                            int tempTotalExpense = Integer.parseInt(BaharPointsArray.get(i));
+                        if (BaharPointsArray.size() == 1){
+                            int tempTotalExpense = Integer.parseInt(BaharPointsArray.get(0));
                             BaharFinalTotal = BaharFinalTotal + tempTotalExpense;
 
                         }
+                        else {
+                            for (int i = 0; i < BaharPointsArray.size() - 1; i++){
+                                int tempTotalExpense = Integer.parseInt(BaharPointsArray.get(i));
+                                BaharFinalTotal = BaharFinalTotal + tempTotalExpense;
+
+                            }
+
+                        }
+
                         BaharTotalPoints = ""+ BaharFinalTotal;
                         int totalsum = Integer.parseInt(AndarTotalPoints) + Integer.parseInt(BaharTotalPoints);
                         tvTotal.setText(""+totalsum);
 
-                    }catch (NumberFormatException e){
+                    }catch (Exception e){
                         BaharFinalTotal = 0;
                         for (int i = 0; i<= position; i++) {
                             int newposition = position;
@@ -239,13 +270,61 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                     }
 
+                }catch (Exception e){
+
                 }
+//                if (BaharisOnTextChanged){
+//                    BaharisOnTextChanged = false;
+//                    try {
+//                        BaharFinalTotal = 0;
+//                        for (int i = 0; i<= position; i++) {
+//                            int inposition1 = position;
+//                            if (i != position) {
+//                                BaharPointsArray.add("0");
+//                            }else {
+//                                BaharPointsArray.add("0");
+//                                BaharPointsArray.set(inposition1,editable.toString());
+//                                break;
+//                            }
+//                        }
+//                        for (int i = 0; i < BaharPointsArray.size() - 1; i++){
+//                            int tempTotalExpense = Integer.parseInt(BaharPointsArray.get(i));
+//                            BaharFinalTotal = BaharFinalTotal + tempTotalExpense;
+//
+//                        }
+//                        BaharTotalPoints = ""+ BaharFinalTotal;
+//                        int totalsum = Integer.parseInt(AndarTotalPoints) + Integer.parseInt(BaharTotalPoints);
+//                        tvTotal.setText(""+totalsum);
+//
+//                    }catch (NumberFormatException e){
+//                        BaharFinalTotal = 0;
+//                        for (int i = 0; i<= position; i++) {
+//                            int newposition = position;
+//                            if (i== newposition){
+//                                BaharPointsArray.set(newposition,"0");
+//                            }
+//
+//                        }
+//                        for (int i = 0; i <= BaharPointsArray.size() - 1; i ++){
+//                            int tempTotalExpense = Integer.parseInt(BaharPointsArray.get(i));
+//                            BaharFinalTotal = BaharFinalTotal + tempTotalExpense;
+//
+//                        }
+//                        BaharTotalPoints = ""+ BaharFinalTotal;
+//                        int totalsum = Integer.parseInt(AndarTotalPoints) + Integer.parseInt(BaharTotalPoints);
+//                        tvTotal.setText(""+totalsum);
+//
+//                    }
+//
+//                }
 
             }
         });
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean AndarZero = false;
+                boolean BaharZero = false;
                 AndarnewPoints.clear();
                 BaharnewPoints.clear();
                 int AndartotalPoints = 0;
@@ -263,33 +342,56 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     BahartotalPoints = BaharPointsArray.size();
                 }
                 for (int i = 0; i < AndartotalPoints; i++){
-                    AndarnewPoints.add(AndarPointsArray.get(i));
+                    int num = Integer.parseInt(AndarPointsArray.get(i).toString());
+                    if (num%5 == 0){
+                        AndarnewPoints.add(AndarPointsArray.get(i));
+                    }
+                    else {
+                        AndarZero = true;
+                    }
+
+
                 }
                 for (int i = 0; i < AndartotalPoints; i++){
                     AndarnewNumbers.add(""+i);
                 }
                 for (int i = 0; i < BahartotalPoints; i++){
+                    int num = Integer.parseInt(BaharPointsArray.get(i).toString());
+                    if (num%5 == 0){
+                        BaharnewPoints.add(BaharPointsArray.get(i));
+                    }
+                    else {
+                        BaharZero = true;
+                    }
                     BaharnewPoints.add(BaharPointsArray.get(i));
                 }
                 for (int i = 0; i < BahartotalPoints; i++){
                     BaharnewNumbers.add(""+i);
                 }
                 if (spinGame.getSelectedItemPosition() != 0 ){
-                    Log.d("HARUF_RES",BaharTotalPoints);
-                    if (AndarTotalPoints.equals("0") && BaharTotalPoints.equals("0")){
-                        Toast.makeText(activity, "Value is Empty", Toast.LENGTH_SHORT).show();
+                    if (AndarZero || BaharZero){
+                        Toast.makeText(activity, "Points Should Multiple of 5", Toast.LENGTH_SHORT).show();
 
                     }
-                    else if (AndarTotalPoints.equals("0")){
-                        submitBaharGame();
+                    else {
+                        if (AndarTotalPoints.equals("0") && BaharTotalPoints.equals("0")){
+                            Toast.makeText(activity, "Value is Empty", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else if (AndarTotalPoints.equals("0")){
+                            submitBaharGame();
+
+                        }
+                        else if (BaharTotalPoints.equals("0")){
+                            submitAndarGame();
+
+                        }else {
+                            submitAndarGame();
+
+                        }
 
                     }
-                    else if (BaharTotalPoints.equals("0")){
-                        submitAndarGame();
 
-                    }else {
-
-                    }
 
                 }
                 else {
@@ -386,20 +488,15 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
-                        if (AndarTotalPoints.equals("0")){
-                            JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
-                            session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
-                            session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
-                            session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
-                            session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
-                            Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(activity, HomeActivity.class);
-                            activity.startActivity(intent);
-                            activity.finish();
-
-                        }else {
-                            submitAndarGame();
-                        }
+                        JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                        session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+                        session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
+                        session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
+                        session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
+                        Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(activity, HomeActivity.class);
+                        activity.startActivity(intent);
+                        activity.finish();
 
                     }
                     else {

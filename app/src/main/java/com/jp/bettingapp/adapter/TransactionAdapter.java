@@ -98,7 +98,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
         else if (transaction.getType().equals("delete_bids")){
             holder.transimg.setImageResource(R.drawable.coins);
-            holder.tvtitle.setText("Delete Bids");
+            holder.tvtitle.setText("Credited  for Deleting Bids");
             holder.tvTime.setText(transaction.getDate_created());
             holder.tvPoints.setText(transaction.getPoints());
             holder.tvBalance.setText("Balanace "+ transaction.getBalance());

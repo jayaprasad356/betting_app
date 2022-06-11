@@ -83,7 +83,6 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Game game = (Game) adapterView.getSelectedItem();
                 spinGameName = game.getGamename();
-                //Toast.makeText(activity, ""+game.getGamename(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -96,14 +95,35 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
+                boolean PointsZero = false;
+                Log.d("JODI_ARRAY",PointsArray.toString());
                 NumbersArray.clear();
                 for (int i = 0; i < PointsArray.size(); i++){
-                    NumbersArray.add(String.valueOf(i));
+
+                    int num = Integer.parseInt(PointsArray.get(i).toString());
+                    if (num%5 == 0){
+                        NumbersArray.add(String.valueOf(i));
+
+                    }
+                    else {
+                        PointsZero = true;
+
+                    }
                 }
+
+
                 if (spinGame.getSelectedItemPosition() != 0  && spinGame.getSelectedItemPosition() != 4){
-                    submitGame();
+                    if (PointsZero){
+                        Toast.makeText(activity, "Points Should Multiple of 5", Toast.LENGTH_SHORT).show();
+
+                    }else {
+                        submitGame();
+
+                    }
+
 
                 }
+
                 else {
                     Toast.makeText(activity, "Please,Select Game", Toast.LENGTH_SHORT).show();
                 }
@@ -121,8 +141,6 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 isOnTextChanged = true;
-
-
 
                 try{
                     if (s != null || !s.equals("")){
@@ -160,15 +178,16 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 PointsArray.add("0");
                             }else {
                                 PointsArray.add("0");
-                                if (num%5 == 0){
-                                    PointsArray.set(inposition1,editable.toString());
+                                PointsArray.set(inposition1,editable.toString());
 
-                                }
-                                else {
-                                    PointsArray.set(inposition1,"0");
-
-
-                                }
+//                                if (num%5 == 0){
+//
+//                                }
+//                                else {
+//                                    PointsArray.set(inposition1,"0");
+//
+//
+//                                }
 
                                 break;
                             }

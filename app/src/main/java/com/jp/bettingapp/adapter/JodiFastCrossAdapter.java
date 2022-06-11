@@ -116,8 +116,6 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                     int totalNumbers = 0;
                     if (PointsArray.size() > 10){
                         totalPoints = 10;
-
-
                     }
                     else {
                         totalPoints = PointsArray.size();
@@ -131,11 +129,20 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                     else {
                         totalNumbers = NumbersArray.size();
                     }
+                    boolean PointsZero = false;
 
 
 
                     for (int i = 0; i < totalPoints; i++){
-                        newPoints.add(PointsArray.get(i));
+                        int num = Integer.parseInt(PointsArray.get(i).toString());
+                        if (num%5 == 0){
+                            newPoints.add(String.valueOf(i));
+
+                        }
+                        else {
+                            PointsZero = true;
+
+                        }
 
                     }
                     for (int i = 0; i < totalNumbers; i++){
@@ -143,8 +150,12 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                     }
                     if (spinGame.getSelectedItemPosition() != 0 && spinGame.getSelectedItemPosition() != 4){
-                        submitGame();
+                        if (PointsZero){
+                            Toast.makeText(activity, "Points Should Multiple of 5", Toast.LENGTH_SHORT).show();
 
+                        }else {
+                            submitGame();
+                        }
                     }
                     else {
                         Toast.makeText(activity, "Please,Select Game", Toast.LENGTH_SHORT).show();
@@ -207,12 +218,13 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                                     PointsArray.add("0");
                                 }else {
                                     PointsArray.add("0");
-                                    if (num%5 == 0){
-                                        PointsArray.set(inposition1,editable.toString());
-                                    }
-                                    else {
-                                        PointsArray.set(inposition1,"0");
-                                    }
+                                    PointsArray.set(inposition1,editable.toString());
+//                                    if (num%5 == 0){
+//                                        PointsArray.set(inposition1,editable.toString());
+//                                    }
+//                                    else {
+//                                        PointsArray.set(inposition1,"0");
+//                                    }
                                     break;
                                 }
                             }

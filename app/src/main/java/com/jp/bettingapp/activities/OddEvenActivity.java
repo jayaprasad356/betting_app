@@ -52,6 +52,7 @@ public class OddEvenActivity extends AppCompatActivity {
     Activity activity;
     Session session;
     String spinGameName;
+    int evenint,oddint;
 
 
 
@@ -195,6 +196,27 @@ public class OddEvenActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (tvEven.getText().toString().trim().equals("")){
+                    evenint = 0;
+
+                }
+                else {
+                    evenint = Integer.parseInt(tvEven.getText().toString().trim());
+
+
+                }
+                if (tvOdd.getText().toString().trim().equals("")){
+                    oddint = 0;
+
+                }
+                else {
+                    oddint = Integer.parseInt(tvOdd.getText().toString().trim());
+
+                }
+
+
+
                 NumbersArray.clear();
                 PointsArray.clear();
                 if (spinGame.getSelectedItemPosition() == 0  || spinGame.getSelectedItemPosition() == 4){
@@ -203,7 +225,12 @@ public class OddEvenActivity extends AppCompatActivity {
                 else if (tvEven.getText().toString().equals("") && tvOdd.getText().toString().equals("")){
                     Toast.makeText(activity, "Enter Value", Toast.LENGTH_SHORT).show();
 
-                }else {
+                }
+                else if (evenint%5 != 0 || oddint%5 != 0 ){
+                    Toast.makeText(activity, "Enter Value Multiplies of 5", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
                     oddarrayadd();
                     evenarrayadd();
                     submitGame();
