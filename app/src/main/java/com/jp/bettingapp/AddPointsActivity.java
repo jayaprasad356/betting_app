@@ -14,24 +14,33 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.android.material.slider.Slider;
 import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
 import com.jp.bettingapp.helper.Session;
+import com.shreyaspatil.EasyUpiPayment.EasyUpiPayment;
+import com.shreyaspatil.EasyUpiPayment.listener.PaymentStatusListener;
+import com.shreyaspatil.EasyUpiPayment.model.TransactionDetails;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
-public class AddPointsActivity extends AppCompatActivity {
+public class AddPointsActivity extends AppCompatActivity implements PaymentStatusListener{
 
     ImageButton back;
     Button pointsbtn;
     EditText etPoint;
     Activity activity;
     Session session;
+    String UPI_ID = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +48,6 @@ public class AddPointsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_addpoints);
         activity = AddPointsActivity.this;
         session = new Session(activity);
-
-        Log.d("SESSION_VALUE",session.getData(Constant.ID));
-
 
         back = findViewById(R.id.back);
         pointsbtn = findViewById(R.id.pointsbtn);
@@ -68,10 +74,52 @@ public class AddPointsActivity extends AppCompatActivity {
                     etPoint.requestFocus();
                 }
                 else {
-                    addPoints();
+                    if (!UPI_ID.equals("")){
+
+                        try {
+                            Date c = Calendar.getInstance().getTime();
+                            SimpleDateFormat df = new SimpleDateFormat("ddMMyyyyHHmmss", Locale.getDefault());
+                            String transcId = df.format(c);
+                            makePayment(""+Double.parseDouble(etPoint.getText().toString().trim()), UPI_ID, session.getData(Constant.NAME), "Add POints", transcId);
+
+
+                        }catch (Exception e){
+                            Log.d("PAYMENT_GATEWAY",e.getMessage());
+
+                        }
+
+                    }
+
                 }
             }
         });
+    }
+    private void makePayment(String amount, String upi, String name, String desc, String transactionId) {
+        // on below line we are calling an easy payment method and passing
+        // all parameters to it such as upi id,name, description and others.
+        final EasyUpiPayment easyUpiPayment = new EasyUpiPayment.Builder()
+                .with(this)
+                // on below line we are adding upi id.
+                .setPayeeVpa(upi)
+                // on below line we are setting name to which we are making oayment.
+                .setPayeeName(name)
+                // on below line we are passing transaction id.
+                .setTransactionId(transactionId)
+                // on below line we are passing transaction ref id.
+                .setTransactionRefId(transactionId)
+                // on below line we are adding description to payment.
+                .setDescription(desc)
+                // on below line we are passing amount which is being paid.
+                .setAmount(amount)
+                // on below line we are calling a build method to build this ui.
+                .build();
+        // on below line we are calling a start
+        // payment method to start a payment.
+        easyUpiPayment.startPayment();
+
+        // on below line we are calling a set payment
+        // status listener method to call other payment methods.
+        easyUpiPayment.setPaymentStatusListener(this);
     }
 
     private void addPoints()
@@ -109,5 +157,65 @@ public class AddPointsActivity extends AppCompatActivity {
             }
             //pass url
         }, activity, Constant.ADD_POINTS_URL, params,true);
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Map<String, String> params = new HashMap<>();
+        ApiConfig.RequestToVolley((result, response) -> {
+            Log.d("ADD_RES",response);
+            if (result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                    if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        UPI_ID = jsonArray.getJSONObject(0).getString(Constant.UPI);
+
+                    }
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+            else {
+                Toast.makeText(this, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
+
+            }
+            //pass url
+        }, activity, Constant.SETTINGS_URL, params,true);
+
+    }
+
+    @Override
+    public void onTransactionCompleted(TransactionDetails transactionDetails) {
+
+    }
+
+    @Override
+    public void onTransactionSuccess() {
+        addPoints();
+
+    }
+
+    @Override
+    public void onTransactionSubmitted() {
+
+    }
+
+    @Override
+    public void onTransactionFailed() {
+        Toast.makeText(activity, "Transaction Failed", Toast.LENGTH_SHORT).show();
+
+
+
+    }
+
+    @Override
+    public void onTransactionCancelled() {
+
+    }
+
+    @Override
+    public void onAppNotFound() {
+
     }
 }

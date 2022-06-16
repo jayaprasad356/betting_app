@@ -104,6 +104,22 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             holder.tvBalance.setText("Balanace "+ transaction.getBalance());
 
         }
+        else if (transaction.getType().equals("credit")){
+            holder.transimg.setImageResource(R.drawable.coins);
+            holder.tvtitle.setText("Credited - "+transaction.getReason());
+            holder.tvTime.setText(transaction.getDate_created());
+            holder.tvPoints.setText(transaction.getPoints());
+            holder.tvBalance.setText("Balanace "+ transaction.getBalance());
+
+        }
+        else if (transaction.getType().equals("debit")){
+            holder.transimg.setImageResource(R.drawable.coins);
+            holder.tvtitle.setText("Debited - "+transaction.getReason());
+            holder.tvTime.setText(transaction.getDate_created());
+            holder.tvPoints.setText(transaction.getPoints());
+            holder.tvBalance.setText("Balanace "+ transaction.getBalance());
+
+        }
 
     }
     @Override

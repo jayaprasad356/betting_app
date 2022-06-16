@@ -1,12 +1,12 @@
 package com.jp.bettingapp.model;
 
 public class Transaction {
-    String id,user_id,game_name,game_type,game_method,balance,points,type,share_to,share_from,date_created;
+    String id,user_id,game_name,game_type,game_method,balance,points,type,share_to,share_from,date_created,reason;
     public Transaction(){
 
     }
 
-    public Transaction(String id, String user_id, String game_name, String game_type, String game_method, String balance, String points, String type, String share_to, String share_from, String date_created) {
+    public Transaction(String id, String user_id, String game_name, String game_type, String game_method, String balance, String points, String type, String share_to, String share_from, String date_created, String reason) {
         this.id = id;
         this.user_id = user_id;
         this.game_name = game_name;
@@ -18,6 +18,7 @@ public class Transaction {
         this.share_to = share_to;
         this.share_from = share_from;
         this.date_created = date_created;
+        this.reason = reason;
     }
 
     public String getId() {
@@ -106,5 +107,13 @@ public class Transaction {
 
     public void setDate_created(String date_created) {
         this.date_created = date_created;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }
