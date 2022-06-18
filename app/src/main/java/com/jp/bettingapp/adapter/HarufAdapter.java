@@ -363,7 +363,6 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     else {
                         BaharZero = true;
                     }
-                    BaharnewPoints.add(BaharPointsArray.get(i));
                 }
                 for (int i = 0; i < BahartotalPoints; i++){
                     BaharnewNumbers.add(""+i);

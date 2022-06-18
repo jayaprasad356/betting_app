@@ -46,20 +46,25 @@ import java.util.Map;
 
 public class BidsHistoryFragment extends Fragment {
     RecyclerView recyclerView;
-    RecyclerView harufrecyclerView;
     BidAdapter bidAdapter;
-    HarufBidAdapter harufBidAdapter;
     Activity activity;
     Button btnSubmit;
     Spinner spinGame,spinDay;
     Session session;
     String date;
-    LinearLayout bidsl1,bidsl2;
+    LinearLayout bidsl1;
     ArrayList<BIDS> bids = new ArrayList<>();
     ArrayList<HarufBids> harufBids = new ArrayList<>();
+    ArrayList<HarufBids> andarBids = new ArrayList<>();
+    ArrayList<HarufBids> baharBids = new ArrayList<>();
     View root;
     String spinGameName;
     Button btnDelete;
+    ArrayList<String> number = new ArrayList<>();
+    ArrayList<String> andarnum = new ArrayList<>();
+    ArrayList<String> baharnum = new ArrayList<>();
+    ArrayList<BIDS> bids2 = new ArrayList<>();
+    String innerresponse = "";
 
     public BidsHistoryFragment() {
         // Required empty public constructor
@@ -74,14 +79,42 @@ public class BidsHistoryFragment extends Fragment {
         session = new Session(activity);
 
         bidsl1 = root.findViewById(R.id.bidsl1);
-        bidsl2 = root.findViewById(R.id.bidsl2);
         recyclerView = root.findViewById(R.id.recyclerView);
-        harufrecyclerView = root.findViewById(R.id.harufrecyclerView);
         btnSubmit = root.findViewById(R.id.btnSubmit);
         spinGame = root.findViewById(R.id.spinGame);
         spinDay = root.findViewById(R.id.spinDay);
         btnDelete = root.findViewById(R.id.btnDelete);
         Functions.setData(activity,spinGame);
+        innerresponse = "{\n" +
+                "    \"success\": true,\n" +
+                "    \"message\": \"Bids listed Successfully\",\n" +
+                "    \"data\": [\n" +
+                "        {\n" +
+                "            \"id\": \"260\",\n" +
+                "            \"user_id\": \"7\",\n" +
+                "            \"game_name\": \"FD\",\n" +
+                "            \"game_type\": \"jodi\",\n" +
+                "            \"game_method\": \"cross\",\n" +
+                "            \"number\": \"0\",\n" +
+                "            \"points\": \"125\",\n" +
+                "            \"game_date\": \"2022-05-20\",\n" +
+                "            \"last_updated\": \"2022-05-20 18:31:35\",\n" +
+                "            \"date_created\": \"2022-05-20 18:28:57\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": \"261\",\n" +
+                "            \"user_id\": \"7\",\n" +
+                "            \"game_name\": \"FD\",\n" +
+                "            \"game_type\": \"jodi\",\n" +
+                "            \"game_method\": \"cross\",\n" +
+                "            \"number\": \"5\",\n" +
+                "            \"points\": \"50\",\n" +
+                "            \"game_date\": \"2022-05-20\",\n" +
+                "            \"last_updated\": \"2022-05-26 13:04:06\",\n" +
+                "            \"date_created\": \"2022-05-20 18:31:35\"\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}";
 
         spinGame.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -101,8 +134,6 @@ public class BidsHistoryFragment extends Fragment {
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-        harufrecyclerView.setLayoutManager(linearLayoutManager2);
-        harufrecyclerView.setHasFixedSize(true);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -134,11 +165,9 @@ public class BidsHistoryFragment extends Fragment {
 
                     }
                     bidsl1.setVisibility(View.GONE);
-                    bidsl2.setVisibility(View.GONE);
-
-
-                    bidsList();
                     harufbidsList();
+                    //bidsList();
+
                 }
 
 
@@ -191,20 +220,19 @@ public class BidsHistoryFragment extends Fragment {
     }
     private void harufbidsList()
     {
-        harufBids.clear();
 
+        harufBids.clear();
         Map<String, String> params = new HashMap<>();
         params.put(Constant.USER_ID,session.getData(Constant.ID));
-        params.put(Constant.GAME_NAME,spinGame.getSelectedItem().toString());
+        params.put(Constant.GAME_NAME,spinGameName);
         params.put(Constant.DATE,date);
         ApiConfig.RequestToVolley((result, response) -> {
-
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
-                        bidsl2.setVisibility(View.VISIBLE);
                         btnDelete.setVisibility(View.VISIBLE);
+                        bidsl1.setVisibility(View.VISIBLE);
                         JSONObject object = new JSONObject(response);
                         JSONArray jsonArray = object.getJSONArray(Constant.DATA);
                         Gson g = new Gson();
@@ -213,13 +241,24 @@ public class BidsHistoryFragment extends Fragment {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                             if (jsonObject1 != null) {
                                 HarufBids group = g.fromJson(jsonObject1.toString(), HarufBids.class);
+                                if (group.getGame_type().equals("andar")){
+                                    andarnum.add(group.getNumber());
+                                    andarBids.add(group);
+                                }else {
+                                    baharnum.add(group.getNumber());
+                                    baharBids.add(group);
+
+                                }
+
                                 harufBids.add(group);
                             } else {
                                 break;
                             }
                         }
-                        harufBidAdapter = new HarufBidAdapter(activity, harufBids);
-                        harufrecyclerView.setAdapter(harufBidAdapter);
+                        bidsList();
+                    }
+                    else {
+                        bidsList();
                     }
 
 
@@ -240,6 +279,7 @@ public class BidsHistoryFragment extends Fragment {
     }
     private void bidsList()
     {
+
         bids.clear();
         Map<String, String> params = new HashMap<>();
         params.put(Constant.USER_ID,session.getData(Constant.ID));
@@ -249,25 +289,45 @@ public class BidsHistoryFragment extends Fragment {
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray(Constant.DATA);
+                    JSONObject innerjsonObject = new JSONObject(innerresponse);
+                    JSONArray innerjsonArray = innerjsonObject.getJSONArray(Constant.DATA);
+                    Gson g = new Gson();
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
                         bidsl1.setVisibility(View.VISIBLE);
                         btnDelete.setVisibility(View.VISIBLE);
-                        JSONObject object = new JSONObject(response);
-                        JSONArray jsonArray = object.getJSONArray(Constant.DATA);
-                        Gson g = new Gson();
+
 
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                             if (jsonObject1 != null) {
+
                                 BIDS group = g.fromJson(jsonObject1.toString(), BIDS.class);
-                                bids.add(group);
+                                number.add(group.getNumber());
+                                bids2.add(group);
+
                             } else {
                                 break;
                             }
                         }
-                        bidAdapter = new BidAdapter(activity, bids);
-                        recyclerView.setAdapter(bidAdapter);
+
+
                     }
+                    for (int i = 0; i < 100; i++) {
+                        JSONObject jsonObject1 = innerjsonArray.getJSONObject(0);
+                        if (jsonObject1 != null) {
+                            BIDS group = g.fromJson(jsonObject1.toString(), BIDS.class);
+                            group.setPoints("0");
+                            group.setNumber(""+i);
+                            bids.add(group);
+
+                        } else {
+                            break;
+                        }
+                    }
+                    bidAdapter = new BidAdapter(activity, bids,bids2,number,andarnum,baharnum,andarBids,baharBids);
+                    recyclerView.setAdapter(bidAdapter);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
