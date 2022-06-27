@@ -105,9 +105,6 @@
             android:name=".Fast_Cross_Activity"
             android:exported="false" />
         <activity
-            android:name=".SharePointsActivity"
-            android:exported="false" />
-        <activity
             android:name=".AddPointsActivity"
             android:exported="false" />
         <activity

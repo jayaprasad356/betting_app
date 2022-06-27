@@ -22,7 +22,7 @@ public class Constant {
     public static final String SETTINGS_URL = BaseUrl + "settings.php";
     public static final String BIDSLIST_URL = BaseUrl + "bidslist.php";
     public static final String HARUFBIDSLIST_URL = BaseUrl + "harufbidslist.php";
-    public static final String RESULT_LISTS_URL = BaseUrl + "resultslists.php";
+    public static final String RESULT_LISTS_URL = BaseUrl + "userresultlist.php";
     public static final String ADD_POINTS_URL = BaseUrl + "addpoints.php";
     public static final String WITHDRAWAL_URL = BaseUrl + "withdrawal.php";
     public static final String DELETE_BIDS_URL = BaseUrl + "deletebid.php";
@@ -46,7 +46,6 @@ public class Constant {
     public static final String Login = "login";
     public static final String ID = "id";
     public static final String NAME = "name";
-    public static final String EARN = "earn";
     public static final String SUCCESS = "success";
     public static final String MESSAGE = "message";
     public static final String DATA = "data";

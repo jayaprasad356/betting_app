@@ -150,7 +150,6 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
                         JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
                         session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
                         session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
-                        session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
                         gamesFragment.setText(session.getData(Constant.POINTS));
 

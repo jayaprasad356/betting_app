@@ -120,6 +120,14 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             holder.tvBalance.setText("Balanace "+ transaction.getBalance());
 
         }
+        else if (transaction.getType().equals("wrongresult")){
+            holder.transimg.setImageResource(R.drawable.cross);
+            holder.tvtitle.setText("points deducted due to wrong result");
+            holder.tvTime.setText(transaction.getDate_created());
+            holder.tvPoints.setText(transaction.getPoints());
+            holder.tvBalance.setText("Balanace "+ transaction.getBalance());
+
+        }
 
     }
     @Override

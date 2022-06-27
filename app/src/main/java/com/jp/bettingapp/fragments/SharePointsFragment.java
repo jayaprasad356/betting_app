@@ -15,9 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.jp.bettingapp.HomeActivity;
-import com.jp.bettingapp.MainActivity;
 import com.jp.bettingapp.R;
-import com.jp.bettingapp.SharePointsActivity;
 import com.jp.bettingapp.helper.ApiConfig;
 import com.jp.bettingapp.helper.Constant;
 import com.jp.bettingapp.helper.Session;
@@ -57,7 +55,12 @@ public class SharePointsFragment extends Fragment {
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sharePoints();
+                if (session.getData(Constant.MOBILE).equals(etMobile.getText().toString().trim())){
+                    Toast.makeText(activity, "You Cannot Share Points With Your Number", Toast.LENGTH_SHORT).show();
+                }else {
+                    sharePoints();
+
+                }
 
             }
         });
@@ -80,7 +83,6 @@ public class SharePointsFragment extends Fragment {
                         JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
                         session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
                         session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
-                        session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
 
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();

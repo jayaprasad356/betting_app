@@ -62,6 +62,7 @@ public class OTP_Activity extends AppCompatActivity {
         params.put(Constant.MOBILE,mobilenumber);
 
         ApiConfig.RequestToVolley((result, response) -> {
+
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -69,16 +70,17 @@ public class OTP_Activity extends AppCompatActivity {
 
 
                         if (jsonObject.getBoolean(Constant.Login)){
+
                             session.setBoolean("is_logged_in", true);
                             JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
                             session.setData(Constant.ID,jsonArray.getJSONObject(0).getString(Constant.ID));
                             session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
                             session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
-                            session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
 
                             Intent intent = new Intent(OTP_Activity.this,HomeActivity.class);
                             startActivity(intent);
                             finish();
+                            Log.d("LOGIN_RES",response);
 
                         }else{
                             Intent intent = new Intent(OTP_Activity.this,LoginProfileActivity.class);
@@ -93,6 +95,7 @@ public class OTP_Activity extends AppCompatActivity {
                     }
                 } catch (JSONException e){
                     e.printStackTrace();
+                    Log.d("LOGIN_RES",e.getMessage());
                 }
 
 

@@ -67,9 +67,6 @@ public class ResultChartActivity extends AppCompatActivity {
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-//Set default values
                 Calendar calendar = Calendar.getInstance();
                 yearSelected = calendar.get(Calendar.YEAR);
                 monthSelected = calendar.get(Calendar.MONTH);
@@ -113,7 +110,7 @@ public class ResultChartActivity extends AppCompatActivity {
         params.put(Constant.MONTH, Month);
         params.put(Constant.YEAR, Year);
         ApiConfig.RequestToVolley((result, response) -> {
-            Log.d("RESULT_RESPONSE",response);
+            Log.d("RESULTCHART_RES",response);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -133,11 +130,13 @@ public class ResultChartActivity extends AppCompatActivity {
                         }
 
 
-                        recyclerView.setAdapter(resultAdapter);
+
                     }
+
                     else {
                         Log.d("RESULT_RESPONSE",""+jsonObject.getString(Constant.MESSAGE));
                     }
+                    recyclerView.setAdapter(resultAdapter);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

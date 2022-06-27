@@ -74,23 +74,26 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
                     etPoint.requestFocus();
                 }
                 else {
-                    if (!UPI_ID.equals("")){
-
-                        try {
-                            Date c = Calendar.getInstance().getTime();
-                            SimpleDateFormat df = new SimpleDateFormat("ddMMyyyyHHmmss", Locale.getDefault());
-                            String transcId = df.format(c);
-                            makePayment(""+Double.parseDouble(etPoint.getText().toString().trim()), UPI_ID, session.getData(Constant.NAME), "Add POints", transcId);
-
-
-                        }catch (Exception e){
-                            Log.d("PAYMENT_GATEWAY",e.getMessage());
-
-                        }
-
-                    }
-
+                    addPoints();
                 }
+//                else {
+//                    if (!UPI_ID.equals("")){
+//
+//                        try {
+//                            Date c = Calendar.getInstance().getTime();
+//                            SimpleDateFormat df = new SimpleDateFormat("ddMMyyyyHHmmss", Locale.getDefault());
+//                            String transcId = df.format(c);
+//                            makePayment(""+Double.parseDouble(etPoint.getText().toString().trim()), UPI_ID, session.getData(Constant.NAME), "Add POints", transcId);
+//
+//
+//                        }catch (Exception e){
+//                            Log.d("PAYMENT_GATEWAY",e.getMessage());
+//
+//                        }
+//
+//                    }
+//
+//                }
             }
         });
     }
@@ -135,7 +138,6 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
                         JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
                         session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
                         session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
-                        session.setData(Constant.EARN,jsonArray.getJSONObject(0).getString(Constant.EARN));
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
 
                         Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
