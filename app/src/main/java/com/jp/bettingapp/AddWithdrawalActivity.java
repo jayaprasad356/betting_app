@@ -65,6 +65,12 @@ public class AddWithdrawalActivity extends AppCompatActivity {
                     etPoint.setError("Enter Valid Points");
                     etPoint.requestFocus();
                 }
+                else if (session.getData(Constant.ACCOUNT_NO).equals("") && session.getData(Constant.PHONEPE).equals("") && session.getData(Constant.PAYTM).equals("")){
+                    Toast.makeText(activity, "Fill Account Details Before Withdrawal", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(activity,Add_Account_Details_Activity.class);
+                    startActivity(intent);
+                    finish();
+                }
                 else {
                     addWithdrawals();
                 }

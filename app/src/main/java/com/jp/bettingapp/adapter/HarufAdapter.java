@@ -220,15 +220,8 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 BaharPointsArray.add("0");
                             }else {
                                 BaharPointsArray.add("0");
-                                if (num%5 == 0){
-                                    BaharPointsArray.set(inposition1,editable.toString());
+                                BaharPointsArray.set(inposition1,editable.toString());
 
-                                }
-                                else {
-                                    BaharPointsArray.set(inposition1,"0");
-
-
-                                }
                                 break;
                             }
                         }
@@ -323,6 +316,7 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("BAHARARR",BaharPointsArray.toString());
                 boolean AndarZero = false;
                 boolean BaharZero = false;
                 AndarnewPoints.clear();
@@ -356,7 +350,7 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     AndarnewNumbers.add(""+i);
                 }
                 for (int i = 0; i < BahartotalPoints; i++){
-                    int num = Integer.parseInt(BaharPointsArray.get(i).toString());
+                    int num = Integer.parseInt(BaharPointsArray.get(i));
                     if (num%5 == 0){
                         BaharnewPoints.add(BaharPointsArray.get(i));
                     }
@@ -368,8 +362,13 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     BaharnewNumbers.add(""+i);
                 }
                 if (spinGame.getSelectedItemPosition() != 0 ){
-                    if (AndarZero || BaharZero){
+                    if (AndarZero){
                         Toast.makeText(activity, "Points Should Multiple of 5", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else if(BaharZero){
+                        Toast.makeText(activity, "Points Should Multiple of 5", Toast.LENGTH_SHORT).show();
+
 
                     }
                     else {

@@ -31,6 +31,8 @@ public class Constant {
     public static final String WITHDRAWALLISTS_URL = BaseUrl + "withdrawallists.php";
     public static final String UPDATE_ACCOUNT_DETAILS_URL = BaseUrl +  "update_account_details.php";
     public static final String MOBILE = "mobile";
+    public static final String WHATSAPP_NUMBER = "whatspp_number";
+    public static final String YOUTUBE_LINK = "youtube_link";
     public static final String USER_ID = "user_id";
     public static final String AMOUNT = "amount";
     public static final String MONTH = "month";

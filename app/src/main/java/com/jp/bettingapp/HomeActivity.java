@@ -177,5 +177,8 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
     protected void onResume() {
         super.onResume();
         myUser();
+
     }
+
+
 }

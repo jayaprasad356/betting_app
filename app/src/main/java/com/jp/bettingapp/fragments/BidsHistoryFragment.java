@@ -65,6 +65,8 @@ public class BidsHistoryFragment extends Fragment {
     ArrayList<String> baharnum = new ArrayList<>();
     ArrayList<BIDS> bids2 = new ArrayList<>();
     String innerresponse = "";
+    boolean harufbid = false;
+    boolean allbid = false;
 
     public BidsHistoryFragment() {
         // Required empty public constructor
@@ -145,6 +147,8 @@ public class BidsHistoryFragment extends Fragment {
                     Toast.makeText(activity, "Please,Select Day", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    harufbid = false;
+                    allbid = false;
                     String pattern = "yyyy-MM-dd";
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
@@ -231,7 +235,7 @@ public class BidsHistoryFragment extends Fragment {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
                         btnDelete.setVisibility(View.VISIBLE);
-                        bidsl1.setVisibility(View.VISIBLE);
+                        harufbid = true;
                         JSONObject object = new JSONObject(response);
                         JSONArray jsonArray = object.getJSONArray(Constant.DATA);
                         Gson g = new Gson();
@@ -294,6 +298,7 @@ public class BidsHistoryFragment extends Fragment {
                     JSONArray innerjsonArray = innerjsonObject.getJSONArray(Constant.DATA);
                     Gson g = new Gson();
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        allbid = true;
                         bidsl1.setVisibility(View.VISIBLE);
                         btnDelete.setVisibility(View.VISIBLE);
 
@@ -325,8 +330,18 @@ public class BidsHistoryFragment extends Fragment {
                             break;
                         }
                     }
-                    bidAdapter = new BidAdapter(activity, bids,bids2,number,andarnum,baharnum,andarBids,baharBids);
-                    recyclerView.setAdapter(bidAdapter);
+                    if (harufbid || allbid){
+                        bidAdapter = new BidAdapter(activity, bids,bids2,number,andarnum,baharnum,andarBids,baharBids);
+                        recyclerView.setAdapter(bidAdapter);
+
+                        bidsl1.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        bidsl1.setVisibility(View.GONE);
+                        btnDelete.setVisibility(View.GONE);
+                        Toast.makeText(activity, "No Bids Found", Toast.LENGTH_SHORT).show();
+
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
