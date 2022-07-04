@@ -223,6 +223,13 @@ public class BidsHistoryFragment extends Fragment {
     }
     private void harufbidsList()
     {
+        bids.clear();
+        bids2.clear();
+        number.clear();
+        andarnum.clear();
+        baharnum.clear();
+        andarBids.clear();
+        baharBids.clear();
 
         harufBids.clear();
         Map<String, String> params = new HashMap<>();
@@ -289,6 +296,7 @@ public class BidsHistoryFragment extends Fragment {
         params.put(Constant.GAME_NAME,spinGameName);
         params.put(Constant.DATE,date);
         ApiConfig.RequestToVolley((result, response) -> {
+            Log.d("BID_RES",response);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);

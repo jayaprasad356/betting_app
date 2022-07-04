@@ -123,8 +123,6 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                     if (NumbersArray.size() > 10){
                         totalNumbers = 10;
-
-
                     }
                     else {
                         totalNumbers = NumbersArray.size();
@@ -137,11 +135,9 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                         int num = Integer.parseInt(PointsArray.get(i).toString());
                         if (num%5 == 0){
                             newPoints.add(String.valueOf(i));
-
                         }
                         else {
                             PointsZero = true;
-
                         }
 
                     }
@@ -154,6 +150,8 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
                             Toast.makeText(activity, "Points Should Multiple of 5", Toast.LENGTH_SHORT).show();
 
                         }else {
+                            Log.d("JF_NUM",newNumbers.toString());
+                            Log.d("JF_NUM_P",PointsArray.toString());
                             submitGame();
                         }
                     }
@@ -412,7 +410,7 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
         params.put(Constant.GAME_NAME,spinGameName);
         params.put(Constant.GAME_TYPE,"jodi");
         params.put(Constant.GAME_METHOD,"fastcross");
-        params.put(Constant.POINTS,newPoints.toString());
+        params.put(Constant.POINTS,PointsArray.toString());
         params.put(Constant.NUMBER,newNumbers.toString());
         params.put(Constant.TOTAL_POINTS,TotalPoints);
         params.put(Constant.GAME_DATE,date);
