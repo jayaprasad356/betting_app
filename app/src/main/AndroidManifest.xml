@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jp.bettingapp">
+    package="com.ayu.bigbillion">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -48,7 +48,7 @@
         tools:ignore="ProtectedPermissions" />
 
     <application
-        android:name=".helper.ApiConfig"
+        android:name="com.ayu.bigbillion.helper.ApiConfig"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@drawable/billion_logo"
@@ -60,13 +60,13 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:usesCleartextTraffic">
         <activity
-            android:name=".activities.ResultChartActivity"
+            android:name="com.ayu.bigbillion.activities.ResultChartActivity"
             android:exported="false" />
         <activity
-            android:name=".AddWithdrawalActivity"
+            android:name="com.ayu.bigbillion.AddWithdrawalActivity"
             android:exported="true" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.ayu.bigbillion.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -75,51 +75,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.HarufActivity"
+            android:name="com.ayu.bigbillion.activities.HarufActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.JodiActivity"
+            android:name="com.ayu.bigbillion.activities.JodiActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginProfileActivity"
+            android:name="com.ayu.bigbillion.LoginProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Side_Menu_Bar_Activity"
+            android:name="com.ayu.bigbillion.Side_Menu_Bar_Activity"
             android:exported="false" />
         <activity
-            android:name=".WithdrawalActivity"
+            android:name="com.ayu.bigbillion.WithdrawalActivity"
             android:exported="false" />
         <activity
-            android:name=".Add_Account_Details_Activity"
+            android:name="com.ayu.bigbillion.Add_Account_Details_Activity"
             android:exported="false" />
         <activity
-            android:name=".activities.OddEvenActivity"
+            android:name="com.ayu.bigbillion.activities.OddEvenActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.QuickCrossActivity"
+            android:name="com.ayu.bigbillion.activities.QuickCrossActivity"
             android:exported="true" />
         <activity
-            android:name=".MyTransactionActivity"
+            android:name="com.ayu.bigbillion.MyTransactionActivity"
             android:exported="false" />
         <activity
-            android:name=".Fast_Cross_Activity"
+            android:name="com.ayu.bigbillion.Fast_Cross_Activity"
             android:exported="false" />
         <activity
-            android:name=".AddPointsActivity"
+            android:name="com.ayu.bigbillion.AddPointsActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name="com.ayu.bigbillion.HomeActivity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="com.ayu.bigbillion.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".OTP_Activity"
+            android:name="com.ayu.bigbillion.OTP_Activity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.ayu.bigbillion.MainActivity"
             android:exported="true" />
     </application>
 
