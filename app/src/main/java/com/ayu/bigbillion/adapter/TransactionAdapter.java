@@ -129,6 +129,19 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         else if (transaction.getType().equals("correctresult")){
             holder.transimg.setImageResource(R.drawable.trophy);
             holder.tvtitle.setText("credited for winning of "+transaction.getGame_name());
+
+            if (transaction.getReason()!=null){
+                if (transaction.getReason().equals("andar")){
+                    holder.tvtitle.setText("credited for winning of "+transaction.getGame_name()+" for andar");
+
+                }
+                else if (transaction.getReason().equals("bahar")){
+                    holder.tvtitle.setText("credited for winning of "+transaction.getGame_name()+" for bahar");
+
+                }
+
+            }
+
             holder.tvTime.setText(transaction.getDate_created());
             holder.tvPoints.setText(transaction.getPoints());
             holder.tvBalance.setText("Balanace "+ transaction.getBalance());

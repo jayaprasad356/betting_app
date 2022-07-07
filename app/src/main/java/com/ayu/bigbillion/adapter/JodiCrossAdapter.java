@@ -178,28 +178,18 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 PointsArray.add("0");
                                 PointsArray.set(inposition1,editable.toString());
 
-//                                if (num%5 == 0){
-//
-//                                }
-//                                else {
-//                                    PointsArray.set(inposition1,"0");
-//
-//
-//                                }
-
                                 break;
                             }
                         }
+                        Log.d("JODI_STORE",""+PointsArray.toString());
+                        Log.d("JODI_SIZE",""+PointsArray.size());
                         for (int i = 0; i < PointsArray.size() - 1; i++){
-
-
                             int tempTotalExpense = Integer.parseInt(PointsArray.get(i));
                             ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
-
+                            Log.d("JODI_FOR",""+tempTotalExpense);
                         }
                         TotalPoints = ""+ExpenseFinalTotal;
                         ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
-
                     }catch (NumberFormatException e){
                         ExpenseFinalTotal = 0;
                         for (int i = 0; i<= position; i++) {
@@ -207,25 +197,16 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             if (i== newposition){
                                 PointsArray.set(newposition,"0");
                             }
-
                         }
                         for (int i = 0; i <= PointsArray.size() - 1; i ++){
                             int tempTotalExpense = Integer.parseInt(PointsArray.get(i));
                             ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
-
-
                         }
                         TotalPoints = ""+ExpenseFinalTotal;
                         ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
                     }
                 }catch (Exception e){
-
-
-
                 }
-
-
-
             }
         });
 

@@ -24,6 +24,7 @@ import com.ayu.bigbillion.fragments.TransactionFragment;
 import com.ayu.bigbillion.helper.ApiConfig;
 import com.ayu.bigbillion.helper.Constant;
 import com.ayu.bigbillion.helper.Session;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -88,8 +89,34 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
                 showPopup(view);
             }
         });
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
+            session.setData(Constant.FCM_ID, token);
+            Log.d(Constant.FCM_ID,token);
+            Register_FCM(token);
+        });
 
     }
+    public void Register_FCM(String token) {
+        Map<String, String> params = new HashMap<>();
+        params.put(Constant.USER_ID, session.getData(Constant.ID));
+        params.put(Constant.FCM_ID, token);
+
+        ApiConfig.RequestToVolley((result, response) -> {
+            Log.d("FCM_RESPONSE",response);
+            if (result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        session.setData(Constant.FCM_ID, token);
+                    }
+                } catch (JSONException ignored) {
+
+                }
+
+            }
+        }, activity, Constant.UPDATE_FCM, params, false);
+    }
+
     public void showPopup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();

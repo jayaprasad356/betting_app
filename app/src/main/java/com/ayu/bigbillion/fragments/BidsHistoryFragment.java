@@ -151,25 +151,7 @@ public class BidsHistoryFragment extends Fragment {
                     Toast.makeText(activity, "Please,Select Day", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    String[] separated = spinGame.getSelectedItem().toString().split("-");
-                    String gameTimestr = separated[1];
-                    SimpleDateFormat df = new SimpleDateFormat("hh:mm a");
-                    Calendar currnetDateTime = Calendar.getInstance();
-                    try {
-                        gameTime_date = df.parse(gameTimestr);
-                        currentTime_date = df.parse(df.format(currnetDateTime.getTime()));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    long diff = gameTime_date.getTime() - currentTime_date.getTime();
-                    long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
-                    if (minutes <= 1){
-                        deletestatus = true;
 
-                    }
-                    else {
-                        deletestatus = false;
-                    }
                     harufbid = false;
                     allbid = false;
                     String pattern = "yyyy-MM-dd";
@@ -192,6 +174,26 @@ public class BidsHistoryFragment extends Fragment {
 
                     }
                     bidsl1.setVisibility(View.GONE);
+                    String[] separated = spinGame.getSelectedItem().toString().split("-");
+                    String gameTimestr = separated[1];
+                    gameTimestr = date +" "+gameTimestr;
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
+                    Calendar currnetDateTime = Calendar.getInstance();
+                    try {
+                        gameTime_date = df.parse(gameTimestr);
+                        currentTime_date = df.parse(df.format(currnetDateTime.getTime()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    long diff = gameTime_date.getTime() - currentTime_date.getTime();
+                    long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
+                    if (minutes <= 2){
+                        deletestatus = true;
+
+                    }
+                    else {
+                        deletestatus = false;
+                    }
                     harufbidsList();
                     //bidsList();
 
@@ -264,7 +266,13 @@ public class BidsHistoryFragment extends Fragment {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
-                        btnDelete.setVisibility(View.VISIBLE);
+                        if (deletestatus){
+                            btnDelete.setVisibility(View.GONE);
+                        }
+                        else {
+                            btnDelete.setVisibility(View.VISIBLE);
+
+                        }
                         harufbid = true;
                         JSONObject object = new JSONObject(response);
                         JSONArray jsonArray = object.getJSONArray(Constant.DATA);
@@ -319,6 +327,7 @@ public class BidsHistoryFragment extends Fragment {
         params.put(Constant.GAME_NAME,spinGameName);
         params.put(Constant.DATE,date);
         ApiConfig.RequestToVolley((result, response) -> {
+
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -330,8 +339,13 @@ public class BidsHistoryFragment extends Fragment {
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
                         allbid = true;
                         bidsl1.setVisibility(View.VISIBLE);
-                        btnDelete.setVisibility(View.VISIBLE);
+                        if (deletestatus){
+                            btnDelete.setVisibility(View.GONE);
+                        }
+                        else {
+                            btnDelete.setVisibility(View.VISIBLE);
 
+                        }
 
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
