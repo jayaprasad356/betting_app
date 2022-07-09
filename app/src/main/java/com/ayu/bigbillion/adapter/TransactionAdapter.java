@@ -96,7 +96,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
         else if (transaction.getType().equals("delete_bids")){
             holder.transimg.setImageResource(R.drawable.coins);
-            holder.tvtitle.setText("Credited  for Deleting Bids");
+            holder.tvtitle.setText("Credited  for Deleting Bids In "+transaction.getGame_name());
             holder.tvTime.setText(transaction.getDate_created());
             holder.tvPoints.setText(transaction.getPoints());
             holder.tvBalance.setText("Balanace "+ transaction.getBalance());
@@ -108,7 +108,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             holder.tvTime.setText(transaction.getDate_created());
             holder.tvPoints.setText(transaction.getPoints());
             holder.tvBalance.setText("Balanace "+ transaction.getBalance());
-
         }
         else if (transaction.getType().equals("debit")){
             holder.transimg.setImageResource(R.drawable.coins);

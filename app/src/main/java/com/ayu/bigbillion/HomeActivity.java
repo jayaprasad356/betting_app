@@ -8,6 +8,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -142,10 +144,8 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
                         startActivity(i);
                         return true;
                     case R.id.logout:
-                        Intent intent2 = new Intent(activity,LoginActivity.class);
-                        startActivity(intent2);
-                        finish();
-                        session.setBoolean("is_logged_in",false);
+                        logout();
+
                         return true;
                 }
                 return false;
@@ -173,6 +173,27 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
         }
 
         return false;
+    }
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else{
+
+            GamesFragment gamesFragment = (GamesFragment) getSupportFragmentManager().findFragmentByTag("GAME");
+            if ((gamesFragment != null && gamesFragment.isVisible()) ) {
+                Intent a = new Intent(Intent.ACTION_MAIN);
+                a.addCategory(Intent.CATEGORY_HOME);
+                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(a);
+            }
+            else{
+
+                //super.onBackPressed();
+
+            }
+
+        }
     }
 
 
@@ -209,6 +230,39 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
             }
             //pass url
         }, activity, Constant.MYUSER_URL, params,true);
+
+    }
+    private void logout() {
+        Map<String, String> params = new HashMap<>();
+        //request
+        params.put(Constant.USER_ID,session.getData(Constant.ID));
+        ApiConfig.RequestToVolley((result, response) -> {
+            if (result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        Intent intent2 = new Intent(activity,LoginActivity.class);
+                        startActivity(intent2);
+                        finish();
+                        session.setBoolean("is_logged_in",false);
+
+                    }
+                    else {
+                        //Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+
+
+
+            }
+            else {
+                Toast.makeText(activity, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
+
+            }
+            //pass url
+        }, activity, Constant.LOGOUT_URL, params,true);
 
     }
 

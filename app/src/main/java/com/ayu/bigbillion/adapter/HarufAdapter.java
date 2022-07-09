@@ -362,11 +362,11 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 }
                 if (spinGame.getSelectedItemPosition() != 0 ){
                     if (AndarZero){
-                        Toast.makeText(activity, "Points Should Multiple of 5", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, "Enter number like 10,15,20...", Toast.LENGTH_SHORT).show();
 
                     }
                     else if(BaharZero){
-                        Toast.makeText(activity, "Points Should Multiple of 5", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, "Enter number like 10,15,20...", Toast.LENGTH_SHORT).show();
 
 
                     }

@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -174,26 +175,12 @@ public class BidsHistoryFragment extends Fragment {
 
                     }
                     bidsl1.setVisibility(View.GONE);
-                    String[] separated = spinGame.getSelectedItem().toString().split("-");
-                    String gameTimestr = separated[1];
-                    gameTimestr = date +" "+gameTimestr;
-                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
-                    Calendar currnetDateTime = Calendar.getInstance();
                     try {
-                        gameTime_date = df.parse(gameTimestr);
-                        currentTime_date = df.parse(df.format(currnetDateTime.getTime()));
+                        deletestatus = isDeletable();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                    long diff = gameTime_date.getTime() - currentTime_date.getTime();
-                    long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
-                    if (minutes <= 2){
-                        deletestatus = true;
 
-                    }
-                    else {
-                        deletestatus = false;
-                    }
                     harufbidsList();
                     //bidsList();
 
@@ -205,39 +192,52 @@ public class BidsHistoryFragment extends Fragment {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String, String> params = new HashMap<>();
-                params.put(Constant.USER_ID,session.getData(Constant.ID));
-                params.put(Constant.GAME_NAME,spinGameName);
-                params.put(Constant.DATE,date);
-                ApiConfig.RequestToVolley((result, response) -> {
-                    if (result) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            if (jsonObject.getBoolean(Constant.SUCCESS)) {
-                                JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
-                                session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
-                                session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
-                                session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
+                try {
+                    if (isDeletable()){
 
-                                Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, "Sorry Times Up U Can't Delete this Bid", Toast.LENGTH_SHORT).show();
 
-                                Intent intent = new Intent(activity, HomeActivity.class);
-                                activity.startActivity(intent);
-                                activity.finish();
-                            }
-                            else {
-                                Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e){
-                            e.printStackTrace();
-                        }
                     }
                     else {
-                        Toast.makeText(activity, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
+                        Map<String, String> params = new HashMap<>();
+                        params.put(Constant.USER_ID,session.getData(Constant.ID));
+                        params.put(Constant.GAME_NAME,spinGameName);
+                        params.put(Constant.DATE,date);
+                        ApiConfig.RequestToVolley((result, response) -> {
+                            if (result) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                                        JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
+                                        session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
+                                        session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
+                                        session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
+
+                                        Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+
+                                        Intent intent = new Intent(activity, HomeActivity.class);
+                                        activity.startActivity(intent);
+                                        activity.finish();
+                                    }
+                                    else {
+                                        Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                            else {
+                                Toast.makeText(activity, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
+
+                            }
+                            //pass url
+                        }, activity, Constant.DELETE_BIDS_URL, params,true);
 
                     }
-                    //pass url
-                }, activity, Constant.DELETE_BIDS_URL, params,true);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
@@ -246,6 +246,43 @@ public class BidsHistoryFragment extends Fragment {
 
         return root;
     }
+
+    private boolean isDeletable() throws ParseException {
+        String[] separated = spinGame.getSelectedItem().toString().split("-");
+        String gameTimestr = separated[1];
+        gameTimestr = date +" "+gameTimestr;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
+        Calendar currnetDateTime = Calendar.getInstance();
+        try {
+            gameTime_date = df.parse(gameTimestr);
+            currentTime_date = df.parse(df.format(currnetDateTime.getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long diff = gameTime_date.getTime() - currentTime_date.getTime();
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
+        if (minutes <= 2){
+            return true;
+            //deletestatus = true;
+
+        }
+        else {
+            Date c = Calendar.getInstance().getTime();
+            SimpleDateFormat cdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            String formattedDate = cdf.format(c);
+            if (date.equals(formattedDate))
+            {
+                return false;
+
+            }else {
+                return true;
+            }
+
+            //deletestatus = false;
+        }
+
+    }
+
     private void harufbidsList()
     {
         bids.clear();

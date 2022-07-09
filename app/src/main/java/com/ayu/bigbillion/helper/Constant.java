@@ -9,6 +9,7 @@ public class Constant {
     public static final String UPDATE_USER_URL = BaseUrl + "updateuser.php";
     public static final String GAME_URL = BaseUrl + "game.php";
     public static final String MYUSER_URL = BaseUrl + "myuser.php";
+    public static final String LOGOUT_URL = BaseUrl + "logout.php";
     public static final String HARUF_URL = BaseUrl + "haruf.php";
     public static final String UPI= "upi";
     public static final String SETTINGS_URL = BaseUrl + "settings.php";

@@ -47,7 +47,7 @@ public class OTP_Activity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     String TAG = "OTPACT";
-    private String mVerificationId;
+    private String mVerificationId = "";
     OtpTextView otp_view;
 
 
@@ -179,6 +179,7 @@ public class OTP_Activity extends AppCompatActivity {
         Map<String, String> params = new HashMap<>();
         params.put(Constant.MOBILE,mobilenumber);
         ApiConfig.RequestToVolley((result, response) -> {
+            Log.d("LOGINRES",response);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -205,6 +206,7 @@ public class OTP_Activity extends AppCompatActivity {
                         }
                     }
                     else {
+                        Toast.makeText(activity, ""+jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
 
                     }
                 } catch (JSONException e){

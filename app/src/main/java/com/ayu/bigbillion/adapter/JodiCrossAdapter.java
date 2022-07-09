@@ -112,7 +112,7 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 if (spinGame.getSelectedItemPosition() != 0  && spinGame.getSelectedItemPosition() != 4){
                     if (PointsZero){
-                        Toast.makeText(activity, "Points Should Multiple of 5", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, "Enter number like 10,15,20...", Toast.LENGTH_SHORT).show();
 
                     }else {
                         submitGame();
