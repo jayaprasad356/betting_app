@@ -119,7 +119,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
         else if (transaction.getType().equals("wrongresult")){
             holder.transimg.setImageResource(R.drawable.cross);
-            holder.tvtitle.setText("points deducted due to wrong result of "+transaction.getGame_name());
+            holder.tvtitle.setText("points deducted due to wrong result of "+transaction.getGame_name()+" for "+transaction.getGame_type());
             holder.tvTime.setText(transaction.getDate_created());
             holder.tvPoints.setText(transaction.getPoints());
             holder.tvBalance.setText("Balanace "+ transaction.getBalance());
@@ -127,7 +127,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
         else if (transaction.getType().equals("correctresult")){
             holder.transimg.setImageResource(R.drawable.trophy);
-            holder.tvtitle.setText("credited for winning of "+transaction.getGame_name());
+            holder.tvtitle.setText("credited for winning of "+transaction.getGame_name()+" for "+transaction.getGame_type());
 
             if (transaction.getReason()!=null){
                 if (transaction.getReason().equals("andar")){
