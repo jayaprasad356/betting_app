@@ -158,7 +158,8 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable edt) {
+                String editable = edt.toString().replaceFirst("^0+(?!$)", "");
                 ExpenseFinalTotal = 0;
 
                 try{

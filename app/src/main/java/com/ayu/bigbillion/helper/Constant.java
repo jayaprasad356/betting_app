@@ -14,6 +14,7 @@ public class Constant {
     public static final String UPI= "upi";
     public static final String SETTINGS_URL = BaseUrl + "settings.php";
     public static final String FCM_ID = "fcm_id";
+
     public static final String UPDATE_FCM = BaseUrl + "update_fcm.php";
     public static final String BIDSLIST_URL = BaseUrl + "bidslist.php";
     public static final String HARUFBIDSLIST_URL = BaseUrl + "harufbidslist.php";
@@ -43,6 +44,7 @@ public class Constant {
     public static final String Login = "login";
     public static final String ID = "id";
     public static final String NAME = "name";
+    public static final String DEVICE_ID = "device_id";
     public static final String SUCCESS = "success";
     public static final String MESSAGE = "message";
     public static final String DATA = "data";

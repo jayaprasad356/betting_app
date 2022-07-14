@@ -2,9 +2,11 @@ package com.ayu.bigbillion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,18 +30,16 @@ public class LoginProfileActivity extends AppCompatActivity {
     Session session;
     String mobilenumber;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_profile);
         mobilenumber = getIntent().getStringExtra(Constant.MOBILE);
-
         activity = LoginProfileActivity.this;
         session = new Session(activity);
-
         btnContinue = findViewById(R.id.btnContinue);
         txtName = findViewById(R.id.txtName);
-
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,15 +57,17 @@ public class LoginProfileActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
 
 
     private void updateUser() {
+        String device_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),Settings.Secure.ANDROID_ID);
+
         Map<String, String> params = new HashMap<>();
         params.put(Constant.MOBILE,mobilenumber);
         params.put(Constant.NAME,txtName.getText().toString().trim());
+        params.put(Constant.DEVICE_ID,device_id);
 
         ApiConfig.RequestToVolley((result, response) -> {
             if (result) {

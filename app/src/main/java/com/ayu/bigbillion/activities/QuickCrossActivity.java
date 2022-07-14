@@ -46,6 +46,7 @@ public class QuickCrossActivity extends AppCompatActivity {
     EditText etb1,etb2,etb3,etb4,etb5,etb6;
     ArrayList<String> NumbersArray = new ArrayList<>();
     ArrayList<String> PointsArray = new ArrayList<>();
+    ArrayList<String> PointsAy = new ArrayList<>();
     Button btnSubmit;
     Activity activity;
     Session session;
@@ -665,7 +666,7 @@ public class QuickCrossActivity extends AppCompatActivity {
                     NumbersArray.add(eta6.getText().toString().trim() + etb5.getText().toString().toString().trim());
                     NumbersArray.add(eta6.getText().toString().trim() + etb6.getText().toString().toString().trim());
                     for (int i = 0; i < 36; i++){
-                        PointsArray.add(etPoints.getText().toString().trim());
+                        PointsArray.add(etPoints.getText().toString().trim().replaceFirst("^0+(?!$)", ""));
                     }
                     submitGame();
 

@@ -115,7 +115,9 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable edt) {
+                String editable = edt.toString().replaceFirst("^0+(?!$)", "");
+
                 AndarFinalTotal = 0;
                 if (AndarisOnTextChanged){
                     AndarisOnTextChanged = false;
@@ -203,7 +205,9 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable edt) {
+                String editable = edt.toString().replaceFirst("^0+(?!$)", "");
+
                 BaharFinalTotal = 0;
                 try{
                     String edit_str = editable.toString();

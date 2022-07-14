@@ -23,7 +23,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class AddPointsActivity extends AppCompatActivity implements PaymentStatusListener{
@@ -66,27 +70,27 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
                     etPoint.setError("Enter Valid Points");
                     etPoint.requestFocus();
                 }
-                else {
-                    addPoints();
-                }
 //                else {
-//                    if (!UPI_ID.equals("")){
-//
-//                        try {
-//                            Date c = Calendar.getInstance().getTime();
-//                            SimpleDateFormat df = new SimpleDateFormat("ddMMyyyyHHmmss", Locale.getDefault());
-//                            String transcId = df.format(c);
-//                            makePayment(""+Double.parseDouble(etPoint.getText().toString().trim()), UPI_ID, session.getData(Constant.NAME), "Add POints", transcId);
-//
-//
-//                        }catch (Exception e){
-//                            Log.d("PAYMENT_GATEWAY",e.getMessage());
-//
-//                        }
-//
-//                    }
-//
+//                    addPoints();
 //                }
+                else {
+                    if (!UPI_ID.equals("")){
+
+                        try {
+                            Date c = Calendar.getInstance().getTime();
+                            SimpleDateFormat df = new SimpleDateFormat("ddMMyyyyHHmmss", Locale.getDefault());
+                            String transcId = df.format(c);
+                            makePayment(""+Double.parseDouble(etPoint.getText().toString().trim()), UPI_ID, session.getData(Constant.NAME), "Add Points", transcId);
+
+
+                        }catch (Exception e){
+                            Log.d("PAYMENT_GATEWAY",e.getMessage());
+
+                        }
+
+                    }
+
+                }
             }
         });
     }

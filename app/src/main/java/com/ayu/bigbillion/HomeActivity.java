@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -49,7 +51,6 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
     Session session;
     Date date1,date2;
     int days,hours,min;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +105,6 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
         params.put(Constant.FCM_ID, token);
 
         ApiConfig.RequestToVolley((result, response) -> {
-            Log.d("FCM_RESPONSE",response);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -199,10 +199,13 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
 
 
     private void myUser() {
+        @SuppressLint("HardwareIds") String device_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),Settings.Secure.ANDROID_ID);
+
         Map<String, String> params = new HashMap<>();
         //request
         params.put(Constant.USER_ID,session.getData(Constant.ID));
         ApiConfig.RequestToVolley((result, response) -> {
+            Log.d("USER_RES",response);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -212,7 +215,10 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
                         session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
                         gamesFragment.setText(session.getData(Constant.POINTS));
-
+                        Log.d("DEVICE_VAL",jsonArray.getJSONObject(0).getString(Constant.DEVICE_ID));
+                        if (!jsonArray.getJSONObject(0).getString(Constant.DEVICE_ID).equals(device_id)) {
+                            session.logoutUser(activity);
+                        }
                     }
                     else {
                         //Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();

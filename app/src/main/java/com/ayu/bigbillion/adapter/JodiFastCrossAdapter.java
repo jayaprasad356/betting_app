@@ -193,7 +193,9 @@ public class JodiFastCrossAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable edt) {
+                String editable = edt.toString().replaceFirst("^0+(?!$)", "");
+
                 setPointsValue(position,editable.toString());
 
 

@@ -297,7 +297,7 @@ public class OddEvenActivity extends AppCompatActivity {
             for (int i = 0; i < 100; i++){
                 if (i % 2 !=0){
                     NumbersArray.add(""+i);
-                    PointsArray.add(tvOdd.getText().toString().trim());
+                    PointsArray.add(tvOdd.getText().toString().trim().replaceFirst("^0+(?!$)", ""));
 
                 }
 
@@ -314,7 +314,7 @@ public class OddEvenActivity extends AppCompatActivity {
             for (int i = 0; i < 100; i++){
                 if (i % 2 ==0){
                     NumbersArray.add(""+i);
-                    PointsArray.add(tvEven.getText().toString().trim());
+                    PointsArray.add(tvEven.getText().toString().trim().replaceFirst("^0+(?!$)", ""));
 
                 }
 
