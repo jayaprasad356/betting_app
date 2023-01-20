@@ -66,22 +66,18 @@ public class Add_Account_Details_Activity extends AppCompatActivity {
                 if (!isFillAccount() && etPaytm.getText().toString().trim().equals("") && etPhonepe.getText().toString().trim().equals("")){
                     Toast.makeText(activity, "Should Fill Any One Payment Method", Toast.LENGTH_SHORT).show();
 
-                }else {
-                    if (!etAccountNo.getText().toString().trim().equals("") || !etIFSC.getText().toString().trim().equals("") || !etHolderName.getText().toString().trim().equals("")){
-                        if (etAccountNo.getText().toString().trim().equals("") || etIFSC.getText().toString().trim().equals("") || etHolderName.getText().toString().trim().equals("")){
+                }
+                else if (etAccountNo.getText().toString().trim().equals("") || etIFSC.getText().toString().trim().equals("") || etHolderName.getText().toString().trim().equals("")){
+
+
                             Toast.makeText(activity, "Fill Account Details", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            updateAccountDetails();
 
-                        }
-
-                    }
+                }
                     else{
                         updateAccountDetails();
                     }
 
-                }
+
 
             }
         });

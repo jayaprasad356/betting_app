@@ -2,6 +2,8 @@ package com.ayu.bigbillion;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 
 import android.annotation.SuppressLint;
@@ -51,6 +53,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
     Session session;
     Date date1,date2;
     int days,hours,min;
+    String tvMobile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,9 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
         activity = HomeActivity.this;
         session = new Session(activity);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, gamesFragment,"GAME").commit();
+
+
+
 
         ImageView moremenu = findViewById(R.id.moremenu);
         myUser();
@@ -122,9 +128,16 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
     public void showPopup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.home_menu, popup.getMenu());
+        popup.getMenu().add( 1, R.id.mobile, 1, ""+session.getData(Constant.MOBILE));
+        popup.getMenu().add( 1, R.id.resultchart, 2, "Result Chart");
+        popup.getMenu().add( 1, R.id.acoount, 3, "Account Details");
+        popup.getMenu().add( 1, R.id.help, 4, "Help");
+        popup.getMenu().add( 1, R.id.logout, 5, "Logout");
         popup.show();
+
+
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {

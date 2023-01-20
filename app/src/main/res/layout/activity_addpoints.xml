@@ -49,9 +49,21 @@
         android:hint="Point to add(Amount in )"
         android:id="@+id/etPoint"
         android:inputType="number"
-        android:layout_margin="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/whitebackgroundcruve"
         android:padding="10dp"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tvMimDeposite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minimum Deposite 100rs"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/red"
+        />
 
     <Button
         android:layout_width="wrap_content"

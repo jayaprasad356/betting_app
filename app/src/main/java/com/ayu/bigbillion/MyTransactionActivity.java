@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -32,6 +33,7 @@ public class MyTransactionActivity extends AppCompatActivity {
     TransactionAdapter transactionAdapter;
     Activity activity;
     Session session;
+    TextView tvNoTransaction;
 
 
 
@@ -44,6 +46,7 @@ public class MyTransactionActivity extends AppCompatActivity {
         session = new Session(activity);
         recyclerView = findViewById(R.id.recyclerView);
         back = findViewById(R.id.back);
+        tvNoTransaction = findViewById(R.id.tvNoTransaction);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -53,6 +56,7 @@ public class MyTransactionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) { onBackPressed(); }
         });
+
         transactionList();
 
 
@@ -74,6 +78,7 @@ public class MyTransactionActivity extends AppCompatActivity {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                             if (jsonObject1 != null) {
+                                tvNoTransaction.setVisibility(View.GONE);
                                 Transaction group = g.fromJson(jsonObject1.toString(), Transaction.class);
                                 transactions.add(group);
                             } else {

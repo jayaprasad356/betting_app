@@ -1,24 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <item
+        android:icon="@drawable/bl"
+        android:id="@+id/mobile"
+        android:title=""
+        />
+
 
     <item
         android:id="@+id/resultchart"
-        android:title="Result Chart"
+        android:title=""
+
         />
 
     <item
         android:id="@+id/acoount"
-        android:title="Account Details"
+        android:title=""
+
         />
 
     <item
         android:id="@+id/help"
-        android:title="Help"
+        android:title=""
+
+
         />
 
     <item
         android:id="@+id/logout"
-        android:title="Log Out"
+        android:title=""
+
         />
 
 

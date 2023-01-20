@@ -48,7 +48,7 @@
         tools:ignore="ProtectedPermissions" />
 
     <application
-        android:name="com.ayu.bigbillion.helper.ApiConfig"
+        android:name=".helper.ApiConfig"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@drawable/billion_logo"
@@ -60,13 +60,20 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:usesCleartextTraffic">
         <activity
-            android:name="com.ayu.bigbillion.activities.ResultChartActivity"
+            android:name=".MainActivity2"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activities.ResultChartActivity"
             android:exported="false" />
         <activity
-            android:name="com.ayu.bigbillion.AddWithdrawalActivity"
+            android:name=".AddWithdrawalActivity"
             android:exported="true" />
         <activity
-            android:name="com.ayu.bigbillion.SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -75,52 +82,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ayu.bigbillion.activities.HarufActivity"
+            android:name=".activities.HarufActivity"
             android:exported="true" />
         <activity
-            android:name="com.ayu.bigbillion.activities.JodiActivity"
+            android:name=".activities.JodiActivity"
             android:exported="true" />
         <activity
-            android:name="com.ayu.bigbillion.LoginProfileActivity"
+            android:name=".LoginProfileActivity"
             android:exported="false" />
         <activity
-            android:name="com.ayu.bigbillion.Side_Menu_Bar_Activity"
+            android:name=".Side_Menu_Bar_Activity"
             android:exported="false" />
         <activity
-            android:name="com.ayu.bigbillion.WithdrawalActivity"
+            android:name=".WithdrawalActivity"
             android:exported="false" />
         <activity
-            android:name="com.ayu.bigbillion.Add_Account_Details_Activity"
+            android:name=".Add_Account_Details_Activity"
             android:exported="false" />
         <activity
-            android:name="com.ayu.bigbillion.activities.OddEvenActivity"
+            android:name=".activities.OddEvenActivity"
             android:exported="true" />
         <activity
-            android:name="com.ayu.bigbillion.activities.QuickCrossActivity"
+            android:name=".activities.QuickCrossActivity"
             android:exported="true" />
         <activity
-            android:name="com.ayu.bigbillion.MyTransactionActivity"
+            android:name=".MyTransactionActivity"
             android:exported="false" />
         <activity
-            android:name="com.ayu.bigbillion.Fast_Cross_Activity"
+            android:name=".Fast_Cross_Activity"
             android:exported="false" />
         <activity
-            android:name="com.ayu.bigbillion.AddPointsActivity"
+            android:name=".AddPointsActivity"
             android:exported="false" />
         <activity
-            android:name="com.ayu.bigbillion.HomeActivity"
-            android:exported="true">
+            android:name=".HomeActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".OTP_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
 
-        </activity>
-        <activity
-            android:name="com.ayu.bigbillion.LoginActivity"
-            android:exported="true" />
-        <activity
-            android:name="com.ayu.bigbillion.OTP_Activity"
-            android:exported="false" />
-        <activity
-            android:name="com.ayu.bigbillion.MainActivity"
-            android:exported="true" />
         <service
             android:name=".helper.MyFirebaseMessagingService"
             android:exported="false">

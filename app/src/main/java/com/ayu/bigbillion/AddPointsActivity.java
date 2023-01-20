@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ayu.bigbillion.helper.ApiConfig;
@@ -38,6 +39,7 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
     Activity activity;
     Session session;
     String UPI_ID = "";
+    TextView tvMimDeposite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
         back = findViewById(R.id.back);
         pointsbtn = findViewById(R.id.pointsbtn);
         etPoint = findViewById(R.id.etPoint);
+        tvMimDeposite = findViewById(R.id.tvMimDeposite);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +73,14 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
                     etPoint.setError("Enter Valid Points");
                     etPoint.requestFocus();
                 }
+
+                else if (etPoint.length()<=2){
+
+                    tvMimDeposite.setVisibility(View.VISIBLE);
+
+                }
+
+
 //                else {
 //                    addPoints();
 //                }
