@@ -40,7 +40,7 @@ public class GamesFragment extends Fragment {
     LinearLayout lytWithdrawal;
     LinearLayout lytDeposit;
     LinearLayout lytSharepoints;
-    TextView tvName;
+    TextView tvName,tvId,tvMobile;
     TextView tvPoints,tvPhone,newsInfo;
     Session session;
     ImageView play,whatsapp;
@@ -76,7 +76,11 @@ public class GamesFragment extends Fragment {
         tvPhone = root.findViewById(R.id.tvPhone);
         play = root.findViewById(R.id.play);
         whatsapp = root.findViewById(R.id.whatsapp);
+        tvId=root.findViewById(R.id.tv_id);
+        tvMobile=root.findViewById(R.id.tv_mobile_number);
         newsInfo = root.findViewById(R.id.newsInfo);
+        tvId.setText("Id: "+session.getData(Constant.ID));
+        tvMobile.setText("Mobile: "+session.getData(Constant.MOBILE));
         tvName.setText(session.getData(Constant.NAME));
         tvPoints.setText(session.getData(Constant.POINTS));
         newsInfo.setText(session.getData(Constant.NEWS_INFO));
