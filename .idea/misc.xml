@@ -40,13 +40,14 @@
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_jodi.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_jodi2.xml" value="0.3333333333333333" />
-        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_login.xml" value="0.3333333333333333" />
+        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_login_profile.xml" value="0.17552083333333332" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_my_transaction.xml" value="0.17083333333333334" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_mytransaction.xml" value="0.17135416666666667" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_odd_even.xml" value="0.17083333333333334" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_oddeven.xml" value="0.22" />
-        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_otp.xml" value="0.17135416666666667" />
+        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_otp.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_quick_cross.xml" value="0.3333333333333333" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_quickcross.xml" value="0.3333333333333333" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_result_chart.xml" value="0.22" />
@@ -56,7 +57,7 @@
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/activity_withdrawal.xml" value="0.3333333333333333" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/bids_lyt.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/fragment_bids_history.xml" value="0.17135416666666667" />
-        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/fragment_games.xml" value="0.22" />
+        <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/fragment_games.xml" value="0.3333333333333333" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/fragment_jodi_cross.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/fragment_jodi_fast_cross.xml" value="0.22" />
         <entry key="..\:/Studio Projects/betting_app/app/src/main/res/layout/fragment_profile.xml" value="0.22" />

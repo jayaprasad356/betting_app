@@ -71,11 +71,6 @@ public class AddWithdrawalActivity extends AppCompatActivity {
                     etPoint.requestFocus();
                 }
 
-                else if (etPoint.length()<=2){
-
-                    tvMimWithdrawal.setVisibility(View.VISIBLE);
-
-                }
 
                 else if (session.getData(Constant.ACCOUNT_NO).equals("") && session.getData(Constant.PHONEPE).equals("") && session.getData(Constant.PAYTM).equals("")){
                     Toast.makeText(activity, "Fill Account Details Before Withdrawal", Toast.LENGTH_SHORT).show();

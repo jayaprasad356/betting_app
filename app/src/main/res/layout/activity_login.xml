@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:text="Enter your mobile number "
             android:textAlignment="center"
             android:textSize="20dp" />
@@ -57,33 +57,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tap Next to verify your account.You don't need to"
+            android:text="Tap Next to verify your account."
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="manually enter verifiction code if the number is"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="present in this phone...."
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
 
         <Button
             android:id="@+id/btnContinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
             android:text="Next"
@@ -92,6 +76,45 @@
             android:textAllCaps="false"
             android:textSize="15dp"
             app:backgroundTint="@color/appdesignblue" />
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For Whatsapp Contact"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"/>
+            <LinearLayout
+                android:id="@+id/whatsapp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/whatsapp"/>
+                <TextView
+                    android:id="@+id/tvNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="+92392392322"
+                    android:textSize="16dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

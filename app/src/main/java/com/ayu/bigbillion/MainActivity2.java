@@ -11,10 +11,6 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.apache.commons.net.ntp.NTPUDPClient;
-import org.apache.commons.net.ntp.TimeInfo;
-import org.apache.commons.net.ntp.TimeStamp;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -35,43 +31,43 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
 
-        new GetNetworkTimeTask().execute();
+        //new GetNetworkTimeTask().execute();
         tvtime = findViewById(R.id.tvtime);
 
     }
-
-    class GetNetworkTimeTask extends AsyncTask<Void, Void, Date> {
-
-        @Override
-        protected Date doInBackground(Void... voids) {
-            NTPUDPClient timeClient = new NTPUDPClient();
-            try {
-                InetAddress inetAddress = InetAddress.getByName(TIME_SERVER);
-                TimeInfo timeInfo = timeClient.getTime(inetAddress);
-                long returnTime = timeInfo.getMessage().getTransmitTimeStamp().getTime();   //server time
-                return new Date(returnTime);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Date time) {
-            super.onPostExecute(time);
-            if (time != null) {
-                tvtime.setText(time.toString());
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    gets(time);
-                }
-                Log.e("getCurrentNetworkTime", "Time from " + TIME_SERVER + ": " + time);
-                Log.e("Local time", "Local time");
-                Log.e("Local time", "Current time: " + new Date(System.currentTimeMillis()));
-            } else {
-                Log.e("getCurrentNetworkTime", "Failed to get network time");
-            }
-        }
-    }
+//
+//    class GetNetworkTimeTask extends AsyncTask<Void, Void, Date> {
+//
+//        @Override
+//        protected Date doInBackground(Void... voids) {
+//            NTPUDPClient timeClient = new NTPUDPClient();
+//            try {
+//                InetAddress inetAddress = InetAddress.getByName(TIME_SERVER);
+//                TimeInfo timeInfo = timeClient.getTime(inetAddress);
+//                long returnTime = timeInfo.getMessage().getTransmitTimeStamp().getTime();   //server time
+//                return new Date(returnTime);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Date time) {
+//            super.onPostExecute(time);
+//            if (time != null) {
+//                tvtime.setText(time.toString());
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                    gets(time);
+//                }
+//                Log.e("getCurrentNetworkTime", "Time from " + TIME_SERVER + ": " + time);
+//                Log.e("Local time", "Local time");
+//                Log.e("Local time", "Current time: " + new Date(System.currentTimeMillis()));
+//            } else {
+//                Log.e("getCurrentNetworkTime", "Failed to get network time");
+//            }
+//        }
+//    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void gets(Date date) {

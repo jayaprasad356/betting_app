@@ -50,25 +50,17 @@ public class LoginProfileActivity extends AppCompatActivity {
                 }
                 else{
                     updateUser();
-
-
                 }
-
-
             }
         });
     }
 
-
-
     private void updateUser() {
         String device_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),Settings.Secure.ANDROID_ID);
-
         Map<String, String> params = new HashMap<>();
         params.put(Constant.MOBILE,mobilenumber);
         params.put(Constant.NAME,txtName.getText().toString().trim());
         params.put(Constant.DEVICE_ID,device_id);
-
         ApiConfig.RequestToVolley((result, response) -> {
             if (result) {
                 try {
@@ -80,7 +72,6 @@ public class LoginProfileActivity extends AppCompatActivity {
                         session.setData(Constant.MOBILE,jsonArray.getJSONObject(0).getString(Constant.MOBILE));
                         session.setData(Constant.NAME,jsonArray.getJSONObject(0).getString(Constant.NAME));
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
-
                         Intent intent = new Intent(activity,HomeActivity.class);
                         startActivity(intent);
                         finish();
@@ -101,8 +92,5 @@ public class LoginProfileActivity extends AppCompatActivity {
             }
             //pass url
         }, activity, Constant.UPDATE_USER_URL, params,true);
-
-
-
     }
 }
