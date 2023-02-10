@@ -229,7 +229,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
                         session.setData(Constant.POINTS,jsonArray.getJSONObject(0).getString(Constant.POINTS));
                         gamesFragment.setText(session.getData(Constant.POINTS));
                         Log.d("DEVICE_VAL",jsonArray.getJSONObject(0).getString(Constant.DEVICE_ID));
-                        if (!jsonArray.getJSONObject(0).getString(Constant.DEVICE_ID).equals(device_id)) {
+                        if (!jsonArray.getJSONObject(0).getString(Constant.DEVICE_ID).equals(device_id) || jsonArray.getJSONObject(0).getString(Constant.USER_STATUS).equals("2") ) {
                             session.logoutUser(activity);
                         }
                     }

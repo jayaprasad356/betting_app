@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -35,6 +36,7 @@ public class TransactionFragment extends Fragment {
     Activity activity;
     Session session;
     View root;
+    TextView tvNoTransaction;
 
     public TransactionFragment() {
         // Required empty public constructor
@@ -48,6 +50,8 @@ public class TransactionFragment extends Fragment {
         View root =  inflater.inflate(R.layout.fragment_transaction, container, false);
         activity = getActivity();
         session = new Session(activity);
+        tvNoTransaction = root.findViewById(R.id.tvNoTransaction);
+
         recyclerView = root.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -66,6 +70,7 @@ public class TransactionFragment extends Fragment {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        tvNoTransaction.setVisibility(View.GONE);
                         Log.d("Traction",response);
                         JSONObject object = new JSONObject(response);
                         JSONArray jsonArray = object.getJSONArray(Constant.DATA);
@@ -80,10 +85,14 @@ public class TransactionFragment extends Fragment {
                                 break;
                             }
                         }
+                        if (transactions.size() == 0){
+                            tvNoTransaction.setVisibility(View.VISIBLE);
+                        }
                         transactionAdapter = new TransactionAdapter(activity, transactions);
                         recyclerView.setAdapter(transactionAdapter);
                     }
                     else {
+                        tvNoTransaction.setVisibility(View.VISIBLE);
                         Toast.makeText(activity, ""+String.valueOf(jsonObject.getString(Constant.MESSAGE)), Toast.LENGTH_SHORT).show();
                     }
 

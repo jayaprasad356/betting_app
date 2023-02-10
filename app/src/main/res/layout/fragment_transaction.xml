@@ -21,10 +21,11 @@
         android:id="@+id/tvNoTransaction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:padding="15dp"
+        android:visibility="gone"
         android:text="There is no transaction right now"
         android:textAlignment="center"
-        android:layout_centerInParent="true"
         android:textColor="@color/black"
         android:textSize="20dp" />
 

@@ -34,7 +34,7 @@ public class MyTransactionActivity extends AppCompatActivity {
     TransactionAdapter transactionAdapter;
     Activity activity;
     Session session;
-    TextView tvNoTransaction;
+
 
 
 
@@ -48,7 +48,6 @@ public class MyTransactionActivity extends AppCompatActivity {
         session = new Session(activity);
         recyclerView = findViewById(R.id.recyclerView);
         back = findViewById(R.id.back);
-        tvNoTransaction = findViewById(R.id.tvNoTransaction);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -73,6 +72,7 @@ public class MyTransactionActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
+
                         JSONObject object = new JSONObject(response);
                         JSONArray jsonArray = object.getJSONArray(Constant.DATA);
                         Gson g = new Gson();
@@ -80,7 +80,7 @@ public class MyTransactionActivity extends AppCompatActivity {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                             if (jsonObject1 != null) {
-                                tvNoTransaction.setVisibility(View.VISIBLE);
+
                                 Transaction group = g.fromJson(jsonObject1.toString(), Transaction.class);
                                 transactions.add(group);
                             } else {

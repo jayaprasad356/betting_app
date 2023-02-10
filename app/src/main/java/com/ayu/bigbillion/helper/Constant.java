@@ -3,8 +3,8 @@ package com.ayu.bigbillion.helper;
 public class Constant {
     //public static final String MainBaseUrl = "http://bigbillionenterprises.co.in/";
     //public static final String MainBaseUrl = "http://app.bigbillionenterprises.co.in/";
-    public static final String MainBaseUrl = "https://bigbillion.greymatterworks.in/";
-   // public static final String MainBaseUrl = "http://192.168.43.38/bigbillion/";
+    //public static final String MainBaseUrl = "https://bigbillion.greymatterworks.in/";
+    public static final String MainBaseUrl = "http://192.168.43.38/bigbillion/";
     public static final String BaseUrl = MainBaseUrl + "api/";
     public static final String SIGNUP_USER_URL = BaseUrl + "signup_user.php";
     public static final String LOGIN_URL = BaseUrl + "login.php";
@@ -47,6 +47,7 @@ public class Constant {
     public static final String ID = "id";
     public static final String NAME = "name";
     public static final String DEVICE_ID = "device_id";
+    public static final String USER_STATUS = "user_status";
     public static final String SUCCESS = "success";
     public static final String MESSAGE = "message";
     public static final String DATA = "data";
