@@ -128,7 +128,6 @@ public class HomeActivity extends AppCompatActivity  implements NavigationBarVie
     public void showPopup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
-        popup.getMenu().add( 1, R.id.mobile, 1, ""+session.getData(Constant.MOBILE));
         popup.getMenu().add( 1, R.id.resultchart, 2, "Result Chart");
         popup.getMenu().add( 1, R.id.acoount, 3, "Account Details");
         popup.getMenu().add( 1, R.id.help, 4, "Help");

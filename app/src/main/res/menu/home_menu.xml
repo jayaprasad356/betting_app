@@ -4,12 +4,6 @@
 
 
 
-    <item
-        android:icon="@drawable/bl"
-        android:id="@+id/mobile"
-        android:title=""
-        />
-
 
     <item
         android:id="@+id/resultchart"
