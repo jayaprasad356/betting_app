@@ -25,6 +25,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"/>
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_id"
                     android:layout_width="wrap_content"
                     android:textColor="@color/white"
@@ -32,14 +33,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:text="Id : 234"/>
-                <TextView
-                    android:id="@+id/tv_mobile_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginRight="20dp"
-                    android:textColor="@color/white"
-                    android:text="Mobile : 9876543122"/>
 
 
                 <RelativeLayout
@@ -100,6 +93,17 @@
                                 android:textColor="@color/black"
                                 android:textSize="20dp"
                                 android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/tv_mobile_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="20dp"
+                                android:textColor="@color/black"
+                                android:text="Mobile : 9876543122"/>
+
 
                         </LinearLayout>
 

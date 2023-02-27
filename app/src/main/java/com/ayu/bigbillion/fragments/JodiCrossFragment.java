@@ -54,7 +54,7 @@ public class JodiCrossFragment extends Fragment {
 
         jodiCrossAdapter = new JodiCrossAdapter(activity,tvWarning,btnSubmit,spinGame);
 
-        Functions.setData(activity,spinGame);
+       Functions.setData(activity,spinGame);
 
 
         recyclerView.setAdapter(jodiCrossAdapter);
