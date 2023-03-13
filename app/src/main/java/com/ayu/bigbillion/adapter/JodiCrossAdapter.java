@@ -3,6 +3,7 @@ package com.ayu.bigbillion.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,6 +28,7 @@ import com.ayu.bigbillion.R;
 import com.ayu.bigbillion.activities.JodiActivity;
 import com.ayu.bigbillion.helper.ApiConfig;
 import com.ayu.bigbillion.helper.Constant;
+import com.ayu.bigbillion.helper.CustomToast;
 import com.ayu.bigbillion.helper.Session;
 import com.ayu.bigbillion.model.Game;
 
@@ -246,7 +248,8 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         activity.finish();
                     }
                     else {
-                        Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                        CustomToast customToast=new CustomToast();
+                        customToast.show(activity,jsonObject.getString(Constant.MESSAGE));
                     }
                 } catch (JSONException e){
                     e.printStackTrace();
