@@ -44,6 +44,7 @@ public class GamesFragment extends Fragment {
     TextView tvPoints,tvPhone,newsInfo;
     Session session;
     ImageView play,whatsapp;
+    ImageView imgShare;
 
 
 
@@ -79,6 +80,7 @@ public class GamesFragment extends Fragment {
         tvId=root.findViewById(R.id.tv_id);
         tvMobile=root.findViewById(R.id.tv_mobile_number);
         newsInfo = root.findViewById(R.id.newsInfo);
+        imgShare = root.findViewById(R.id.imgShare);
         tvId.setText("Id: "+session.getData(Constant.ID));
         tvMobile.setText("Mobile: "+session.getData(Constant.MOBILE));
         tvName.setText(session.getData(Constant.NAME));
@@ -107,6 +109,15 @@ public class GamesFragment extends Fragment {
             public void onClick(View view) {
                 Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(session.getData(Constant.YOUTUBE_LINK)));
                 startActivity(webIntent);
+            }
+        });
+
+        imgShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(session.getData(Constant.SHARE_LINK)));
+                startActivity(webIntent);
+
             }
         });
 
@@ -185,6 +196,7 @@ public class GamesFragment extends Fragment {
                         session.setData(Constant.WHATSAPP_NUMBER,jsonArray.getJSONObject(0).getString(Constant.WHATSAPP_NUMBER));
                         session.setData(Constant.YOUTUBE_LINK,jsonArray.getJSONObject(0).getString(Constant.YOUTUBE_LINK));
                         session.setData(Constant.NEWS_INFO,jsonArray.getJSONObject(0).getString(Constant.NEWS_INFO));
+                        session.setData(Constant.SHARE_LINK,jsonArray.getJSONObject(0).getString(Constant.SHARE_LINK));
                         tvPhone.setText(session.getData(Constant.WHATSAPP_NUMBER));
                     }
                     else {

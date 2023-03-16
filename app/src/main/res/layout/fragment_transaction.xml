@@ -12,16 +12,23 @@
         android:id="@+id/tvLast7Days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:padding="15dp"
         android:text="Last 7 days transaction only"
         android:textColor="@color/black"
-        android:gravity="center"
         android:textSize="14dp" />
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_below="@+id/tvLast7Days"
+        android:layout_width="match_parent"
+        android:background="@color/black"
+        android:layout_height="1dp"/>
 
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/tvLast7Days"
+       android:layout_below="@+id/line"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

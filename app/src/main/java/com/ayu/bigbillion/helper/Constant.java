@@ -31,6 +31,7 @@ public class Constant {
     public static final String MOBILE = "mobile";
     public static final String WHATSAPP_NUMBER = "whatspp_number";
     public static final String YOUTUBE_LINK = "youtube_link";
+    public static final String SHARE_LINK = "share_link";
     public static final String USER_ID = "user_id";
     public static final String AMOUNT = "amount";
     public static final String MONTH = "month";
