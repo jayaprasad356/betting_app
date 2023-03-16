@@ -146,6 +146,9 @@ public class LoginActivity extends AppCompatActivity {
                         session.setData(Constant.WHATSAPP_NUMBER,jsonArray.getJSONObject(0).getString(Constant.WHATSAPP_NUMBER));
                         session.setData(Constant.YOUTUBE_LINK,jsonArray.getJSONObject(0).getString(Constant.YOUTUBE_LINK));
                         session.setData(Constant.NEWS_INFO,jsonArray.getJSONObject(0).getString(Constant.NEWS_INFO));
+                        session.setData(Constant.MIN_DEPOSIT,jsonArray.getJSONObject(0).getString(Constant.MIN_DEPOSIT));
+                        session.setData(Constant.MIN_WITHDRAWAL,jsonArray.getJSONObject(0).getString(Constant.MIN_WITHDRAWAL));
+                        session.setData(Constant.MAX_WITHDRAWAL,jsonArray.getJSONObject(0).getString(Constant.MAX_WITHDRAWAL));
                         tvNumber.setText(session.getData(Constant.WHATSAPP_NUMBER));
                     }
                     else {

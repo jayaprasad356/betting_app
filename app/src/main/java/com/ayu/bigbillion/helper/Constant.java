@@ -3,7 +3,9 @@ package com.ayu.bigbillion.helper;
 public class Constant {
     //public static final String MainBaseUrl = "http://bigbillionenterprises.co.in/";
     //public static final String MainBaseUrl = "http://app.bigbillionenterprises.co.in/";
-    public static final String MainBaseUrl = "https://bigbillion.graymatterworks.com/";
+   // public static final String MainBaseUrl = "https://bigbillion.graymatterworks.com/";
+    public static final String MainBaseUrl = "https://bb.graymatterworks.com/";
+
     //public static final String MainBaseUrl = "http://192.168.43.38/bigbillion/";
     public static final String BaseUrl = MainBaseUrl + "api/";
     public static final String SIGNUP_USER_URL = BaseUrl + "signup_user.php";
@@ -36,6 +38,11 @@ public class Constant {
     public static final String AMOUNT = "amount";
     public static final String MONTH = "month";
     public static final String YEAR = "year";
+
+    public static final String MIN_WITHDRAWAL = "min_withdrawal";
+    public static final String MAX_WITHDRAWAL = "max_withdrawal";
+    public static final String MIN_DEPOSIT = "min_deposit";
+
     public static final String GAME_NAME = "game_name";
     public static final String GAME_TYPE = "game_type";
     public static final String DATE = "date";

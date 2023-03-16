@@ -40,6 +40,7 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
     Session session;
     String UPI_ID = "";
     TextView tvMimDeposite;
+    int min,amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,9 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
         pointsbtn = findViewById(R.id.pointsbtn);
         etPoint = findViewById(R.id.etPoint);
         tvMimDeposite = findViewById(R.id.tvMimDeposite);
+        min= Integer.parseInt(session.getData(Constant.MIN_DEPOSIT));
+        tvMimDeposite.setText("Minimum Deposite "+min+"rs");
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +67,14 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
         pointsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!etPoint.getText().toString().isEmpty()) {
+                    try {
+                        amount = (int) Long.parseLong(etPoint.getText().toString());
+                    } catch (NumberFormatException e) {
+                        // Handle the exception here
+                        e.printStackTrace();
+                    }
+                }
                 if (etPoint.getText().toString().equals(""))
                 {
                     etPoint.setError("empty");
@@ -74,7 +86,7 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
                     etPoint.requestFocus();
                 }
 
-                else if (etPoint.length()<=2){
+                else if (amount<min){
 
                     tvMimDeposite.setVisibility(View.VISIBLE);
 
@@ -86,7 +98,7 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
 //                }
                 else {
                     if (!UPI_ID.equals("")){
-
+                        tvMimDeposite.setVisibility(View.GONE);
                         try {
                             Date c = Calendar.getInstance().getTime();
                             SimpleDateFormat df = new SimpleDateFormat("ddMMyyyyHHmmss", Locale.getDefault());
@@ -180,7 +192,9 @@ public class AddPointsActivity extends AppCompatActivity implements PaymentStatu
                     JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
                         UPI_ID = jsonArray.getJSONObject(0).getString(Constant.UPI);
-
+                        session.setData(Constant.MIN_DEPOSIT,jsonArray.getJSONObject(0).getString(Constant.MIN_DEPOSIT));
+                        session.setData(Constant.MIN_WITHDRAWAL,jsonArray.getJSONObject(0).getString(Constant.MIN_WITHDRAWAL));
+                        session.setData(Constant.MAX_WITHDRAWAL,jsonArray.getJSONObject(0).getString(Constant.MAX_WITHDRAWAL));
                     }
                 } catch (JSONException e){
                     e.printStackTrace();

@@ -186,7 +186,7 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         }
                         Log.d("JODI_STORE",""+PointsArray.toString());
                         Log.d("JODI_SIZE",""+PointsArray.size());
-                        for (int i = 0; i < PointsArray.size() - 1; i++){
+                        for (int i = 0; i < PointsArray.size(); i++){
                             int tempTotalExpense = Integer.parseInt(PointsArray.get(i));
                             ExpenseFinalTotal = ExpenseFinalTotal + tempTotalExpense;
                             Log.d("JODI_FOR",""+tempTotalExpense);
@@ -209,6 +209,7 @@ public class JodiCrossAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         ((JodiActivity)activity).setTotal(ExpenseFinalTotal);
                     }
                 }catch (Exception e){
+                    System.out.println(e);
                 }
             }
         });
