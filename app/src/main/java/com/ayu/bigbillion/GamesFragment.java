@@ -1,11 +1,13 @@
 package com.ayu.bigbillion;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,8 +117,17 @@ public class GamesFragment extends Fragment {
         imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(session.getData(Constant.SHARE_LINK)));
-                startActivity(webIntent);
+                String textToShare = "Check out this cool article: https://example.com/article";
+
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, textToShare);
+
+                Intent chooserIntent = Intent.createChooser(shareIntent, "Share article");
+                if (shareIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(chooserIntent);
+                }
+
 
             }
         });

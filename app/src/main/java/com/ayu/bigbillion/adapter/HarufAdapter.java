@@ -139,7 +139,7 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                         }
                         else {
-                            for (int i = 0; i < AndarPointsArray.size() - 1; i++){
+                            for (int i = 0; i < AndarPointsArray.size(); i++){
                                 int tempTotalExpense = Integer.parseInt(AndarPointsArray.get(i));
                                 AndarFinalTotal = AndarFinalTotal + tempTotalExpense;
 
@@ -161,7 +161,7 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             }
 
                         }
-                        for (int i = 0; i <= AndarPointsArray.size() - 1; i ++){
+                        for (int i = 0; i <= AndarPointsArray.size(); i ++){
                             int tempTotalExpense = Integer.parseInt(AndarPointsArray.get(i));
                             AndarFinalTotal = AndarFinalTotal + tempTotalExpense;
 
@@ -234,7 +234,7 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                         }
                         else {
-                            for (int i = 0; i < BaharPointsArray.size() - 1; i++){
+                            for (int i = 0; i < BaharPointsArray.size(); i++){
                                 int tempTotalExpense = Integer.parseInt(BaharPointsArray.get(i));
                                 BaharFinalTotal = BaharFinalTotal + tempTotalExpense;
 
@@ -255,7 +255,7 @@ public class HarufAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             }
 
                         }
-                        for (int i = 0; i <= BaharPointsArray.size() - 1; i ++){
+                        for (int i = 0; i <= BaharPointsArray.size() ; i ++){
                             int tempTotalExpense = Integer.parseInt(BaharPointsArray.get(i));
                             BaharFinalTotal = BaharFinalTotal + tempTotalExpense;
 
