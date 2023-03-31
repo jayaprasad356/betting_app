@@ -18,11 +18,11 @@ public class Functions {
 
 
         countryList.add(new Game("", "Select Game"));
-        countryList.add(new Game("FD", "FD (Faridabad) 05:45 PM"));
-        countryList.add(new Game("GB", "GB (Gaziabad) 07:45 PM"));
-        countryList.add(new Game("GL", "GL (Gali) 10:45 PM"));
+        countryList.add(new Game("FD", "FD (Faridabad) 06:00 am to 05:45 pm"));
+        countryList.add(new Game("GB", "GB (Gaziabad) 06:00 am to 07:45 pm "));
+        countryList.add(new Game("GL", "GL (Gali) 06:00 am to 10:45 pm"));
         countryList.add(new Game("", "Next Day Games"));
-        countryList.add(new Game("DS", "DS (Disawar) 02:10 AM"));
+        countryList.add(new Game("DS", "DS (Disawar) 06:00 am to 02:10 pm"));
 
         //fill data in spinner
         ArrayAdapter<Game> adapter = new ArrayAdapter<Game>(activity, android.R.layout.simple_spinner_dropdown_item, countryList);

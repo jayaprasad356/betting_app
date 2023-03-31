@@ -378,6 +378,7 @@ public class BidsHistoryFragment extends Fragment {
                     JSONArray innerjsonArray = innerjsonObject.getJSONArray(Constant.DATA);
                     Gson g = new Gson();
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        tvNoHistory.setVisibility(View.GONE);
                         allbid = true;
                         bidsl1.setVisibility(View.VISIBLE);
                         if (deletestatus){
@@ -389,6 +390,7 @@ public class BidsHistoryFragment extends Fragment {
                         }
 
                         for (int i = 0; i < jsonArray.length(); i++) {
+
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                             if (jsonObject1 != null) {
 
@@ -427,6 +429,7 @@ public class BidsHistoryFragment extends Fragment {
                         recyclerView.setAdapter(bidAdapter);
 
                         bidsl1.setVisibility(View.VISIBLE);
+
                     }
                     else {
                         bidsl1.setVisibility(View.GONE);
