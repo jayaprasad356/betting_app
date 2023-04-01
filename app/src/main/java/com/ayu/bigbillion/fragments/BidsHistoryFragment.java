@@ -178,6 +178,7 @@ public class BidsHistoryFragment extends Fragment {
 
                     }
                     bidsl1.setVisibility(View.GONE);
+                    tvNoHistory.setVisibility(View.VISIBLE);
                     try {
                         deletestatus = isDeletable();
                     } catch (ParseException e) {
@@ -378,9 +379,10 @@ public class BidsHistoryFragment extends Fragment {
                     JSONArray innerjsonArray = innerjsonObject.getJSONArray(Constant.DATA);
                     Gson g = new Gson();
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
-                        tvNoHistory.setVisibility(View.GONE);
+
                         allbid = true;
                         bidsl1.setVisibility(View.VISIBLE);
+                        tvNoHistory.setVisibility(View.GONE);
                         if (deletestatus){
                             btnDelete.setVisibility(View.GONE);
                         }
@@ -429,12 +431,14 @@ public class BidsHistoryFragment extends Fragment {
                         recyclerView.setAdapter(bidAdapter);
 
                         bidsl1.setVisibility(View.VISIBLE);
+                        tvNoHistory.setVisibility(View.GONE);
 
                     }
                     else {
                         bidsl1.setVisibility(View.GONE);
-                        btnDelete.setVisibility(View.GONE);
                         tvNoHistory.setVisibility(View.VISIBLE);
+                        btnDelete.setVisibility(View.GONE);
+
                         Toast.makeText(activity, "No Bids Found", Toast.LENGTH_SHORT).show();
 
                     }

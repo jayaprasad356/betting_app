@@ -166,6 +166,7 @@
                 android:layout_marginTop="100dp"
                 android:text="No Bet History Found"
                 android:textSize="24dp"
+                android:visibility="gone"
                 android:layout_height="wrap_content"/>
             <Button
                 android:id="@+id/btnDelete"
