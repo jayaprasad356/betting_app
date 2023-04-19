@@ -74,6 +74,7 @@ public class BidsHistoryFragment extends Fragment {
     boolean allbid = false;
     boolean deletestatus = false;
     Date gameTime_date,currentTime_date;
+    long currentTimestamp = 0;
 
     public BidsHistoryFragment() {
         // Required empty public constructor
@@ -144,6 +145,7 @@ public class BidsHistoryFragment extends Fragment {
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
+        currentTimestamp();
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -250,7 +252,33 @@ public class BidsHistoryFragment extends Fragment {
 
         return root;
     }
+    private void currentTimestamp()
+    {
+        Map<String, String> params = new HashMap<>();
+        ApiConfig.RequestToVolley((result, response) -> {
+            if (result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.getBoolean(Constant.SUCCESS)) {
 
+                        currentTimestamp = Long.parseLong(jsonObject.getString(Constant.CURRENT_TIMESTAMP));
+
+                    }
+                    else {
+                        Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+            else {
+                Toast.makeText(activity, String.valueOf(response) +String.valueOf(result), Toast.LENGTH_SHORT).show();
+
+            }
+            //pass url
+        }, activity, Constant.CURRENT_TIMESTAMP_URL, params,true);
+
+    }
     private boolean isDeletable() throws ParseException {
         String[] separated = spinGame.getSelectedItem().toString().split(" ");
         String gameTimestr = separated[2] + " " + separated[3];
@@ -264,7 +292,7 @@ public class BidsHistoryFragment extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        long diff = gameTime_date.getTime() - currentTime_date.getTime();
+        long diff = gameTime_date.getTime() - currentTimestamp;
         long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
         if (minutes <= 2){
             return true;

@@ -18,6 +18,7 @@ public class Constant {
     public static final String UPI= "upi";
     public static final String SETTINGS_URL = BaseUrl + "settings.php";
     public static final String FCM_ID = "fcm_id";
+    public static final String CURRENT_TIMESTAMP_URL = BaseUrl + "current_timestamp.php";
 
     public static final String UPDATE_FCM = BaseUrl + "update_fcm.php";
     public static final String BIDSLIST_URL = BaseUrl + "bidslist.php";
@@ -42,6 +43,7 @@ public class Constant {
     public static final String MIN_WITHDRAWAL = "min_withdrawal";
     public static final String MAX_WITHDRAWAL = "max_withdrawal";
     public static final String MIN_DEPOSIT = "min_deposit";
+    public static final String CURRENT_TIMESTAMP = "current_timestamp";
 
     public static final String GAME_NAME = "game_name";
     public static final String GAME_TYPE = "game_type";
