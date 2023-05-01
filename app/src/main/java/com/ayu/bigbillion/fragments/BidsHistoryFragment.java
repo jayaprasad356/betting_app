@@ -170,7 +170,7 @@ public class BidsHistoryFragment extends Fragment {
 
                     }
                     else if (spinDay.getSelectedItemPosition() == 2){
-                        date = simpleDateFormat.format(new Date());
+                        date = simpleDateFormat.format(new Date(currentTimestamp));
 
 
                     }
@@ -383,10 +383,10 @@ public class BidsHistoryFragment extends Fragment {
     }
 
     private Date getMeTomorrow(){
-        return new Date(System.currentTimeMillis()+24*60*60*1000);
+        return new Date(currentTimestamp+24*60*60*1000);
     }
     private Date getMeYesterday(){
-        return new Date(System.currentTimeMillis()-24*60*60*1000);
+        return new Date(currentTimestamp-24*60*60*1000);
     }
     private void bidsList()
     {
